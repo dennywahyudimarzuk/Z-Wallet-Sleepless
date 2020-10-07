@@ -51,7 +51,7 @@ class TopUp extends Component {
                                     </a>
                                 </Link>
                                 <Link to="/profile">
-                                    <a href="" class="ml-md-4 d-block profile-tp text-center text-lg-left">
+                                    <a href="/" class="ml-md-4 d-block profile-tp text-center text-lg-left">
                                         <img alt="" src={icUser} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Profile</span>
                                     </a>
                                 </Link>

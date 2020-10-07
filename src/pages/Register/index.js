@@ -121,7 +121,7 @@ class Register extends Component {
                                             </div>
                                         </div>
                                         <div class="form-group password col-lg-8">
-                                            <input type={this.state.show ? "text" : "password"} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password" name="password" value={this.state.form.password} name="password" onChange={this.handleForm} />
+                                            <input type={this.state.show ? "text" : "password"} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password"  value={this.state.form.password} name="password" onChange={this.handleForm} />
                                             <div class="icon-input">
                                                 <img alt="" src={icLock} />
                                             </div>

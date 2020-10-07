@@ -79,7 +79,7 @@ class Review extends Component {
                                     </a>
                                     </Link>
                                     <Link to="/user">
-                                    <a href="" className="ml-md-4 d-block profile-tr text-center text-lg-left">
+                                    <a href="/" className="ml-md-4 d-block profile-tr text-center text-lg-left">
                                         <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>

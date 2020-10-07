@@ -115,7 +115,7 @@ class Login extends Component{
                                                 <img alt="" src={icEyeCrossed} />
                                             </div>
                                             <div className="forgot-password ">
-                                                <p><a href="">Forgot password?</a></p>
+                                                <p><a href="/">Forgot password?</a></p>
                                             </div>
                                         </div>
 

@@ -46,7 +46,7 @@ class Profile extends Component {
                                     </a>
                                     </Link>
                                     <Link to="/profile">
-                                    <a href="" className="ml-md-4 d-block profile-pr text-center text-lg-left">
+                                    <a href="/" className="ml-md-4 d-block profile-pr text-center text-lg-left">
                                         <div className="active-link"></div>
                                         <img alt="" src={icUserActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
@@ -62,9 +62,8 @@ class Profile extends Component {
                                     <div class="row ">
                                         <div class="col-12 text-center ">
                                         
-
                                                 <img alt="" src={imJessica70x70} class="img-fluid profile-image" />
-                                                <span class="d-block"><img alt="" src={icPencilSmall} alt="" />&nbsp;&nbsp;Edit</span>
+                                                <span class="d-block"><img  src={icPencilSmall} alt="" />&nbsp;&nbsp;Edit</span>
                                                 <h1>{this.state.data.fullName}</h1>
                                                 <p>{this.state.data.phone}</p>
                                                 <div align="center">

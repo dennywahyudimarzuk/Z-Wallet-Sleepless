@@ -45,7 +45,7 @@ class Dashboard extends Component {
                               <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}>
                                     <Link to="/dashboard">
-                                    <a href="" class="ml-md-4 d-block dashboard text-center text-lg-left">
+                                    <a href="/" class="ml-md-4 d-block dashboard text-center text-lg-left">
                                         <div class="active-link"></div>
                                         <img alt="" src={icGridActive} /> &nbsp; <span class="d-none d-md-inline">Dashboard</span>
                                     </a>
@@ -61,7 +61,7 @@ class Dashboard extends Component {
                                     </a>
                                     </Link>
                                     <Link to="/profile">
-                                    <a href="" class="ml-md-4 d-block profile-ds text-center text-lg-left">
+                                    <a href="/" class="ml-md-4 d-block profile-ds text-center text-lg-left">
                                         <img alt="" src={icUser} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
@@ -103,7 +103,7 @@ class Dashboard extends Component {
                                         <div class="statistic">
                                             <div class="row ">
                                                 <div class="col-lg-6">
-                                                    <img alt="" src={icArrowIncome} alt=""/>
+                                                    <img alt="" src={icArrowIncome}/>
                                                     <p>Income</p>
                                                     <h4>Rp2.120.000</h4>
                                                 </div>
@@ -168,40 +168,6 @@ class Dashboard extends Component {
                                             })
                                         }
   
-
-
-                                        {/* <div class="row payment-history">
-                                            <div class=" col-sm-9 col-md-8">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <img alt="" src={imProfile3} class="img-fluid" />
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <h4 >Christine Mar...</h4>
-                                                        <span>Transfer</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class=" col-sm-3 col-md-4 pt-3 money-plus">
-                                                <p>+Rp150.000</p>
-                                            </div>
-                                        </div>
-                                        <div class="row payment-history">
-                                            <div class=" col-sm-9 col-md-7">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <img alt="" src={imProfile4} class="img-fluid" />
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <h4 >Adobe Inc.</h4>
-                                                        <span>Subscription</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class=" col-sm-3 col-md-5 pt-3 float-right money-minus">
-                                                <p>-Rp249.000</p>
-                                            </div>
-                                        </div> */}
 
 
                                     </div>

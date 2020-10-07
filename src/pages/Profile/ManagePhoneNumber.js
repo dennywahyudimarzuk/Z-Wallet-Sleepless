@@ -71,7 +71,7 @@ class ManagePhoneNumber extends Component {
                                     </a>
                                     </Link>
                                     <Link to="/profile">
-                                    <a href="" className="ml-md-4 d-block profile-pr text-center text-lg-left">
+                                    <a href="/" className="ml-md-4 d-block profile-pr text-center text-lg-left">
                                         <div className="active-link"></div>
                                         <img alt="" src={icUserActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>

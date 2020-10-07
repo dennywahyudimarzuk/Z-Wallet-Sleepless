@@ -81,7 +81,7 @@ class AddPhoneNumber extends Component {
                                     </a>
                                     </Link>
                                     <Link to="/profile">
-                                    <a href="" className="ml-md-4 d-block profile-pr text-center text-lg-left">
+                                    <a href="/" className="ml-md-4 d-block profile-pr text-center text-lg-left">
                                         <div className="active-link"></div>
                                         <img alt="" src={icUserActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
@@ -105,7 +105,7 @@ class AddPhoneNumber extends Component {
                                             <div class="form-group phone col-lg-7">
                                                 <input type="number" class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your phone number" name="phone" value={this.state.form.phone} onChange={this.handleForm} />
                                                 <div class="icon-input">
-                                                    <img alt="" src={icPhone} alt="" /> 
+                                                    <img alt="" src={icPhone} /> 
                                                     &nbsp;&nbsp;
                                                     <span>+62</span>
                                                 </div>
