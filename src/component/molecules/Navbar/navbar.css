@@ -1,0 +1,24 @@
+.navbar-dashboard{
+    height: 140px;
+    background-color: #fff;
+    border-radius: 0px 0px 25px 25px;
+}
+
+.navbar-dashboard .navbar-toggle{
+    box-shadow: none !important;
+}
+
+.navbar-dashboard .container a{
+    font-weight: bold !important;
+    font-size: 29px !important;
+    color: #6379F4 !important;
+}
+
+.profile .profile-name{
+    font-weight: bold !important;
+    font-size: 18px !important;
+}
+.profile .phone-number{
+    font-weight: normal !important;
+    font-size: 13px !important;
+}
