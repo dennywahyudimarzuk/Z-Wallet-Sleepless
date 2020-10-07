@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowExpense, icArrowIncome, icArrowUp, icArrowUpTransfer, icGridActive, icLogOut, icPlus,icPlusTopUp,icUser,imProfile1,imProfile2,imProfile3,imProfile4} from '../../assets';
+import { icArrowExpense, icArrowIncome, icArrowUp, icArrowUpTransfer, icGridActive, icLogOut, icPlus,icPlusTopUp,icUser,imProfile3} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './dashboard.css';
 import {Link } from 'react-router-dom';

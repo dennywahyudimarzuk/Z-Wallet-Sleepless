@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import { icEyeCrossed, icLine, icLock, icMail, icPerson, imDoublePhone } from '../../assets';
+import { icLine, imDoublePhone } from '../../assets';
 import './createPin.css'
 class CreatePin extends Component {
     state = { 
@@ -36,7 +36,7 @@ class CreatePin extends Component {
                                 <h1 class="ml-4">Zwallet</h1>
                             </div>
                             <div class="image">
-                                <img src={imDoublePhone} class="img-fluid" />
+                                <img alt="" src={imDoublePhone} class="img-fluid" />
                             </div>
                             <div class="description ml-4">
                                 <h2>App that Covering Banking Needs.</h2>
@@ -66,27 +66,27 @@ class CreatePin extends Component {
                                                 <div class="row justify-content-between">
                                                     <div class="form-input-pin">
                                                         <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img src={icLine} class="input-line" />
+                                                        <img alt="" src={icLine} class="input-line" />
                                                     </div>
                                                     <div class="form-input-pin">
                                                         <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img src={icLine} class="input-line" />
+                                                        <img alt="" src={icLine} class="input-line" />
                                                     </div>
                                                     <div class="form-input-pin">
                                                         <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img src={icLine} class="input-line" />
+                                                        <img alt="" src={icLine} class="input-line" />
                                                     </div>
                                                     <div class="form-input-pin">
                                                         <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img src={icLine} class="input-line" />
+                                                        <img alt="" src={icLine} class="input-line" />
                                                     </div>
                                                     <div class="form-input-pin">
                                                         <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img src={icLine} class="input-line" />
+                                                        <img alt="" src={icLine} class="input-line" />
                                                     </div>
                                                     <div class="form-input-pin">
                                                         <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img src={icLine} class="input-line" />
+                                                        <img alt="" src={icLine} class="input-line" />
                                                     </div>
 
                                                 </div>

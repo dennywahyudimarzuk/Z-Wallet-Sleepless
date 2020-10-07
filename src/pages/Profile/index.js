@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUp ,icGrid, icLogOut, icPlus,icSearch,icUser,icUserActive,imJessica70x70,imMichael70x70,imMomo,imSamuel70x70,icpencil, icPencilSmall, icArrowLeft} from '../../assets';
+import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive,imJessica70x70, icPencilSmall, icArrowLeft} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import {Link} from 'react-router-dom';
 import './profile.css';
