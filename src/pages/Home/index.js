@@ -40,7 +40,7 @@ export default function index() {
             </nav>
 
             <div className="header">
-                <img src={bgLanding}  className="layer" />
+                <img alt="" src={bgLanding}  className="layer" />
                 <div className="container">
                 <div className="row">
                     <div className="col-md-6 ">
@@ -52,7 +52,7 @@ export default function index() {
                             </button>
                     </div>
                     <div className="col-md-6">
-                        <img src={imPhone} className="phone-image img-fluid" />
+                        <img alt="" src={imPhone} className="phone-image img-fluid" />
                     </div>
                 </div>
                 </div>
@@ -67,21 +67,21 @@ export default function index() {
                     <div className="row justify-content-center ">
                         <div className="col-md-4 mb-4 mb-md-0">
                             <div className="card-about text-center mx-auto">
-                                    <img src={icPhoneAbout} />
+                                    <img alt="" src={icPhoneAbout} />
                                     <h4>24/7 Support</h4>
                                     <p>We have 24/7 contact support so you can contact us whenever you want and we will respond it.</p>
                             </div>
                         </div>
                         <div className="col-md-4 mb-4 mb-md-0">
                             <div className="card-about text-center mx-auto">
-                                <img src={icLockAbout} />
+                                <img alt="" src={icLockAbout} />
                                 <h4>Data Privacy</h4>
                                 <p>We make sure your data is safe in our database and we will encrypt any data you submitted to us.</p>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="card-about text-center mx-auto">
-                                <img src={icDownloadAbout} />
+                                <img alt="" src={icDownloadAbout} />
                                 <h4>Easy Download</h4>
                                 <p>Zwallet is 100% totally free to use it’s now available on Google Play Store and App Store.</p>
                         </div>
@@ -102,16 +102,16 @@ export default function index() {
                             <div className="row">
                                 <div className="col-lg-12 col-6 ">
                                     <div className="brand d-flex ">
-                                        <img src={SpAirbnb} />
-                                        <img src={SpCanon} />
-                                        <img src={SpDell} />
+                                        <img alt="" src={SpAirbnb} />
+                                        <img alt="" src={SpCanon} />
+                                        <img alt="" src={SpDell} />
                                     </div>
                                 </div>
                                 <div className="col-lg-12 col-6">
                                     <div className="brand d-flex " >
-                                        <img src={SpMicrosoft} />
-                                        <img src={SpDropBox} />
-                                        <img src={SpHM} />
+                                        <img alt="" src={SpMicrosoft} />
+                                        <img alt="" src={SpDropBox} />
+                                        <img alt="" src={SpHM} />
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@ export default function index() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-5">
-                            <img src={imPhoneDashboard} className="img-fluid" />
+                            <img alt="" src={imPhoneDashboard} className="img-fluid" />
                         </div>
                         <div className="col-md-7">
                                 <h1>All The <span>Great</span> Zwallet Features.</h1>
@@ -154,21 +154,21 @@ export default function index() {
                     <div className="row justify-content-center ">
                         <div className="col-md-4 mb-4 mb-md-0">
                             <div className="card-feedback text-center mx-auto ">
-                                    <img src={imFeedBack1} />
+                                    <img alt="" src={imFeedBack1} />
                                     <h4>Sherina Chaw</h4>
                                     <p>“I use this app since 2 years ago and this is the best app that I’ve ever use in my entire life”</p>
                             </div>
                         </div>
                         <div className="col-md-4 mb-4 mb-md-0">
                             <div className="card-feedback text-center mx-auto">
-                                <img src={imFeedBack2} />
+                                <img alt="" src={imFeedBack2} />
                                 <h4>Jessica Mera</h4>
                                 <p>“I use Zwallet to manage all financial needs. It’s super easy to use and it’s 100% free app”</p>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="card-feedback text-center mx-auto">
-                                <img src={imFeedBack3} />
+                                <img alt="" src={imFeedBack3} />
                                 <h4>Robert Chandler</h4>
                                 <p>“Since I’m using this app, I’m not going to move to another similar app. Thank you Zwallet!”</p>
                         </div>

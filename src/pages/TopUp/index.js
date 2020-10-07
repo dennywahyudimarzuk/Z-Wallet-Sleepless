@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUp, icArrowUpActive ,icGrid, icLogOut, icPlus,icPlusActive,icUser,imSamuel70x70} from '../../assets';
+import { icArrowUp ,icGrid, icLogOut,icPlusActive,icUser} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './topUp.css'
 import {Link} from 'react-router-dom';
@@ -36,28 +36,28 @@ class TopUp extends Component {
                               <div style={{flex: 1}}> 
                                 <Link to="/dashboard">
                                     <a href="/dashboard" class="ml-md-4 d-block dashboard-tp text-center text-lg-left">
-                                        <img src={icGrid} /> &nbsp; <span class="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGrid} /> &nbsp; <span class="d-none d-md-inline">Dashboard</span>
                                     </a>
                                 </Link>
                                 <Link to="/transfer">
                                     <a href="/transfer" class="ml-md-4 d-block transfer-tp text-center text-lg-left">
-                                        <img src={icArrowUp} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUp} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Transfer</span>
                                     </a>
                                 </Link>
                                 <Link to="/top-up">
                                     <a href="/top-up" class="ml-md-4 d-block top-up-tp text-center text-lg-left">
                                         <div class="active-link"></div>
-                                        <img src={icPlusActive} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlusActive} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Top Up</span>
                                     </a>
                                 </Link>
                                 <Link to="/profile">
                                     <a href="" class="ml-md-4 d-block profile-tp text-center text-lg-left">
-                                        <img src={icUser} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUser} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Profile</span>
                                     </a>
                                 </Link>
                                 </div>
                                     <a href="/auth/logout" class="ml-md-4 d-block logout-tp text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>

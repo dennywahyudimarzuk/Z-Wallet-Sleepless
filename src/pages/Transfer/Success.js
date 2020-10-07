@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icDownload,icGrid, icLogOut, icPencil, icPlus,icShare,icSuccess,icUser,imSamuel70x70} from '../../assets';
+import { icArrowUpActive ,icDownload,icGrid, icLogOut, icPlus,icShare,icSuccess,icUser,imSamuel70x70} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './success.css'
 import {Link} from 'react-router-dom';
@@ -36,34 +36,34 @@ class Success extends Component {
                                 <div className="sidebar sidebar_menu" >
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-tr text-center text-lg-left">
-                                        <img src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
                                     <a href="receiver.html" className="ml-md-4 d-block transfer text-center text-lg-left">
                                         <div className="active-link"></div>
-                                        <img src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
                                     <a href="top-up"  className="ml-md-4 d-block top-up-tr text-center text-lg-left" >
-                                        <img src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/user">
                                     <a href="" className="ml-md-4 d-block profile-tr text-center text-lg-left">
-                                        <img src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                     <a href="login.html" className="ml-md-4 d-block logout-sc text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-9" id="area">
                                 <div class="body-area-success">
                                     <div class="status text-center">
-                                        <img src={icSuccess} />
+                                        <img alt="" src={icSuccess} />
                                         <h2>Transfer Success</h2>
                                     </div>
                                     <div class="row">
@@ -98,7 +98,7 @@ class Success extends Component {
                                             <div class="card-profile ">
                                                 <div class="row justify-content-lg-around">
                                                     <div class="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                        <img src={imSamuel70x70} />
+                                                        <img alt="" src={imSamuel70x70} />
                                                     </div>
                                                     <div class="col-9 col-sm-9 col-lg-10 receiver">
                                                         <h4 class="mt-1 mt-sm-0">{this.state.dataTransfer.name}</h4>
@@ -109,8 +109,8 @@ class Success extends Component {
                                         </div>
                                     </div>
                                     <div class="text-center text-sm-right mt-md-5">
-                                        <button class="btn btn-share"><img src={icShare} /></button> &nbsp;&nbsp;
-                                        <button class="btn btn-download"><img src={icDownload} />&nbsp; <span>Download PDF</span></button> &nbsp;&nbsp;
+                                        <button class="btn btn-share"><img alt="" src={icShare} /></button> &nbsp;&nbsp;
+                                        <button class="btn btn-download"><img alt="" src={icDownload} />&nbsp; <span>Download PDF</span></button> &nbsp;&nbsp;
                                         <Link to="/dashboard">
                                              <button class="btn back">Back to Home</button>
                                         </Link>

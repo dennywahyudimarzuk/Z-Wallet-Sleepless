@@ -84,7 +84,7 @@ class Register extends Component {
                                 <h1 class="ml-4">Zwallet</h1>
                             </div>
                             <div class="image">
-                                <img src={imDoublePhone} class="img-fluid" />
+                                <img alt="" src={imDoublePhone} class="img-fluid" />
                             </div>
                             <div class="description ml-4">
                                 <h2>App that Covering Banking Needs.</h2>
@@ -111,22 +111,22 @@ class Register extends Component {
                                         <div class="form-group username col-lg-8">
                                             <input type="text" class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your username" value={this.state.form.userName} name="userName" onChange={this.handleForm} />
                                             <div class="icon-input">
-                                                <img src={icPerson} />
+                                                <img alt="" src={icPerson} />
                                             </div>
                                         </div>
                                         <div class="form-group email col-lg-8">
                                             <input type="email" class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your e-mail" value={this.state.form.email} name="email" onChange={this.handleForm} />
                                             <div class="icon-input">
-                                                <img src={icMail} />
+                                                <img alt="" src={icMail} />
                                             </div>
                                         </div>
                                         <div class="form-group password col-lg-8">
                                             <input type={this.state.show ? "text" : "password"} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password" name="password" value={this.state.form.password} name="password" onChange={this.handleForm} />
                                             <div class="icon-input">
-                                                <img src={icLock} />
+                                                <img alt="" src={icLock} />
                                             </div>
                                             <div class="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
-                                                <img src={icEyeCrossed} />
+                                                <img alt="" src={icEyeCrossed} />
                                             </div>
                                         </div>
 

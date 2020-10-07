@@ -64,27 +64,27 @@ class Review extends Component {
                                 <div className="sidebar sidebar_menu">
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-tr text-center text-lg-left">
-                                        <img src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
                                     <a href="receiver.html" className="ml-md-4 d-block transfer text-center text-lg-left">
                                         <div className="active-link"></div>
-                                        <img src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
                                     <a href="top-up"  className="ml-md-4 d-block top-up-tr text-center text-lg-left" >
-                                        <img src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/user">
                                     <a href="" className="ml-md-4 d-block profile-tr text-center text-lg-left">
-                                        <img src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                     <a href="login.html" className="ml-md-4 d-block logout text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@ class Review extends Component {
                                             <div className="card-profile ">
                                                 <div className="row justify-content-lg-around">
                                                     <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                        <img src={imSamuel70x70} />
+                                                        <img alt="" src={imSamuel70x70} />
                                                     </div>
                                                     <div className="col-9 col-sm-9 col-lg-10 receiver">
                                                          <h4 className="mt-1 mt-sm-0">{this.state.dataTransfer.name}</h4>
@@ -153,7 +153,7 @@ class Review extends Component {
         <div class="modal-header border-0 p-0 ">
           <h5 >Enter PIN to Transfer</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"><img src={icX} /></span>
+            <span aria-hidden="true"><img alt="" src={icX} /></span>
           </button>
         </div>
         <div class="modal-body p-0">
@@ -165,27 +165,27 @@ class Review extends Component {
                 <div class="row justify-content-md-around">
                     <div class="col-2">
                        <input type="text" class="form-control d-inline" />
-                       <img src={icLine} class="input-line" />
+                       <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
                        <input type="text" class="form-control d-inline" />
-                       <img src={icLine} class="input-line" />
+                       <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
                        <input type="text" class="form-control d-inline" />
-                       <img src={icLine} class="input-line" />
+                       <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
                        <input type="text" class="form-control d-inline" />
-                       <img src={icLine} class="input-line" />
+                       <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
                        <input type="text" class="form-control d-inline" />
-                       <img src={icLine} class="input-line" />
+                       <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
                        <input type="text" class="form-control d-inline" />
-                       <img src={icLine} class="input-line" />
+                       <img alt="" src={icLine} class="input-line" />
                     </div>
                 </div>
             </div>

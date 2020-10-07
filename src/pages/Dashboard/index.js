@@ -47,27 +47,27 @@ class Dashboard extends Component {
                                     <Link to="/dashboard">
                                     <a href="" class="ml-md-4 d-block dashboard text-center text-lg-left">
                                         <div class="active-link"></div>
-                                        <img src={icGridActive} /> &nbsp; <span class="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGridActive} /> &nbsp; <span class="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
                                     <a href="/transfer" class="ml-md-4 d-block transfer-ds text-center text-lg-left">
-                                        <img src={icArrowUp} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUp} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
                                     <a href="top-up.html" class="ml-md-4 d-block top-up-ds text-center text-lg-left">
-                                        <img src={icPlus} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlus} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/profile">
                                     <a href="" class="ml-md-4 d-block profile-ds text-center text-lg-left">
-                                        <img src={icUser} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUser} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                 </div>
                                     <a href="/auth/logout" class="ml-md-4 d-block logout-ds text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
@@ -82,13 +82,13 @@ class Dashboard extends Component {
                                         <div class="col-md-4 align-self-center">
                                         <Link to="/transfer">
                                             <div class="btn-transfer float-md-right"   >
-                                            &nbsp; <img src={icArrowUpTransfer} class="mb-2" />
+                                            &nbsp; <img alt="" src={icArrowUpTransfer} class="mb-2" />
                                                 <h4 class="d-inline"> Transfer</h4>
                                             </div>
                                         </Link>
                                         <Link to="/top-up">
                                             <div class="btn-top-up float-md-right">
-                                                &nbsp; <img src={icPlusTopUp} class="mb-2" />
+                                                &nbsp; <img alt="" src={icPlusTopUp} class="mb-2" />
                                                 <h4 class="d-inline"> Top-Up</h4>
                                             </div>
                                         </Link>
@@ -103,12 +103,12 @@ class Dashboard extends Component {
                                         <div class="statistic">
                                             <div class="row ">
                                                 <div class="col-lg-6">
-                                                    <img src={icArrowIncome} alt=""/>
+                                                    <img alt="" src={icArrowIncome} alt=""/>
                                                     <p>Income</p>
                                                     <h4>Rp2.120.000</h4>
                                                 </div>
                                                 <div class="col-lg-6  pl-lg-5">
-                                                    <img src={icArrowExpense} />
+                                                    <img alt="" src={icArrowExpense} />
                                                     <p>Expense</p>
                                                     <h4>Rp1.560.000</h4>
                                                 </div>
@@ -139,22 +139,7 @@ class Dashboard extends Component {
                                             </div>
                                         </div>
 
-                                        {/* <div class="row payment-history">
-                                            <div class=" col-sm-9 col-md-8">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <img src={imProfile1} class="img-fluid" />
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <h4 >Samuel Suhi</h4>
-                                                        <span >Transfer</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class=" col-sm-3 col-md-4 pt-3 money-plus">
-                                                <p>+Rp50.000</p>
-                                            </div>
-                                        </div> */}
+                                    
 
 
 
@@ -166,7 +151,7 @@ class Dashboard extends Component {
                                                     <div class=" col-sm-9 col-md-7">
                                                         <div class="row">
                                                             <div class="col-4">
-                                                                <img src={imProfile3} class="img-fluid" />
+                                                                <img alt="" src={imProfile3} class="img-fluid" />
                                                             </div>
                                                             <div class="col-8">
                                                                 <h4 >{history.fullName}</h4>
@@ -189,7 +174,7 @@ class Dashboard extends Component {
                                             <div class=" col-sm-9 col-md-8">
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <img src={imProfile3} class="img-fluid" />
+                                                        <img alt="" src={imProfile3} class="img-fluid" />
                                                     </div>
                                                     <div class="col-8">
                                                         <h4 >Christine Mar...</h4>
@@ -205,7 +190,7 @@ class Dashboard extends Component {
                                             <div class=" col-sm-9 col-md-7">
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <img src={imProfile4} class="img-fluid" />
+                                                        <img alt="" src={imProfile4} class="img-fluid" />
                                                     </div>
                                                     <div class="col-8">
                                                         <h4 >Adobe Inc.</h4>

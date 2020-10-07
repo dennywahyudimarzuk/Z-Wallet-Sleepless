@@ -84,28 +84,28 @@ class ChangePin extends Component {
                                  <div style={{flex: 1}}>
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-pr text-center text-lg-left">
-                                        <img src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
                                     <a href="receiver.html" className="ml-md-4 d-block transfer-pr text-center text-lg-left">
-                                        <img src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
                                     <a href="top-up"  className="ml-md-4 d-block top-up-pr text-center text-lg-left" >
-                                        <img src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/profile">
                                     <a href="" className="ml-md-4 d-block profile-pr text-center text-lg-left">
                                         <div className="active-link"></div>
-                                        <img src={icUserActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUserActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                     </div>
                                     <a href="login.html" className="ml-md-4 d-block logout-rc text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
@@ -124,27 +124,27 @@ class ChangePin extends Component {
                                                         <div class="row justify-content-between">
                                                             <div class="form-input-pin">
                                                                 <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin1} name="pin1" onChange={this.handleForm} />
-                                                                <img src={icLine} class="input-line" />
+                                                                <img alt="" src={icLine} class="input-line" />
                                                             </div>
                                                             <div class="form-input-pin">
                                                                 <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin2} name="pin2" onChange={this.handleForm} />
-                                                                <img src={icLine} class="input-line" />
+                                                                <img alt="" src={icLine} class="input-line" />
                                                             </div>
                                                             <div class="form-input-pin">
                                                                 <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin3} name="pin3" onChange={this.handleForm} />
-                                                                <img src={icLine} class="input-line" />
+                                                                <img alt="" src={icLine} class="input-line" />
                                                             </div>
                                                             <div class="form-input-pin">
                                                                 <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin4} name="pin4" onChange={this.handleForm} />
-                                                                <img src={icLine} class="input-line" />
+                                                                <img alt="" src={icLine} class="input-line" />
                                                             </div>
                                                             <div class="form-input-pin">
                                                                 <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin5} name="pin5" onChange={this.handleForm} />
-                                                                <img src={icLine} class="input-line" />
+                                                                <img alt="" src={icLine} class="input-line" />
                                                             </div>
                                                             <div class="form-input-pin">
                                                                 <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin6} name="pin6" onChange={this.handleForm}/>
-                                                                <img src={icLine} class="input-line" />
+                                                                <img alt="" src={icLine} class="input-line" />
                                                             </div>
                                                         </div>
                                                         

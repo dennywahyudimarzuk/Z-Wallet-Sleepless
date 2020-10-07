@@ -9,7 +9,7 @@ class Footer extends Component {
                     <div className="container">
                         <div className="row justify-content-lg-around ">
                             <div className="col-sm-6 text-center order-1 order-sm-0 text-sm-left">
-                                <a className="license">2020 Zwallet. All right reserved.</a>
+                                <a href="" className="license">2020 Zwallet. All right reserved.</a>
                             </div>
                             <div className="col-sm-6  text-center text-sm-right">
                                 <div className="row contact justify-content-lg-end">

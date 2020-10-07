@@ -32,28 +32,28 @@ class Profile extends Component {
                                  <div style={{flex: 1}}>
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-pr text-center text-lg-left">
-                                        <img src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
                                     <a href="receiver.html" className="ml-md-4 d-block transfer-pr text-center text-lg-left">
-                                        <img src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
                                     <a href="top-up"  className="ml-md-4 d-block top-up-pr text-center text-lg-left" >
-                                        <img src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/profile">
                                     <a href="" className="ml-md-4 d-block profile-pr text-center text-lg-left">
                                         <div className="active-link"></div>
-                                        <img src={icUserActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUserActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                     </div>
                                     <a href="/auth/logout" className="ml-md-4 d-block logout-rc text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
@@ -63,15 +63,15 @@ class Profile extends Component {
                                         <div class="col-12 text-center ">
                                         
 
-                                                <img src={imJessica70x70} class="img-fluid profile-image" />
-                                                <span class="d-block"><img src={icPencilSmall} alt="" />&nbsp;&nbsp;Edit</span>
+                                                <img alt="" src={imJessica70x70} class="img-fluid profile-image" />
+                                                <span class="d-block"><img alt="" src={icPencilSmall} alt="" />&nbsp;&nbsp;Edit</span>
                                                 <h1>{this.state.data.fullName}</h1>
                                                 <p>{this.state.data.phone}</p>
                                                 <div align="center">
                                                     <Link to="/profile/personal-information">
                                                         <div class="card-profile text-left d-flex justify-content-between align-self-center" >
                                                             <p >Personal Information</p>
-                                                            <img class="mt-2" src={icArrowLeft} alt="" />
+                                                            <img  class="mt-2" src={icArrowLeft} alt="" />
                                                         </div>
                                                     </Link>
                                                 </div>
@@ -79,7 +79,7 @@ class Profile extends Component {
                                                   <Link to="/profile/change-password">
                                                     <div class="card-profile text-left d-flex justify-content-between align-self-center" >
                                                         <p >Change Password</p>
-                                                        <img class="mt-2" src={icArrowLeft} alt="" />
+                                                        <img  class="mt-2" src={icArrowLeft} alt="" />
                                                     </div>
                                                   </Link>
                                                 </div>
@@ -87,7 +87,7 @@ class Profile extends Component {
                                                 <Link to="/profile/change-pin">
                                                     <div class="card-profile text-left d-flex justify-content-between align-self-center" >
                                                         <p >Change PIN</p>
-                                                        <img class="mt-2" src={icArrowLeft} alt="" />
+                                                        <img  class="mt-2" src={icArrowLeft} alt="" />
                                                     </div>
                                                 </Link>
                                                 </div>

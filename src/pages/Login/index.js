@@ -76,7 +76,7 @@ class Login extends Component{
                                 <h1 className="ml-4">Zwallet</h1>
                             </div>
                             <div className="image">
-                                <img src={imDoublePhone} className="img-fluid" />
+                                <img alt="" src={imDoublePhone} className="img-fluid" />
                             </div>
                             <div className="description ml-4">
                                 <h2>App that Covering Banking Needs.</h2>
@@ -103,16 +103,16 @@ class Login extends Component{
                                         <div className="form-group email col-lg-8">
                                             <input type="email" className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your e-mail" value={this.state.form.email} name="email"  onChange={this.handleForm}/>
                                             <div className="icon-input">
-                                                <img src={icMail} />
+                                                <img alt="" src={icMail} />
                                             </div>
                                         </div>
                                         <div className="form-group password col-lg-8">
                                             <input type={this.state.show ? "text" : "password"} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password" value={this.state.form.password} name="password" onChange={this.handleForm} />
                                             <div className="icon-input">
-                                                <img src={icLock} />
+                                                <img alt="" src={icLock} />
                                             </div>
                                             <div className="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
-                                                <img src={icEyeCrossed} />
+                                                <img alt="" src={icEyeCrossed} />
                                             </div>
                                             <div className="forgot-password ">
                                                 <p><a href="">Forgot password?</a></p>

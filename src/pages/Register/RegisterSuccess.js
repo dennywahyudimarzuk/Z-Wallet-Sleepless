@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import { Link } from 'react-router-dom';
-import { icEyeCrossed, icLine, icLock, icMail, icPerson, icSuccess, imDoublePhone } from '../../assets';
+import { icSuccess, imDoublePhone } from '../../assets';
 import './registerSuccess.css'
 class RegisterSuccess extends Component {
 
@@ -14,7 +14,7 @@ class RegisterSuccess extends Component {
                                 <h1 class="ml-4">Zwallet</h1>
                             </div>
                             <div class="image">
-                                <img src={imDoublePhone} class="img-fluid" />
+                                <img alt="" src={imDoublePhone} class="img-fluid" />
                             </div>
                             <div class="description ml-4">
                                 <h2>App that Covering Banking Needs.</h2>
@@ -29,7 +29,7 @@ class RegisterSuccess extends Component {
                     <div class="col-md-6">
                         <div class="success-information">
                             <div>
-                            <img src={icSuccess} />
+                            <img alt="" src={icSuccess} />
 
                                 <h2>Your PIN Was Successfully Created</h2>
                                 <p>

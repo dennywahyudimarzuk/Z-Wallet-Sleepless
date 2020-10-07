@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser,imJessica70x70,imMichael70x70,imMomo,imSamuel70x70} from '../../assets';
+import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser,imSamuel70x70} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './transfer.css'
 import {Link} from 'react-router-dom';
@@ -52,28 +52,28 @@ class Transfer extends Component {
                                  <div style={{flex: 1}}> 
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-tr text-center text-lg-left">
-                                        <img src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
                                     <a href="receiver.html" className="ml-md-4 d-block transfer text-center text-lg-left">
                                         <div className="active-link"></div>
-                                        <img src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
                                     <a href="top-up"  className="ml-md-4 d-block top-up-tr text-center text-lg-left" >
-                                        <img src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/profile">
                                     <a href="" className="ml-md-4 d-block profile-tr text-center text-lg-left">
-                                        <img src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                   </div>
                                     <a href="/auth/logout" className="ml-md-4 d-block logout-rc text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ class Transfer extends Component {
                                     <div className="form-group search">
                                         <input type="text" className="form-control " placeholder="Search receiver here" onChange={(e) => this.onHandleInput(e)} />
                                         <div className="icon-search">
-                                            <img src={icSearch} />
+                                            <img alt="" src={icSearch} />
                                         </div>
                                     </div>
                                     <div className="row">
@@ -102,7 +102,7 @@ class Transfer extends Component {
                                                     <div className="card-profile " onclick="window.location.href='input-transfer.html'">
                                                         <div className="row justify-content-lg-around">
                                                             <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                                <img src={imSamuel70x70} />
+                                                                <img alt="" src={imSamuel70x70} />
                                                             </div>
                                                             <div className="col-8 col-sm-9 col-lg-10 receiver">
                                                                 <h4 className="mt-1 mt-sm-0">{profile.fullName}</h4>

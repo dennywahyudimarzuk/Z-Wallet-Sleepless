@@ -95,27 +95,27 @@ class Amount extends Component {
                                 <div className="sidebar sidebar_menu">
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-tr text-center text-lg-left">
-                                        <img src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
+                                        <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
                                     <a href="receiver.html" className="ml-md-4 d-block transfer text-center text-lg-left">
                                         <div className="active-link"></div>
-                                        <img src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
+                                        <img alt="" src={icArrowUpActive} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
                                     <a href="top-up"  className="ml-md-4 d-block top-up-tr text-center text-lg-left" >
-                                        <img src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
+                                        <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/user">
                                     <a href="" className="ml-md-4 d-block profile-tr text-center text-lg-left">
-                                        <img src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
+                                        <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                     <a href="login.html" className="ml-md-4 d-block logout-am text-center text-lg-left">
-                                        <img src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
+                                        <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ class Amount extends Component {
                                                 <div className="card-profile ">
                                                     <div className="row justify-content-lg-around">
                                                         <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                            <img src={imSamuel70x70} />
+                                                            <img alt="" src={imSamuel70x70} />
                                                         </div>
                                                         <div className="col-9 col-sm-9 col-lg-10 receiver">
                                                             <h4 className="mt-1 mt-sm-0">{this.state.dataTransfer.fullName}</h4>
@@ -148,7 +148,7 @@ class Amount extends Component {
                                                     <h4>Rp {this.state.data.balance} Available</h4>
                                                     <div className="input-notes position-relative">
                                                         <input type="text" className="notes" placeholder="Add some notes" name="notes" value={this.state.form.notes} onChange={this.handleForm} />
-                                                        <img src={icPencil} className="icon-pencil" />
+                                                        <img alt="" src={icPencil} className="icon-pencil" />
                                                     </div>
                                                 </div>
                                             </div>
