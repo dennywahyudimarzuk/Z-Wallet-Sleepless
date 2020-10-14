@@ -13,7 +13,9 @@ class TopUp extends Component {
 
     componentDidMount()
     {
-        axios.get('https://zwallet-api-production.herokuapp.com/v1/topup/')
+        const token = JSON.parse(localStorage.getItem("token"));
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+        axios.get(`${process.env.REACT_APP_API}/topup/`,headers)
         .then(res =>{
           console.log(res.data.data)
           this.setState({data:res.data.data});

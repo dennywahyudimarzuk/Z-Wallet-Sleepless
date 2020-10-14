@@ -20,7 +20,6 @@ import {Link} from 'react-router-dom';
 
 export default function index() {
 
-
     return (
         <>
           <nav className="navbar navbar-expand-lg navbar-light">

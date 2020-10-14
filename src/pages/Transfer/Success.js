@@ -1,28 +1,18 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icDownload,icGrid, icLogOut, icPlus,icShare,icSuccess,icUser,imSamuel70x70} from '../../assets';
+import { icArrowUpActive ,icDownload,icGrid, icLogOut, icPlus,icShare,icSuccess,icUser} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './success.css'
 import {Link} from 'react-router-dom';
 class Success extends Component {
 
     state = {
-        dataTransfer : [],
-        dataUSer:[]
+        dataTransfer : []
     }
 
     componentDidMount()
     {
-        let login = localStorage.getItem("login");
-        if (login === 'true') {
-              let dataTransfer = JSON.parse(localStorage.getItem("dataTransfer"));
-              this.setState({dataTransfer:dataTransfer})    
-            // console.log('datatrans',dataTransfer)
-            let dataLogin = JSON.parse(localStorage.getItem("dataLogin")).data[0];
-            this.setState({dataUSer:dataLogin}) 
-            // console.log(dataLogin); 
-
-
-        }
+        let dataTransfer = JSON.parse(localStorage.getItem("dataTransfer"));
+        this.setState({dataTransfer:dataTransfer})   
 
     }
 
@@ -76,7 +66,7 @@ class Success extends Component {
                                         <div class="col-12">
                                             <div class="card-details ">
                                                 <p>Balance Left</p>
-                                                <h4>Rp{this.state.dataUSer.balance - this.state.dataTransfer.amount}</h4>
+                                                <h4>Rp{this.state.dataTransfer.available}</h4>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -98,7 +88,7 @@ class Success extends Component {
                                             <div class="card-profile ">
                                                 <div class="row justify-content-lg-around">
                                                     <div class="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                        <img alt="" src={imSamuel70x70} />
+                                                        <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
                                                     </div>
                                                     <div class="col-9 col-sm-9 col-lg-10 receiver">
                                                         <h4 class="mt-1 mt-sm-0">{this.state.dataTransfer.name}</h4>

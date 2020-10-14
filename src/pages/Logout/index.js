@@ -3,8 +3,7 @@ class Logout extends Component {
 
     componentDidMount()
     {
-        localStorage.removeItem("login");
-        localStorage.removeItem("dataLogin");
+        localStorage.clear();
         this.props.history.push('/auth')
     }
     render() { 

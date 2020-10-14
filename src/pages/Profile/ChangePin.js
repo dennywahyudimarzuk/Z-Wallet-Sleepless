@@ -50,7 +50,9 @@ class ChangePin extends Component {
             }
             data = qs.stringify(data);
             let id = this.state.data.id;
-            axios.patch(`https://zwallet-api-production.herokuapp.com/v1/profile/${id}`,data)
+            const token = JSON.parse(localStorage.getItem("token"));
+            const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+            axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
             .then(res => {
               console.log(res.data)
               this.setState({

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser,imSamuel70x70} from '../../assets';
+import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './transfer.css'
 import {Link} from 'react-router-dom';
@@ -16,10 +16,15 @@ class Transfer extends Component {
     {
 
         const query = event.currentTarget.value;
-        axios.get(`https://zwallet-api-production.herokuapp.com/v1/profile/detail?search=${query}`)
+        const token = JSON.parse(localStorage.getItem("token"));
+        const email = localStorage.getItem("login");
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+        axios.get(`${process.env.REACT_APP_API}/profile/detail?search=${query}`,headers)
         .then(res =>{
-          console.log(res.data.data)
-          this.setState({profiles:res.data.data});
+            const result = res.data.data.filter(man => {
+                return man.email !== email
+           })
+             this.setState({profiles:result});
         
         }).catch(err => {
           console.log(err)
@@ -29,10 +34,16 @@ class Transfer extends Component {
 
     componentDidMount()
     {
-        axios.get('https://zwallet-api-production.herokuapp.com/v1/profile/')
+        const token = JSON.parse(localStorage.getItem("token"));
+        const email = localStorage.getItem("login");
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+        axios.get(`${process.env.REACT_APP_API}/profile/`,headers)
         .then(res =>{
-          console.log(res.data.data)
-          this.setState({profiles:res.data.data});
+        //   console.log('transfer/',res.data.data)
+        const result = res.data.data.filter(man => {
+             return man.email !== email
+        })
+          this.setState({profiles:result});
         
         }).catch(err => {
           console.log(err)
@@ -94,6 +105,7 @@ class Transfer extends Component {
 
                                         {
                                             this.state.profiles.map(profile => {
+
                                                 let url = `/transfer/amount/${profile.id}`;
                                                 return(
                                                  
@@ -102,7 +114,7 @@ class Transfer extends Component {
                                                     <div className="card-profile " onclick="window.location.href='input-transfer.html'">
                                                         <div className="row justify-content-lg-around">
                                                             <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                                <img alt="" src={imSamuel70x70} />
+                                                                <img alt="" src={process.env.REACT_APP_URL+profile.photo} width="70" />
                                                             </div>
                                                             <div className="col-8 col-sm-9 col-lg-10 receiver">
                                                                 <h4 className="mt-1 mt-sm-0">{profile.fullName}</h4>

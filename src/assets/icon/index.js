@@ -5,7 +5,11 @@ import icPhoneAbout from './phone-about.svg';
 import icLockAbout from './lock-about.svg';
 import icDownloadAbout from './download-about.svg';
 import icMail from './mail.svg';
+import icMailWrong from './mailWrong.svg';
+import icMailActive from './mail-active.svg';
 import icLock from './lock.svg';
+import icLockWrong from './lockWrong.svg';
+import icLockActive from './lock-active.svg';
 import icEyeCrossed from './eye-crossed.svg';
 import icBell from './bell.svg';
 import icArrowUp from './arrow-up.svg';
@@ -23,6 +27,7 @@ import icSuccess from './success.svg';
 import icShare from './share.svg';
 import icDownload from './download.svg';
 import icPerson from './person.svg';
+import icPersonActive from './person-active.svg';
 import icUserActive from './userActive.svg';
 import icPencilSmall from './pencil-small.svg';
 import icArrowLeft from './arrow-left.svg';
@@ -41,7 +46,11 @@ export {
     icArrowIncome,
     icArrowUpActive,
     icMail,
+    icMailWrong,
+    icMailActive,
     icLock,
+    icLockWrong,
+    icLockActive,
     icEyeCrossed,
     icBell,
     icArrowUp,
@@ -66,6 +75,7 @@ export {
     icPhone,
     icX,
     icTrash,
+    icPersonActive
 }
 
 

@@ -1,10 +1,17 @@
 import React,{Component} from 'react'
-import { icEyeCrossed, icLock, icMail, icPerson, imDoublePhone } from '../../assets';
+import { icEyeCrossed, icLock, icMail, icPerson, imDoublePhone,icLockActive,icMailActive,icPersonActive} from '../../assets';
 import './register.css';
 import axios from 'axios';
 import qs from 'qs';
 class Register extends Component {
     state = {
+        icUsername:icPerson,
+        icMail:icMail,
+        icPassword:icLock,
+        usernameClick:{},
+        mailClick:{},
+        passClick:{},
+        btn:{},
         form : {
             email :'',
             password: '',
@@ -29,6 +36,37 @@ class Register extends Component {
       }
 
 
+    onRegister()
+    {
+
+        let data = {
+           
+                email :this.state.form.email,
+                password:this.state.form.password ,
+                fullName:this.state.form.userName,
+                userName:this.state.form.userName,
+                address:'jakarta',
+                birth:'Jakarta',
+                phone:'-'
+            
+        }
+
+        //  console.log(data)
+         data = qs.stringify(data);
+
+        axios.post(`${process.env.REACT_APP_API}/profile`,data)
+        .then(res =>{
+          console.log(res.data)
+        //   if (res.data.status !== 'error') {
+             this.props.history.push('/auth/create-pin')
+        //   }
+  
+        }).catch(err => {
+          console.error(err)
+        });
+    }
+
+
     showPassword()
     {
         if (this.state.show === false) {
@@ -43,35 +81,31 @@ class Register extends Component {
 
     }
 
-    onRegister()
+    uiUsername()
     {
 
-        let data = {
-           
-                email :this.state.form.email,
-                password:this.state.form.password ,
-                fullName:this.state.form.userName,
-                userName:this.state.form.userName,
-                address:'jakarta',
-                birth:'Jakarta',
-                phone:'87'
-            
-        }
-
-        //  console.log(data)
-         data = qs.stringify(data);
-
-        axios.post('https://zwallet-api-production.herokuapp.com/v1/profile',data)
-        .then(res =>{
-          console.log(res.data)
-        //   if (res.data.status !== 'error') {
-             this.props.history.push('/auth/create-pin')
-        //   }
-  
-        }).catch(err => {
-          console.error(err)
-        });
+        this.setState({
+            icUsername:icPersonActive,
+            usernameClick:{border:'1.6px solid #6379F4'}
+        })
     }
+    uiEmail()
+    {
+
+        this.setState({
+            icMail:icMailActive,
+            mailClick:{border:'1.6px solid #6379F4'}
+        })
+    }
+    uiPassword()
+    {
+        this.setState({
+            btn:{backgroundColor:'#6379F4',color:'white'},
+            icPassword:icLockActive,
+            passClick:{border:'1.6px solid #6379F4'}
+        })
+    }
+
 
 
     render() { 
@@ -109,21 +143,21 @@ class Register extends Component {
                                     <div class="form-group">
 
                                         <div class="form-group username col-lg-8">
-                                            <input type="text" class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your username" value={this.state.form.userName} name="userName" onChange={this.handleForm} />
+                                            <input type="text" style={this.state.usernameClick} onClick={() => this.uiUsername()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your username" value={this.state.form.userName} name="userName" onChange={this.handleForm} />
                                             <div class="icon-input">
-                                                <img alt="" src={icPerson} />
+                                                <img alt="" src={this.state.icUsername} />
                                             </div>
                                         </div>
                                         <div class="form-group email col-lg-8">
-                                            <input type="email" class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your e-mail" value={this.state.form.email} name="email" onChange={this.handleForm} />
+                                            <input type="email" autocomplete="off" style={this.state.mailClick} onClick={() => this.uiEmail()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your e-mail" value={this.state.form.email} name="email" onChange={this.handleForm} />
                                             <div class="icon-input">
-                                                <img alt="" src={icMail} />
+                                                <img alt="" src={this.state.icMail} />
                                             </div>
                                         </div>
                                         <div class="form-group password col-lg-8">
-                                            <input type={this.state.show ? "text" : "password"} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password"  value={this.state.form.password} name="password" onChange={this.handleForm} />
+                                            <input type={this.state.show ? "text" : "password"} style={this.state.passClick} onClick={() => this.uiPassword()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password"  value={this.state.form.password} name="password" onChange={this.handleForm} />
                                             <div class="icon-input">
-                                                <img alt="" src={icLock} />
+                                                <img alt="" src={this.state.icPassword} />
                                             </div>
                                             <div class="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
                                                 <img alt="" src={icEyeCrossed} />
@@ -131,7 +165,7 @@ class Register extends Component {
                                         </div>
 
                                         <div class="form-button col-lg-8">
-                                            <button class="btn btn-primary" type="submit" onClick={() => this.onRegister()} >Sign Up</button>
+                                            <button class="btn btn-primary" style={this.state.btn} type="submit" onClick={() => this.onRegister()} >Sign Up</button>
                                         </div>
                                         <div class="sign-in text-center col-lg-8">
                                             <p>Already have an account? Let’s <a href="/auth">Login</a></p>

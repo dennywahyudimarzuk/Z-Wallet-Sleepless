@@ -1,14 +1,14 @@
 import React,{Component} from 'react';
-import { icArrowExpense, icArrowIncome, icArrowUp, icArrowUpTransfer, icGridActive, icLogOut, icPlus,icPlusTopUp,icUser,imProfile3} from '../../assets';
+import { icArrowExpense, icArrowIncome, icArrowUp, icArrowUpTransfer, icGridActive, icLogOut, icPlus,icPlusTopUp,icUser} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './dashboard.css';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class Dashboard extends Component {
 
     state = {
-        data:[],
         historyTransfer: []
     }
 
@@ -16,22 +16,20 @@ class Dashboard extends Component {
     componentDidMount()
     {
         
-            var login = localStorage.getItem("login");
-            if (login === 'true') {
-                  var dataLogin = JSON.parse(localStorage.getItem("dataLogin")).data[0];
-                  this.setState({data:dataLogin})    
-            }
+        
 
-
-
-            axios.get(`https://zwallet-api-production.herokuapp.com/v1/transfer`)
+            const token = JSON.parse(localStorage.getItem("token"));
+            const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+            axios.get(`${process.env.REACT_APP_API}/transfer`,headers)
             .then(res =>{
-              console.log(res.data.data)
+              console.log('data transfer axios: ',res.data.data)
               this.setState({historyTransfer:res.data.data});
             
             }).catch(err => {
-              console.log(err)
+              console.log('data transfer axios error: ', err.message)
             });
+
+
 
     }
 
@@ -76,8 +74,8 @@ class Dashboard extends Component {
                                     <div class="row justify-content-between">
                                         <div class="col-md-8">
                                             <p class="balance">Balance</p>
-                                            <h4 class="credit">Rp{this.state.data.balance?this.state.data.balance:''}</h4>
-                                            <p class="number">{this.state.data.phone?this.state.data.phone:''}</p>
+                                            <h4 class="credit">Rp{this.props.userData.balance}</h4>
+                                            <p class="number">{this.props.userData.phone}</p>
                                         </div>
                                         <div class="col-md-4 align-self-center">
                                         <Link to="/transfer">
@@ -151,7 +149,7 @@ class Dashboard extends Component {
                                                     <div class=" col-sm-9 col-md-7">
                                                         <div class="row">
                                                             <div class="col-4">
-                                                                <img alt="" src={imProfile3} class="img-fluid" />
+                                                                <img alt="" src={process.env.REACT_APP_URL+history.photo} class="img-fluid" />
                                                             </div>
                                                             <div class="col-8">
                                                                 <h4 >{history.fullName}</h4>
@@ -187,4 +185,17 @@ class Dashboard extends Component {
     }
 }
  
-export default Dashboard;
+
+const mapStateToProps = (state) => {
+    return {
+        userData: state
+    }
+}
+
+const mapDispatchTOProps = (dispatch) => {
+    return{
+        handlePlus: (p) => dispatch({type:'BAGUS',value:p})
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchTOProps)(Dashboard);

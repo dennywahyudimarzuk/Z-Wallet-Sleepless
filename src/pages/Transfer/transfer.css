@@ -101,6 +101,9 @@ a{
     padding:20px 0px 15px 20px;
     margin-bottom: 20px;
 }
+.card-profile img{
+    border-radius: 10px;
+}
 
 .body-area-transfer .receiver h4{
     font-weight: bold;

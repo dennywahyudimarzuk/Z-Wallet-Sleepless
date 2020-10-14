@@ -2,27 +2,10 @@ import React,{Component} from 'react';
 import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import './personalInformation.css';
 
 class PersonalInformation extends Component {
-
-    state = {
-        data:[],
-        name:'',
-    }
-
-    componentDidMount()
-    {
-        var login = localStorage.getItem("login");
-        if (login === 'true') {
-              var dataLogin = JSON.parse(localStorage.getItem("dataLogin")).data[0];
-              this.setState({data:dataLogin})    
-        }
-        this.setState({data:dataLogin})
-        this.setState({name:dataLogin.fullName.split(' ')})
-    }
-
-
 
     render() { 
         return ( 
@@ -72,7 +55,7 @@ class PersonalInformation extends Component {
                                                 <span>First Name</span>
                                                 <h2>
                                                 {
-                                                 this.state.name[0]
+                                                 this.props.userData.fullName.split(' ')[0]
                                                 }
                                                 </h2>
                                             </div>
@@ -80,17 +63,17 @@ class PersonalInformation extends Component {
                                                 <span>Last Name</span>
                                                 <h2>
                                                 {
-                                                 this.state.name[1]
+                                                 this.props.userData.fullName.split(' ')[1]
                                                 }
                                                 </h2>
                                             </div>
                                             <div class="card-personal-information">
                                                 <span>Verified E-mail</span>
-                                                <h2>{this.state.data.email}</h2>
+                                                <h2>{this.props.userData.email}</h2>
                                             </div>
                                             <div class="card-personal-information">
                                                 <span>Phone Number</span>
-                                                <h2>{this.state.data.phone}</h2>
+                                                <h2>{this.props.userData.phone}</h2>
                                                 <Link to="/profile/manage-phone-number">
                                                     <span class="manage">
                                                         Manage
@@ -113,4 +96,11 @@ class PersonalInformation extends Component {
     }
 }
  
-export default PersonalInformation;
+const mapStateToProps = (state) => {
+    return {
+        userData: state
+    }
+}
+
+
+export default connect(mapStateToProps)(PersonalInformation);

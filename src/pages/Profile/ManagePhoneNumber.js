@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './managePhoneNumber.css';
 import qs from 'qs';
+import{connect} from 'react-redux';
 
 
 class ManagePhoneNumber extends Component {
@@ -33,7 +34,9 @@ class ManagePhoneNumber extends Component {
             phone : this.state.phone
         }
         data = qs.stringify(data);
-        axios.patch(`https://zwallet-api-production.herokuapp.com/v1/profile/${id}`,data)
+        const token = JSON.parse(localStorage.getItem("token"));
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+        axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
         .then(res => {
           console.log(res.data)
           if (res.data.success === true) {
@@ -92,7 +95,7 @@ class ManagePhoneNumber extends Component {
 
                                             <div class="primary-number">
                                                 <span>Primary</span>
-                                                <h2>{this.state.data.phone}</h2>
+                                                <h2>{this.props.userData.phone}</h2>
                                                 <div className="delete-number" onClick={() => this.deleteNumber(this.state.data.id)}>
                                                     <img alt="" src={icTrash}/>
                                                 </div>
@@ -115,4 +118,13 @@ class ManagePhoneNumber extends Component {
     }
 }
  
-export default ManagePhoneNumber;
+
+
+const mapStateToProps = (state) => {
+    return {
+        userData: state
+    }
+}
+
+
+export default connect(mapStateToProps)(ManagePhoneNumber);

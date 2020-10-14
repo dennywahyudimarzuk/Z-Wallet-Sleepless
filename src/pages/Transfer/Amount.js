@@ -1,14 +1,15 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icGrid, icLogOut, icPencil, icPlus,icUser,imSamuel70x70} from '../../assets';
+import { icArrowUpActive ,icGrid, icLogOut, icPencil, icPlus,icUser} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './amount.css'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux'
 class Amount extends Component {
 
     state = {
         dataTransfer:[],
-        data:[],
+        available:'',
         form : {
             name :'',
             phone:'',
@@ -16,27 +17,23 @@ class Amount extends Component {
             available:'',
             amount:'',
             idReceiver:'',
+            photo:'',
             date:''
           },
     }
     componentDidMount()
     {
         let id = this.props.match.params.id;
-        axios.get(`https://zwallet-api-production.herokuapp.com/v1/profile/spesifik/${id}`)
+        const token = JSON.parse(localStorage.getItem("token"));
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+        axios.get(`${process.env.REACT_APP_API}/profile/spesifik/${id}`,headers)
         .then(res =>{
-        //   console.log(res.data.data[0])
+          console.log(res.data.data[0])
           this.setState({dataTransfer:res.data.data[0]}) 
         
         }).catch(err => {
           console.log(err)
         });
-
-        var login = localStorage.getItem("login");
-        if (login === 'true') {
-              var dataLogin = JSON.parse(localStorage.getItem("dataLogin")).data[0];
-              this.setState({data:dataLogin})    
-        }
-
 
     }
 
@@ -70,19 +67,29 @@ class Amount extends Component {
                 name :this.state.dataTransfer.fullName,
                 phone:this.state.dataTransfer.phone,
                 notes: this.state.form.notes,
-                available:this.state.data.balance,
+                available:this.state.available,
                 amount:this.state.form.amount,
                 idReceiver:this.props.match.params.id,
+                photo:this.state.dataTransfer.photo,
                 date:time
             }   
         },() => {
-            console.log(this.state.form);
+            // console.log('hasil dari local:',this.state.form);
             localStorage.setItem("dataTransfer", JSON.stringify(this.state.form));
             this.props.history.push('/transfer/review')
         })
 
 
 
+    }
+
+    countAvailable(e)
+    {
+        // console.log('hasil dari hitung',e.target.value)
+        
+        this.setState({
+            available:this.props.userData.balance - e.target.value
+        })
     }
 
     render() { 
@@ -128,7 +135,7 @@ class Amount extends Component {
                                                 <div className="card-profile ">
                                                     <div className="row justify-content-lg-around">
                                                         <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                            <img alt="" src={imSamuel70x70} />
+                                                            <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
                                                         </div>
                                                         <div className="col-9 col-sm-9 col-lg-10 receiver">
                                                             <h4 className="mt-1 mt-sm-0">{this.state.dataTransfer.fullName}</h4>
@@ -144,8 +151,8 @@ class Amount extends Component {
                                         
                                             <div className="row justify-content-center input-credit">
                                                 <div className="col-md-8  text-center">
-                                                    <input type="text" className="amount" placeholder="0.00" name="amount" value={this.state.form.amount} onChange={this.handleForm}/>
-                                                    <h4>Rp {this.state.data.balance} Available</h4>
+                                                    <input type="text" className="amount" placeholder="0.00" name="amount" onKeyUp={(e) => this.countAvailable(e)} value={this.state.form.amount} onChange={this.handleForm}/>
+                                                    <h4>Rp {this.state.available ? this.state.available  :  this.props.userData.balance} Available</h4>
                                                     <div className="input-notes position-relative">
                                                         <input type="text" className="notes" placeholder="Add some notes" name="notes" value={this.state.form.notes} onChange={this.handleForm} />
                                                         <img alt="" src={icPencil} className="icon-pencil" />
@@ -170,4 +177,16 @@ class Amount extends Component {
     }
 }
  
-export default Amount;
+const mapStateToProps = (state) => {
+    return {
+        userData: state
+    }
+}
+
+const mapDispatchTOProps = (dispatch) => {
+    return{
+        handlePlus: (p) => dispatch({type:'BAGUS',value:p})
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchTOProps)(Amount);

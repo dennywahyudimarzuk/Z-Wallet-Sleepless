@@ -9,7 +9,7 @@ import './addPhoneNumber.css';
 class AddPhoneNumber extends Component {
 
     state = {
-        data : [],
+        // data : [],
         form:{
             phone:''
         }
@@ -42,8 +42,10 @@ class AddPhoneNumber extends Component {
         let data = {
             phone : value + this.state.form.phone
         }
+        const token = JSON.parse(localStorage.getItem("token"));
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
         data = qs.stringify(data);
-        axios.patch(`https://zwallet-api-production.herokuapp.com/v1/profile/${id}`,data)
+        axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,headers)
         .then(res => {
           console.log(res.data)
           if (res.data.success === true) {

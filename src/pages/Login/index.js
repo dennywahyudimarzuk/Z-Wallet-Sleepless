@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-import { icLock, icMail, imDoublePhone, icEyeCrossed } from '../../assets';
+import { icLock, icMail, imDoublePhone, icEyeCrossed, icMailActive,icLockActive, icMailWrong, icLockWrong } from '../../assets';
 import './login.css';
 import axios from 'axios';
 import qs from 'qs';
@@ -8,6 +8,12 @@ class Login extends Component{
     
 
     state = {
+        icMail:icMail,
+        error:false,
+        icPassword:icLock,
+        mailClick:{},
+        passClick:{},
+        btn:{},
         form : {
             email :'',
             password: ''
@@ -27,26 +33,47 @@ class Login extends Component{
           console.log(newForm);
         }
         )  
-      }
+    }
 
     login = () => {
-        console.log(this.state.form.email)
+        // console.log(this.state.form.email)
         
         let data = qs.stringify(this.state.form);
-
-      axios.post('https://zwallet-api-production.herokuapp.com/v1/auth',data)
+      axios.post(`${process.env.REACT_APP_API}/auth`,data)
       .then(res =>{
         console.log(res.data.status)
         if (res.data.status !== 'error') {
 
 
-            localStorage.setItem("login", true);
-            localStorage.setItem("dataLogin", JSON.stringify(res.data));
+            localStorage.setItem("login", this.state.form.email);
+            localStorage.setItem("token", JSON.stringify(res.data.data));
            this.props.history.push('/dashboard')
+        }
+        if (res.data.login === 'invalid') {
+            // console.log(res.data.data[0].param)
+            // res.data.data.map(tes => {
+            //     console.log('mantap',tes.param)
+            //     if (tes.param === 'email') {
+            //         this.setState({
+            //             icMail:icMail,
+            //             mailClick:{border:'1.6px solid #FF5B37'}
+            //         })
+            //     }
+            // })
+
+            if (res.data.status === "error") {
+                this.setState({
+                    icMail:icMailWrong,
+                    mailClick:{border:'1.6px solid #FF5B37'},
+                    icPassword:icLockWrong,
+                    passClick:{border:'1.6px solid #FF5B37'},
+                    error:true
+             })            
+    }
         }
 
       }).catch(err => {
-        console.error(err)
+
       });
 
     }
@@ -64,6 +91,23 @@ class Login extends Component{
             })
         }
 
+    }
+
+    uiEmail()
+    {
+
+        this.setState({
+            icMail:icMailActive,
+            mailClick:{border:'1.6px solid #6379F4'}
+        })
+    }
+    uiPassword()
+    {
+        this.setState({
+            btn:{backgroundColor:'#6379F4',color:'white'},
+            icPassword:icLockActive,
+            passClick:{border:'1.6px solid #6379F4'}
+        })
     }
 
     render(){
@@ -101,15 +145,15 @@ class Login extends Component{
                                     <div className="form-group">
 
                                         <div className="form-group email col-lg-8">
-                                            <input type="email" className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your e-mail" value={this.state.form.email} name="email"  onChange={this.handleForm}/>
+                                            <input type="email" autocomplete="off" style={this.state.mailClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiEmail()} placeholder="Enter your e-mail" value={this.state.form.email} name="email"  onChange={this.handleForm}/>
                                             <div className="icon-input">
-                                                <img alt="" src={icMail} />
+                                                <img alt="" src={this.state.icMail} />
                                             </div>
                                         </div>
                                         <div className="form-group password col-lg-8">
-                                            <input type={this.state.show ? "text" : "password"} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password" value={this.state.form.password} name="password" onChange={this.handleForm} />
+                                            <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Enter your password" value={this.state.form.password} name="password" onChange={this.handleForm} />
                                             <div className="icon-input">
-                                                <img alt="" src={icLock} />
+                                                <img alt="" src={this.state.icPassword} />
                                             </div>
                                             <div className="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
                                                 <img alt="" src={icEyeCrossed} />
@@ -120,7 +164,9 @@ class Login extends Component{
                                         </div>
 
                                         <div className="form-button col-lg-8">
-                                            <button className="btn btn-primary" type="submit" onClick={this.login} >Login</button>
+                                            {this.state.error && <span className="text-center d-block" style={{color:'#FF5B37',fontSize:18,fontWeight:600,marginBottom:-20}}>Email or Password Invalid</span>}
+                                           
+                                            <button className="btn btn-primary" style={this.state.btn} type="submit" onClick={this.login} >Login</button>
                                         </div>
                                         <div className="sign-up text-center col-lg-8">
                                             <p>Don’t have an account? Let’s <Link to="/auth/register">Sign Up</Link> </p>

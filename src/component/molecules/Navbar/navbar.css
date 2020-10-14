@@ -22,3 +22,8 @@
     font-weight: normal !important;
     font-size: 13px !important;
 }
+.navbar .profile img{
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+}

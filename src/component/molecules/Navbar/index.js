@@ -1,51 +1,64 @@
-import React,{Component} from 'react'
-import { jhon,icBell } from '../../../assets';
+import React,{useEffect, useState} from 'react'
+import {icBell } from '../../../assets';
 import './navbar.css';
+import axios from 'axios';
+import qs from 'qs';
 import {Redirect } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
-class Navbar extends Component {
+ const Navbar = () => {
 
-    state = {
-        data:[],
-        login:false
-    }
+    const [login,setLogin] = useState(false);
+    const [dataUser,setDataUser] = useState({});
+    const dispacth = useDispatch();
 
-
-    componentDidMount()
-    {
-        
+    useEffect(() => {
             var login = localStorage.getItem("login");
-            if (login === 'true') {
-                  var dataLogin = JSON.parse(localStorage.getItem("dataLogin")).data[0];
-                  this.setState({data:dataLogin})    
-            }else{
-                this.setState({login:true})   
+            var dataToken = JSON.parse(localStorage.getItem("token"));
+
+            if(!login)
+            {
+                setLogin(true)
             }
 
-    }
+            dataApi(dataToken);
+    },[])
+    
+    const dataApi = (token) => {
+        
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+        let data = qs.stringify({token:token.accessToken});
+        axios.post(`${process.env.REACT_APP_API}/profile/token`,data,headers)
+        .then(res =>{
+            // console.log('hasil dari axios',res.data)
+            setDataUser(res.data.data[0])
+            dispacth({type:'SET_DATA',value:res.data.data[0]});
 
-    render() { 
-        return ( 
-            <>
+        }).catch(err => {
+            console.error(err)
+        });
+    }
+  return (
+    <>
                 {
-                  this.state.login && <Redirect to='/auth'/>
+                  login && <Redirect to='/auth'/>
                 }
             
 
                 <nav className="navbar shadow-sm navbar-dashboard">
                      <div className="container">
-                        <a href="/dashboard" className="navbar-brand">Zwallet</a>
+                        <a href="/dashboard" className="navbar-brand" >Zwallet</a>
 
                             <section className="profile">
                                 <div className="row">
                                     <div className="col-10">
                                         <div className="row">
                                             <div className="col-3">
-                                                <img alt="" src={jhon} />
+                                            <img alt="" src={process.env.REACT_APP_URL+dataUser.photo}  />
                                             </div>
                                             <div className="col-9">
-                                                <h4 className="profile-name mt-1">&nbsp;{this.state.data.fullName?this.state.data.fullName:'' }</h4>
-                                                <p className="phone-number">&nbsp;{this.state.data.phone?this.state.data.phone:''}</p>
+                                                <h4 className="profile-name mt-1">&nbsp;{dataUser.fullName}</h4>
+                                                <p className="phone-number">&nbsp;{dataUser.phone}</p>
                             
                                             </div>
                                         </div>
@@ -65,12 +78,11 @@ class Navbar extends Component {
                         
                     </div>
                 
-                </nav>
+                </nav>     
 
-            </>
-         );
-    }
+
+    </>
+  )
 }
- 
-export default Navbar;
 
+export default Navbar;
