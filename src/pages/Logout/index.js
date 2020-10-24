@@ -1,10 +1,10 @@
 import React,{Component} from 'react'
+import { logout } from '../../utils';
 class Logout extends Component {
 
     componentDidMount()
     {
-        localStorage.clear();
-        this.props.history.push('/auth')
+        logout(this.props.history);
     }
     render() { 
        return(

@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive, icPencilSmall, icArrowLeft,icX} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import {Link} from 'react-router-dom';
 import{connect} from 'react-redux';
 import './profile.css';
@@ -108,7 +108,10 @@ class Profile extends Component {
         // console.log('hasil dari re: ',this.props)
         return ( 
             <>
+                <div className="d-none d-sm-block">
                 <Navbar/>
+                </div>
+
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
@@ -143,6 +146,9 @@ class Profile extends Component {
                             </div>
                             <div className="col-12 col-sm-9" id="area">
                             <div className="body-area-profile"> 
+                               <div className="d-block d-sm-none mt-4">
+                                   <NavigationMobile  to="/dashboard"/>
+                                </div>
                                     <div className="row ">
                                         <div className="col-12 text-center ">
                                         
@@ -171,6 +177,13 @@ class Profile extends Component {
                                                     <div className="card-profile text-left d-flex justify-content-between align-self-center" >
                                                         <p >Change PIN</p>
                                                         <img  className="mt-2" src={icArrowLeft} alt="" />
+                                                    </div>
+                                                </Link>
+                                                </div>
+                                                <div align="center">
+                                                <Link >
+                                                    <div className="card-profile text-left d-flex justify-content-between align-self-center d-sm-none" >
+                                                        <p >Notification</p>
                                                     </div>
                                                 </Link>
                                                 </div>

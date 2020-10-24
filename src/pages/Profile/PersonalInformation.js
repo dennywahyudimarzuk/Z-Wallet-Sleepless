@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './personalInformation.css';
@@ -10,7 +10,11 @@ class PersonalInformation extends Component {
     render() { 
         return ( 
             <>
-                <Navbar/>
+                <div className="d-none d-sm-block">
+                      <Navbar/>
+                </div>
+
+
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
@@ -47,7 +51,11 @@ class PersonalInformation extends Component {
                             <div class="body-area-profile-personal"> 
                                     <div class="row ">
                                         <div class="col-12">
-                                            <h1>Personal Information</h1>
+                                            <h1 className="d-none d-sm-block">Personal Information</h1>
+                                            <div className="d-block d-sm-none">
+                                                <NavigationMobile page="Personal Information" to="/profile"/>
+                                            </div>
+
                                             <p>We got your personal information from the sign up proccess. If you want to make changes on your information, contact our support.</p>
 
 

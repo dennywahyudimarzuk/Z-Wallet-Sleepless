@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { icArrowExpense, icArrowIncome, icArrowUp, icArrowUpTransfer, icGridActive, icLogOut, icPlus,icPlusTopUp,icUser} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { Navbar,Footer, CardPerson} from '../../component/molecules';
 import './dashboard.css';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
@@ -16,8 +16,6 @@ class Dashboard extends Component {
     componentDidMount()
     {
         
-        
-
             const token = JSON.parse(localStorage.getItem("token"));
             const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
             axios.get(`${process.env.REACT_APP_API}/transfer`,headers)
@@ -34,9 +32,11 @@ class Dashboard extends Component {
     }
 
     render() { 
+        console.log(this.props)
         return ( 
             <>
-                <Navbar/>
+                <Navbar />
+
                     <div class="container content">
                         <div class="row">
                             <div class="col-3 bg-white shadow-lg sidebar_menu ">
@@ -72,32 +72,52 @@ class Dashboard extends Component {
                             <div class="col-12 col-sm-9" id="area">
                                 <div class="body-area ">
                                     <div class="row justify-content-between">
+                                        <Link to="/detail">
                                         <div class="col-md-8">
                                             <p class="balance">Balance</p>
                                             <h4 class="credit">Rp{this.props.userData.balance}</h4>
                                             <p class="number">{this.props.userData.phone}</p>
                                         </div>
-                                        <div class="col-md-4 align-self-center">
-                                        <Link to="/transfer">
-                                            <div class="btn-transfer float-md-right"   >
-                                            &nbsp; <img alt="" src={icArrowUpTransfer} class="mb-2" />
-                                                <h4 class="d-inline"> Transfer</h4>
-                                            </div>
                                         </Link>
-                                        <Link to="/top-up">
-                                            <div class="btn-top-up float-md-right">
-                                                &nbsp; <img alt="" src={icPlusTopUp} class="mb-2" />
-                                                <h4 class="d-inline"> Top-Up</h4>
-                                            </div>
-                                        </Link>
+                                        <div class="col-md-4 align-self-center d-none d-sm-block">
+                                            <Link to="/transfer">
+                                                <div class="btn-transfer float-md-right"   >
+                                                &nbsp; <img alt="" src={icArrowUpTransfer} class="mb-2" />
+                                                    <h4 class="d-inline"> Transfer</h4>
+                                                </div>
+                                            </Link>
+                                            <Link to="/top-up">
+                                                <div class="btn-top-up float-md-right">
+                                                    &nbsp; <img alt="" src={icPlusTopUp} class="mb-2" />
+                                                    <h4 class="d-inline"> Top-Up</h4>
+                                                </div>
+                                            </Link>
                                         </div>
                                     </div>
+                               
                                 </div>
+                                
+                                        <div className="mobile-feature d-flex d-sm-none" style={{alignContent:'space-between',justifyContent:'space-between'}}>
+                                            <Link to="/transfer">
+                                                <div class="btn-transfer float-md-right d-inline"   >
+                                                &nbsp; <img alt="" src={icArrowUpTransfer} class="mb-2" />
+                                                    <h4 class="d-inline"> Transfer</h4>
+                                                </div>
+                                            </Link>
+                                            
+                                            <Link to="/top-up">
+                                                <div class="btn-top-up float-md-right d-inline">
+                                                    &nbsp; <img alt="" src={icPlusTopUp} class="mb-2" />
+                                                    <h4 class="d-inline"> Top-Up</h4>
+                                                </div>
+                                            </Link>
+                                        </div>
+                            
 
 
 
                                 <div class="row mt-3 justify-content-around wrapper">
-                                    <div class="col-md-7 money">
+                                    <div class="col-md-7 money d-none d-sm-block">
                                         <div class="statistic">
                                             <div class="row ">
                                                 <div class="col-lg-6">
@@ -127,20 +147,55 @@ class Dashboard extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5 transaction-history justify-content-lg-end mt-4 mt-md-0">
+
+                                        <div className="history-mobile d-sm-none " style={{display:'flex',flexDirection:'row',alignContent:'space-between',justifyContent:'space-between',width:'100%',paddingRight:5,paddingLeft:5,marginBottom:25}}>
+                                            <div style={{flex:1}}  >
+                                            <h2 class="">Transaction History</h2>
+                                            </div>
+                                            <div >
+                                            <Link to="/history"><a href="transactionHistory.html" class="see-all"><span class="text-right">See all</span></a></Link>
+                                            </div>
+                                        </div>
+
+
+                                        {/* <div className="card-person shadow-sm d-sm-none" >
+                                            <div style={{flex:1}}>
+                                                  <div className="wrapper-card-person" >
+                                                    <img alt="" src="http://localhost:8000/images/1603076204829-monyetGanteng.jpg"  className="img-fluid" />
+                                                    <div>
+                                                        <h2 className="mt-0">Samuel Suhi</h2>
+                                                        <span className="mt-0">Transfer</span>
+                                                    </div>
+                                                  </div>
+                                            </div>
+                                            <div >
+                                                  <p>+Rp50.000</p>
+                                            </div>
+                                        </div> */}
+
+                                        
+                                        {
+                                            this.state.historyTransfer.map(history => {
+                                                return(
+                                                    <CardPerson name={history.fullName} amount={history.amount} photo={process.env.REACT_APP_URL+history.photo} />
+
+                                                )
+                                            })
+
+                                        }
+ 
+
+
+
+                                    <div class="col-md-5 transaction-history justify-content-lg-end mt-4 mt-md-0 d-none d-md-block">
                                         <div class="row">
                                             <div class="col-8 bg">
                                                 <h2 class="text-center">Transaction History</h2>
                                             </div>
                                             <div class="col-4 text-right">
-                                                <a href="transactionHistory.html" class="see-all"><span class="text-right">See all</span></a>
+                                            <Link to="/history"><a href="transactionHistory.html" class="see-all"><span class="text-right">See all</span></a></Link>  
                                             </div>
                                         </div>
-
-                                    
-
-
-
 
                                         {
                                             this.state.historyTransfer.map(history => {

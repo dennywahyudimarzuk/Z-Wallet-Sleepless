@@ -3,15 +3,16 @@ import {icBell } from '../../../assets';
 import './navbar.css';
 import axios from 'axios';
 import qs from 'qs';
-import {Redirect } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {Link, Redirect } from 'react-router-dom';
+import {useDispatch,useSelector} from 'react-redux';
 
- const Navbar = () => {
+ const Navbar = ({hidden}) => {
 
     const [login,setLogin] = useState(false);
     const [dataUser,setDataUser] = useState({});
     const dispacth = useDispatch();
-
+    const stateGlobal = useSelector(state => state)
+    console.log('dari stae: ',stateGlobal)
     useEffect(() => {
             var login = localStorage.getItem("login");
             var dataToken = JSON.parse(localStorage.getItem("token"));
@@ -38,39 +39,44 @@ import {useDispatch} from 'react-redux';
             console.error(err)
         });
     }
+  if(hidden){
+    return(
+        <>
+        </> 
+    )
+  }
   return (
     <>
-                {
+                {/* {
                   login && <Redirect to='/auth'/>
                 }
-            
+             */}
 
-                <nav className="navbar shadow-sm navbar-dashboard">
+                <nav className="navbar navbar-dashboard "  >
                      <div className="container">
-                        <a href="/dashboard" className="navbar-brand" >Zwallet</a>
+                        <a href="/dashboard" className="navbar-brand d-none d-md-block" >Zwallet</a>
 
-                            <section className="profile">
-                                <div className="row">
-                                    <div className="col-10">
-                                        <div className="row">
-                                            <div className="col-3">
-                                            <img alt="" src={process.env.REACT_APP_URL+dataUser.photo}  />
-                                            </div>
-                                            <div className="col-9">
-                                                <h4 className="profile-name mt-1">&nbsp;{dataUser.fullName}</h4>
-                                                <p className="phone-number">&nbsp;{dataUser.phone}</p>
-                            
+                            <section className="profile justify-content-between">
+                                    <div className="row justify-content-between">
+                                        <div className="col-10">
+                                            <div className="row">
+                                                <div className="col-3">
+                                                 <Link to="/profile">
+                                                   <img alt="" src={process.env.REACT_APP_URL+stateGlobal.photo}  />
+                                                </Link>
+
+                                                </div>
+                                                <div className="col-9 " >
+                                                    <p className="profile-hello d-block d-md-none mb-0">&nbsp;Hello,</p>
+                                                    <h4 className="profile-name mt-0">&nbsp;{stateGlobal.fullName}</h4>
+                                                    <p className="phone-number d-none d-md-block">&nbsp;{stateGlobal.phone}</p>
+                                
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="col-2 d-flex justify-content-end ">
-                                        <img alt="" className="mb-2" src={icBell} />
-                                        <button className="navbar-toggle btn show bg-white d-inline d-sm-none" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                                            <svg className="mb-2 " width="20" height="20" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M9.6665 12.8332L15.4998 6.99984L9.6665 1.1665" stroke="#3A3D42" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M15.5 7H1.5" stroke="#3A3D42" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>      
+                                   
+                                    <div className="col-2 d-flex justify-content-end  ">
+                                         <img alt="" className="mb-2" src={icBell} />
                                     </div>
                                 </div>
 

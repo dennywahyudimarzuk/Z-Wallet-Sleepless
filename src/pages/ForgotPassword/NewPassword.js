@@ -1,11 +1,11 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { icLock, icMail, imDoublePhone, icEyeCrossed, icMailActive,icLockActive, icMailWrong, icLockWrong } from '../../assets';
-import './login.css';
 import axios from 'axios';
 import qs from 'qs';
 import { login } from '../../utils';
-class Login extends Component{
+import './newPassword.css';
+class NewPassword extends Component{
     
     state = {
         icMail:icMail,
@@ -35,49 +35,7 @@ class Login extends Component{
         )  
     }
 
-    login = () => {
-        
-        let data = qs.stringify(this.state.form);
-      axios.post(`${process.env.REACT_APP_API}/auth`,data)
-      .then(res =>{
-        if (res.data.status !== 'error') {
-            localStorage.setItem("login", this.state.form.email);
-            localStorage.setItem("token", JSON.stringify(res.data.data));
-            login(res.data.data.accessToken);
-
-            const headers = { headers: {'Authorization': `Bearer ${res.data.data.accessToken}`}}  
-            let data = qs.stringify({token:res.data.data.accessToken});
-            axios.post(`${process.env.REACT_APP_API}/profile/token`,data,headers)
-            .then(res =>{
-                if (res.data.data[0].role_id === 2) {
-                     this.props.history.push('/dashboard')
-                }else{
-                    this.props.history.push('/admin')
-                }
-            }).catch(err => {
-                console.error(err)
-            });
-
-            
-        }
-        if (res.data.login === 'invalid') {
-
-            if (res.data.status === "error") {
-                this.setState({
-                    icMail:icMailWrong,
-                    mailClick:{border:'1.6px solid #FF5B37'},
-                    icPassword:icLockWrong,
-                    passClick:{border:'1.6px solid #FF5B37'},
-                    error:true
-             })            
-    }
-        }
-
-      }).catch(err => {
-
-      });
-
-    }
+   
 
 
     showPassword()
@@ -140,39 +98,39 @@ class Login extends Component{
                                 <h2>Start Accessing Banking Needs
                                     With All Devices and All Platforms
                                     With 30.000+ Users</h2>
-                                <p>Transfering money is eassier than ever, you can access 
-                                    Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!</p>
+                                <p>Now you can create a new password for your Zwallet account. Type your password twice so we can confirm your new passsword.</p>
 
 
                                     <div className="form-group">
 
-                                        <div className="form-group email col-lg-8">
-                                            <input type="email" autocomplete="off" style={this.state.mailClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiEmail()} placeholder="Enter your e-mail" value={this.state.form.email} name="email"  onChange={this.handleForm}/>
-                                            <div className="icon-input">
-                                                <img alt="" src={this.state.icMail} />
-                                            </div>
-                                        </div>
-                                        <div className="form-group password col-lg-8">
-                                            <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Enter your password" value={this.state.form.password} name="password" onChange={this.handleForm} />
+                                        <div className="form-group password col-lg-8" style={{marginBottom:74}}>
+                                            <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Create new password" value={this.state.form.password} name="password" onChange={this.handleForm} />
                                             <div className="icon-input">
                                                 <img alt="" src={this.state.icPassword} />
                                             </div>
                                             <div className="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
                                                 <img alt="" src={icEyeCrossed} />
                                             </div>
-                                            <div className="forgot-password ">
-                                                <p><a href="/auth/forgot-password">Forgot password?</a></p>
+
+                                        </div>
+
+                                        <div className="form-group password col-lg-8">
+                                            <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Create new password" value={this.state.form.password} name="password" onChange={this.handleForm} />
+                                            <div className="icon-input">
+                                                <img alt="" src={this.state.icPassword} />
                                             </div>
+                                            <div className="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
+                                                <img alt="" src={icEyeCrossed} />
+                                            </div>
+
                                         </div>
 
                                         <div className="form-button col-lg-8">
                                             {this.state.error && <span className="text-center d-block" style={{color:'#FF5B37',fontSize:18,fontWeight:600,marginBottom:-20}}>Email or Password Invalid</span>}
                                            
-                                            <button className="btn btn-primary" style={this.state.btn} type="submit" onClick={this.login} >Login</button>
+                                            <button className="btn btn-primary" style={this.state.btn} type="submit"  >Reset Password</button>
                                         </div>
-                                        <div className="sign-up text-center col-lg-8">
-                                            <p>Don’t have an account? Let’s <Link to="/auth/register">Sign Up</Link> </p>
-                                        </div>
+                             
                         
                                     </div>
                             </div>
@@ -184,4 +142,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default NewPassword;

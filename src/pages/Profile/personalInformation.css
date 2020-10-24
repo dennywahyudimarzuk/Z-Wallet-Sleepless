@@ -70,4 +70,11 @@
     .sidebar_menu{
         display: none;
     }
+
+    .body-area-profile-personal{
+        background-color:rgb(250, 252, 255);
+        box-shadow: none;
+        /* margin-top: -50px !important; */
+    }
+    
 }

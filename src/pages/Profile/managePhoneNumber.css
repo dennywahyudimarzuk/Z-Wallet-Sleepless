@@ -52,3 +52,14 @@
     top: 35px;
     cursor: pointer;
 }
+
+
+@media (max-width: 575.98px) { 
+
+
+    .body-area-manage-number{
+        background-color:rgb(250, 252, 255);
+        box-shadow: none;
+    }
+    
+}

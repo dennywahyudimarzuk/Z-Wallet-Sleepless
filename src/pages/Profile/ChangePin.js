@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive, icLine} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
@@ -78,8 +78,11 @@ class ChangePin extends Component {
     render() { 
         return ( 
             <>
-                <Navbar/>
+                <div className="d-none d-sm-block">
+                      <Navbar/>
+                </div>
                     <div className="container content">
+
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
                               <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
@@ -114,6 +117,9 @@ class ChangePin extends Component {
                             <div className="col-12 col-sm-9" id="area">
                             
                                 <div class="body-area-change-pin"> 
+                                    <div className="d-block d-sm-none">
+                                        <NavigationMobile page="Change Password" to="/profile"/>
+                                    </div>
                                     <div class="row ">
                                         <div class="col-12">
                                             <h1>Change PIN</h1>

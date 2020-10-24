@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive, icTrash} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './managePhoneNumber.css';
@@ -17,21 +17,15 @@ class ManagePhoneNumber extends Component {
 
     componentDidMount()
     {
-        var login = localStorage.getItem("login");
-        if (login === 'true') {
-              var dataLogin = JSON.parse(localStorage.getItem("dataLogin")).data[0];
-              this.setState({data:dataLogin});
-              if (dataLogin.phone === '-') {
+  
+              if (this.props.userData.phone === '-') {
                  this.props.history.push('/profile/add-phone-number')
-              }  
-        }
-
-
+              } 
     }
     deleteNumber(id)
     {
         let data = {
-            phone : this.state.phone
+            phone : '-'
         }
         data = qs.stringify(data);
         const token = JSON.parse(localStorage.getItem("token"));
@@ -50,9 +44,15 @@ class ManagePhoneNumber extends Component {
 
 
     render() { 
+        if (this.props.userData.phone === '-') {
+            this.props.history.push('/profile/add-phone-number')
+         } 
         return ( 
             <>
-                <Navbar/>
+                <div className="d-none d-sm-block">
+                      <Navbar/>
+                </div>
+
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
@@ -88,15 +88,18 @@ class ManagePhoneNumber extends Component {
                             <div className="col-12 col-sm-9" id="area">
 
                                 <div class="body-area-manage-number"> 
+                                <div className="d-block d-sm-none">
+                                      <NavigationMobile page="Manage Phone Number" to="/profile"/>
+                                </div>
                                     <div class="row ">
                                         <div class="col-12">
-                                            <h1>Manage Phone Number</h1>
-                                            <p>You can only delete the phone number and then you must add another phone number.</p>
+                                            <h1 className="d-none d-sm-block">Manage Phone Number</h1>
+                                            <p className="text-center text-sm-left">You can only delete the phone number and then you must add another phone number.</p>
 
                                             <div class="primary-number">
                                                 <span>Primary</span>
                                                 <h2>{this.props.userData.phone}</h2>
-                                                <div className="delete-number" onClick={() => this.deleteNumber(this.state.data.id)}>
+                                                <div className="delete-number" onClick={() => this.deleteNumber(this.props.userData.id)}>
                                                     <img alt="" src={icTrash}/>
                                                 </div>
                                             </div>

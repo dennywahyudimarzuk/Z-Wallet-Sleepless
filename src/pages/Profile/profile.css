@@ -204,3 +204,14 @@
     cursor: pointer !important;
 }
 
+
+
+@media (max-width: 575.98px) { 
+
+ .body-area-profile{
+    background-color:rgb(250, 252, 255);
+    box-shadow: none;
+    margin-top: -50px !important;
+ }
+
+}

@@ -6,6 +6,9 @@ import CreatePin from './Register/CreatePin';
 import RegisterSuccess from './Register/RegisterSuccess';
 import Dashboard from './Dashboard';
 import TopUp from './TopUp';
+import Admin from './Admin';
+import History from './History';
+import Detail from './Detail';
 import Review from './Transfer/Review';
 import Amount from './Transfer/Amount';
 import Success from './Transfer/Success';
@@ -15,6 +18,9 @@ import ChangePassword from './Profile/ChangePassword';
 import ChangePin from './Profile/ChangePin';
 import ManagePhoneNumber from './Profile/ManagePhoneNumber';
 import Logout from './Logout';
+import NotFound from './NotFound';
+import ForgotPassword from './ForgotPassword';
+import NewPassword from './ForgotPassword/NewPassword';
 
 
 export {
@@ -34,5 +40,11 @@ export {
     ManagePhoneNumber,
     Logout,
     CreatePin,
-    RegisterSuccess
+    RegisterSuccess,
+    Admin,
+    NotFound,
+    ForgotPassword,
+    NewPassword,
+    History,
+    Detail
 }

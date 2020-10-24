@@ -48,6 +48,7 @@
     line-height: 23px;
     color: #3A3D42;
     box-shadow: none;
+    background-color: transparent;
 
 }
 .change-phone  .phone input::placeholder{
@@ -68,3 +69,27 @@
     color: #88888F;
     margin-bottom: 230px;
 }
+
+
+@media (max-width: 575.98px) { 
+
+
+    .body-area-add-number{
+        background-color:rgb(250, 252, 255);
+        box-shadow: none;
+        /* margin-top: -50px !important; */
+    }
+
+    .body-area-add-number .form-button button{
+
+        margin-top: 160px !important;
+        margin-bottom: 80px !important;
+
+    }
+    
+    
+
+}
+
+
+

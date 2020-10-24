@@ -2,6 +2,7 @@
     height: 140px;
     background-color: #fff;
     border-radius: 0px 0px 25px 25px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-dashboard .navbar-toggle{
@@ -26,4 +27,25 @@
     width: 52px;
     height: 52px;
     border-radius: 10px;
+}
+
+
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    .navbar-dashboard{
+        height: 80px !important;
+        background-color: #fff;
+        border-radius: 0px 0px 25px 25px;
+        box-shadow: none;
+        
+    }
+    .profile-hello{
+        color: rgb(100, 100,100);
+    }
+    .profile .profile-name{
+        font-weight: bold !important;
+        font-size: 18px !important;
+    }
 }
