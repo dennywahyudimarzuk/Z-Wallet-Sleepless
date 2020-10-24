@@ -96,6 +96,8 @@ nav .navbar-toggle{
 }
 
 
+
+
 .body-area .search {
     position: relative;
     margin-bottom: 50px;
@@ -129,6 +131,15 @@ nav .navbar-toggle{
     margin-bottom: 20px;
 }
 
+.card-quick{
+    cursor: pointer;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    /*padding:20px 0px 15px 20px;*/
+    margin-bottom: 20px;
+}
+
 .body-area .receiver h4{
     font-weight: bold;
     font-size: 18px;
@@ -148,7 +159,12 @@ nav .navbar-toggle{
     outline: hidden;
     border: hidden;
 }
+.notfound{
+    font-size: 14px;
+    color: #3A3D42;
+    /*margin-bottom: 25px;*/
 
+}
 
 
 
@@ -221,6 +237,22 @@ footer .contact a{
         display: none;
         
     }
+    .body-area h1{
+        display: none;
+    }
+    .body-area h2{
+        font-weight: bold;
+        font-size: 18px;
+        color: #3A3D42;
+        margin-bottom: 25px;
+    }
+
+    .body-area{
+        background: #fafcff !important;
+        border-radius: 0px !important;
+        padding: 0px !important;
+        box-shadow: 0px 0px 0px !important;
+    }
 }
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) { 
@@ -233,6 +265,12 @@ footer .contact a{
     .payment-history .money-minus{
         transform: translateX(0px);
     }
+    .body-area h2{
+        display: none;
+    }
+    .quick-access{
+        display: none;
+    }
 
 
  }
@@ -242,6 +280,13 @@ footer .contact a{
     .receiver{
         transform: translateX(-40px);
     }
+
+    .body-area h2{
+        display: none;
+    }
+    .quick-access{
+        display: none;
+    }
  }
 
  /* // Large devices (desktops, 992px and up) */
@@ -250,11 +295,25 @@ footer .contact a{
         transform: translateX(-20px);
     }
 
+    .body-area h2{
+        display: none;
+    }
+    .quick-access{
+        display: none;
+    }
+
  }
 
  @media (min-width: 1200px) { 
     .receiver{
         transform: translateX(-40px);
+    }
+
+    .body-area h2{
+        display: none;
+    }
+    .quick-access{
+        display: none;
     }
     
 }
