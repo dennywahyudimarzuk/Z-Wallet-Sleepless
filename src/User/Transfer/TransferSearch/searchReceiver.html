@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="searchReceiver.css">
+
+</head>
+<body>
+
+    <nav class="navbar shadow-sm">
+       <div class="container">
+            <a href="home.html" class="navbar-brand">Zwallet</a>
+
+         <section class="profile">
+             <div class="row">
+                 <div class="col-10">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="assets/image-profile/jhon.png">
+                        </div>
+                        <div class="col-9">
+                            <h4 class="profile-name mt-1">Robert Chandler</h4>
+                            <p class="phone-number">+62 8139 3877 7946</p>
+        
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-2 d-flex justify-content-end ">
+                    <img class="mb-2" src="assets/icon/bell.svg" >
+                    <button class="navbar-toggle show bg-white d-inline d-sm-none" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg class="mb-2 " width="20" height="20" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.6665 12.8332L15.4998 6.99984L9.6665 1.1665" stroke="#3A3D42" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.5 7H1.5" stroke="#3A3D42" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                      </button>
+                 </div>
+             </div>
+
+         </section>
+            
+       </div>
+       
+    </nav>
+
+
+
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-3 bg-white shadow-lg sidebar_menu">
+                <div class="sidebar ">
+            
+                    <a href="home.html" class="ml-md-4 d-block dashboard text-center text-lg-left">
+                        <img src="../../../../dist/icon/grid.svg" > &nbsp; <span class="d-none d-md-inline">Dashboard</span>
+                    </a>
+
+                    <a href="receiver.html" class="ml-md-4 d-block transfer text-center text-lg-left">
+                        <div class="active-link"></div>
+                        <img src="assets/icon/arrow-up-active.svg" > &nbsp; <br class="d-none d-md-block d-lg-none"><span class="d-none d-md-inline">Transfer</span>
+                    </a>
+                    <a href="top-up.html" class="ml-md-4 d-block top-up text-center text-lg-left">
+                        <img src="assets/icon/plus.svg" > &nbsp; <br class="d-none d-md-block d-lg-none"><span class="d-none d-md-inline">Top Up</span>
+                    </a>
+                    <a href="profile.html" class="ml-md-4 d-block profile text-center text-lg-left">
+                        <img src="assets/icon/user.svg" > &nbsp; <br class="d-none d-md-block d-lg-none"><span class="d-none d-md-inline">Profile</span>
+                    </a>
+                    <a href="login.html" class="ml-md-4 d-block logout text-center text-lg-left">
+                        <img src="assets/icon/log-out.svg" > &nbsp; <br class="d-none d-md-block d-lg-none"><span class="d-none d-md-inline">Logout</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-9" id="area">
+                <div class="body-area">
+                    <h1>Search Receiver</h1>
+                    <div class="form-group search">
+                        <input type="text" class="form-control " placeholder="Search receiver here">
+                        <div class="icon-search">
+                            <img src="assets/icon/search.svg">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-profile " onclick="window.location.href='input-transfer.html'">
+                                <div class="row justify-content-lg-around">
+                                    <div class="col-4 col-sm-3 col-lg-2 m-0 ">
+                                        <img src="assets/image-profile/samuel70x70.png" >
+                                    </div>
+                                    <div class="col-8 col-sm-9 col-lg-10 receiver">
+                                        <h4 class="mt-1 mt-sm-0">Samuel Suhi</h4>
+                                        <p>+62 813-8492-9994</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card-profile " onclick="window.location.href='input-transfer.html'">
+                                <div class="row justify-content-lg-around">
+                                    <div class="col-4 col-sm-3 col-lg-2 m-0 ">
+                                        <img src="assets/image-profile/momo.png" >
+                                    </div>
+                                    <div class="col-8 col-sm-9 col-lg-10 receiver">
+                                        <h4 class="mt-1 mt-sm-0">Momo Taro</h4>
+                                        <p>+62 812-4343-6731</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card-profile " onclick="window.location.href='input-transfer.html'">
+                                <div class="row justify-content-lg-around">
+                                    <div class="col-4 col-sm-3 col-lg-2 m-0 ">
+                                        <img src="assets/image-profile/jessica70x70.png" >
+                                    </div>
+                                    <div class="col-8 col-sm-9 col-lg-10 receiver">
+                                        <h4 class="mt-1 mt-sm-0">Jessica Keen</h4>
+                                        <p>+62 811-3452-5252</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card-profile mb-0" onclick="window.location.href='input-transfer.html'">
+                                <div class="row justify-content-lg-around">
+                                    <div class="col-4 col-sm-3 col-lg-2 m-0 ">
+                                        <img src="assets/image-profile/michael70x70.png" >
+                                    </div>
+                                    <div class="col-8 col-sm-9 col-lg-10 receiver">
+                                        <h4 class="mt-1 mt-sm-0">Michael Le</h4>
+                                        <p>+62 810-4224-4613</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row justify-content-lg-around ">
+                <div class="col-sm-6 text-center order-1 order-sm-0 text-sm-left">
+                    <a class="license">2020 Zwallet. All right reserved.</a>
+                </div>
+                <div class="col-sm-6  text-center text-sm-right">
+                    <div class="row contact justify-content-lg-end">
+                        <div class="col-sm-6 col-md-4"><a href="">+62 5637 8882 9901</a></div>
+                        <div class="col-sm-6 col-md-4"><a  href="">contact@zwallet.com</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
