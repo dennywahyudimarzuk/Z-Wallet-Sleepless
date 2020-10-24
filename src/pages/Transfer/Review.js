@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { icArrowUpActive ,icGrid, icLine, icLogOut, icPlus,icUser,icX} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import './review.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -59,9 +59,14 @@ class Review extends Component {
 
 
     render() { 
+        let url = `/transfer/amount/${this.state.dataTransfer.idReceiver}`;
         return ( 
             <>
-                <Navbar/>
+                <div className="d-none d-sm-block">
+                    <Navbar/>
+                </div>
+                
+
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg">
@@ -93,55 +98,105 @@ class Review extends Component {
                                 </div>
                             </div>
                             <div className="col-12 col-sm-9" id="area">
-                                <div className="body-area-transfer">
-                                    <h1>Transfer To</h1>
-                                    <div className="row">
-                                        <div className="col-12">
-                                            <div className="card-profile ">
-                                                <div className="row justify-content-lg-around">
-                                                    <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                        <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
+                            <div class="confirmation-box border-20">
+                                <div class="container-xl container-lg container-md ">
+                                <div className="d-block d-sm-none">
+                                        <NavigationMobile page="Confirmation" to={url}/>
+                                    </div>
+                                    <div class="d-flex align-items-start flex-column bd-highlight mb-3" >
+                                        <div class="container">
+                                            <p  class="mt-4 " id="confirmation-title">Transfer To</p>
+                                            
+                                            <div class="confirm-panel-list">
+                                                <div class="d-flex flex-column bd-highlight mb-2 pt-3 pt-sm-3">
+                                                    <div class="pl-4 bd-highlight ">
+                                                        <div class="d-flex justify-content-start">
+                                                            <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70"/>
+                                                            <div class="ml-3 mt-2">
+                                                            <div class="name-history  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2 ">{this.state.dataTransfer.name}</div>
+                                                            <div class="status-history">{this.state.dataTransfer.phone}</div>
+                                                    
+                                                            </div>
+                                                            
+                                                        </div>
                                                     </div>
-                                                    <div className="col-9 col-sm-9 col-lg-10 receiver">
-                                                         <h4 className="mt-1 mt-sm-0">{this.state.dataTransfer.name}</h4>
-                                                        <p>{this.state.dataTransfer.phone}</p>
-                                                    </div>
+                                                </div>   
+                                            </div>
+
+                                            <p  class="mt-4 " id="confirmation-title">Details</p>
+
+                                            <div class="confirm-panel-list mb-2">
+                                                <div class="d-flex flex-column bd-highlight mb-2 p-3 pt-sm-3">
+                                                    <div class="pl-2 bd-highlight ">
+                                                        <div class="d-flex justify-content-start">
+                                                            
+                                                            <div class="ml-3 mt-2">
+                                                            <div class="label-confirmation mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2">Amount</div>
+                                                            <div class="value-confirmation">Rp{this.state.dataTransfer.amount}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>   
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <h1>Details</h1>
-                                    <div className="row">
-                                        <div className="col-12">
-                                            <div className="card-details ">
-                                                <p>Amount</p>
-                                                <h4>Rp{this.state.dataTransfer.amount}</h4>
+                                            <div class="confirm-panel-list mb-2">
+                                                <div class="d-flex flex-column bd-highlight mb-2 p-3 pt-sm-3">
+                                                    <div class="pl-2 bd-highlight ">
+                                                        <div class="d-flex justify-content-start">
+                                                            
+                                                            <div class="ml-3 mt-2">
+                                                            <div class="label-confirmation  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2">Balance Left</div>
+                                                            <div class="value-confirmation">{this.state.dataTransfer.available}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="col-12">
-                                            <div className="card-details ">
-                                                <p>Balance Left</p>
-                                                <h4>Rp{this.state.dataTransfer.available}</h4>
+
+                                            <div class="confirm-panel-list mb-2">
+                                                <div class="d-flex flex-column bd-highlight mb-2 p-3 pt-sm-3">
+                                                    <div class="pl-2 bd-highlight ">
+                                                        <div class="d-flex justify-content-start">
+                                                            
+                                                            <div class="ml-3 mt-2">
+                                                            <div class="label-confirmation  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2">Date & Time</div>
+                                                            <div class="value-confirmation">{this.state.dataTransfer.date}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="col-12">
-                                            <div className="card-details ">
-                                                <p>Date & Time</p>
-                                                <h4>{this.state.dataTransfer.date}</h4>
-                                            </div>
-                                        </div>
-                                        <div className="col-12">
-                                            <div className="card-details ">
-                                                <p>Notes</p>
-                                                <h4>{this.state.dataTransfer.notes}</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="text-center text-sm-right">
-                                        <button className="btn btn-tr" data-toggle="modal" data-target="#staticBackdrop">Continue</button>
+
+                                            <div class="panel-list-confirm">
+                                                <div class="d-flex flex-column bd-highlight pt-2 mb-2">
+                                                    <div class="pl-2 bd-highlight ">
+                                                        <div class="d-flex justify-content-start">
+                                                            
+                                                            <div class="ml-3 mt-2">
+                                                            <div class="label-confirmation  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2">Notes</div>
+                                                            <div class="value-confirmation">{this.state.dataTransfer.notes}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                </div>
+                                            </div> 
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-end">
+                                    <div class="d-flex flex-row bd-highlight pr-3 mb-3">
+                                        
+                                        <button type="button" class="zwallet-btn mt-4" data-toggle="modal" data-target="#staticBackdrop">
+                                            Continue
+                                        </button>
+                                        
+            
+
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+             </div>
 
                             </div>
                         </div>
@@ -168,27 +223,27 @@ class Review extends Component {
             <div class="pin">
                 <div class="row justify-content-md-around">
                     <div class="col-2">
-                       <input type="text" class="form-control d-inline" />
+                       <input type="text" class="form-control d-inline" maxLength='1' />
                        <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
-                       <input type="text" class="form-control d-inline" />
+                       <input type="text" class="form-control d-inline" maxLength='1'/>
                        <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
-                       <input type="text" class="form-control d-inline" />
+                       <input type="text" class="form-control d-inline" maxLength='1'/>
                        <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
-                       <input type="text" class="form-control d-inline" />
+                       <input type="text" class="form-control d-inline" maxLength='1'/>
                        <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
-                       <input type="text" class="form-control d-inline" />
+                       <input type="text" class="form-control d-inline" maxLength='1'/>
                        <img alt="" src={icLine} class="input-line" />
                     </div>
                     <div class="col-2">
-                       <input type="text" class="form-control d-inline" />
+                       <input type="text" class="form-control d-inline" maxLength='1'/>
                        <img alt="" src={icLine} class="input-line" />
                     </div>
                 </div>
