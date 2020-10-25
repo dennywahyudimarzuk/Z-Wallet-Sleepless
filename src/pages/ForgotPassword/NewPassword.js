@@ -1,9 +1,6 @@
 import React, { Component} from 'react';
-import { Link } from 'react-router-dom';
-import { icLock, icMail, imDoublePhone, icEyeCrossed, icMailActive,icLockActive, icMailWrong, icLockWrong } from '../../assets';
-import axios from 'axios';
-import qs from 'qs';
-import { login } from '../../utils';
+import { icLock, icMail, imDoublePhone, icEyeCrossed, icMailActive,icLockActive } from '../../assets';
+
 import './newPassword.css';
 class NewPassword extends Component{
     

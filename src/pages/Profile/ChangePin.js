@@ -85,7 +85,7 @@ class ChangePin extends Component {
 
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
-                              <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
+                              <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}>
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-pr text-center text-lg-left">
@@ -116,51 +116,51 @@ class ChangePin extends Component {
                             </div>
                             <div className="col-12 col-sm-9" id="area">
                             
-                                <div class="body-area-change-pin"> 
+                                <div className="body-area-change-pin"> 
                                     <div className="d-block d-sm-none">
                                         <NavigationMobile page="Change Password" to="/profile"/>
                                     </div>
-                                    <div class="row ">
-                                        <div class="col-12">
+                                    <div className="row ">
+                                        <div className="col-12">
                                             <h1>Change PIN</h1>
                                             <p>Enter your current 6 digits Zwallet PIN below to continue to the next steps.</p>
                                         
                                         
                                             <div align="center">
-                                            <div  class="pin col-xl-7">
-                                                    <div class="container">
-                                                        <div class="row justify-content-between">
-                                                            <div class="form-input-pin">
-                                                                <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin1} name="pin1" onChange={this.handleForm} />
-                                                                <img alt="" src={icLine} class="input-line" />
+                                            <div  className="pin col-xl-7">
+                                                    <div className="container">
+                                                        <div className="row justify-content-between">
+                                                            <div className="form-input-pin">
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin1} name="pin1" onChange={this.handleForm} />
+                                                                <img alt="" src={icLine} className="input-line" />
                                                             </div>
-                                                            <div class="form-input-pin">
-                                                                <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin2} name="pin2" onChange={this.handleForm} />
-                                                                <img alt="" src={icLine} class="input-line" />
+                                                            <div className="form-input-pin">
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin2} name="pin2" onChange={this.handleForm} />
+                                                                <img alt="" src={icLine} className="input-line" />
                                                             </div>
-                                                            <div class="form-input-pin">
-                                                                <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin3} name="pin3" onChange={this.handleForm} />
-                                                                <img alt="" src={icLine} class="input-line" />
+                                                            <div className="form-input-pin">
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin3} name="pin3" onChange={this.handleForm} />
+                                                                <img alt="" src={icLine} className="input-line" />
                                                             </div>
-                                                            <div class="form-input-pin">
-                                                                <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin4} name="pin4" onChange={this.handleForm} />
-                                                                <img alt="" src={icLine} class="input-line" />
+                                                            <div className="form-input-pin">
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin4} name="pin4" onChange={this.handleForm} />
+                                                                <img alt="" src={icLine} className="input-line" />
                                                             </div>
-                                                            <div class="form-input-pin">
-                                                                <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin5} name="pin5" onChange={this.handleForm} />
-                                                                <img alt="" src={icLine} class="input-line" />
+                                                            <div className="form-input-pin">
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin5} name="pin5" onChange={this.handleForm} />
+                                                                <img alt="" src={icLine} className="input-line" />
                                                             </div>
-                                                            <div class="form-input-pin">
-                                                                <input type="text" class="form-control pin-verify d-inline" value={this.state.form.pin6} name="pin6" onChange={this.handleForm}/>
-                                                                <img alt="" src={icLine} class="input-line" />
+                                                            <div className="form-input-pin">
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin6} name="pin6" onChange={this.handleForm}/>
+                                                                <img alt="" src={icLine} className="input-line" />
                                                             </div>
                                                         </div>
                                                         
                                                     </div>
                                                     
                                                 </div> 
-                                                <div class="form-button col-lg-7">
-                                                    <button class="btn btn-primary" type="submit" onClick={() => this.changePin()} >Continue</button>
+                                                <div className="form-button col-lg-7">
+                                                    <button className="btn btn-primary" type="submit" onClick={() => this.changePin()} >Continue</button>
                                                 </div>
                                                
                                             </div>

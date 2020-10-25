@@ -214,4 +214,8 @@
     margin-top: -50px !important;
  }
 
+ .body-area-profile .card-profile img{
+    width: 28px !important;
+    height: 28px !important;
+}
 }

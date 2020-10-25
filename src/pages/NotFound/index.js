@@ -1,5 +1,4 @@
 import React,{Component} from 'react'
-import { logout } from '../../utils';
 class NotFound extends Component {
     render() { 
        return(

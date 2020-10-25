@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
-import { Link } from 'react-router-dom';
-import { icLock, icMail, imDoublePhone, icEyeCrossed, icMailActive,icLockActive, icMailWrong, icLockWrong } from '../../assets';
+import { icLock, icMail, imDoublePhone, icMailActive} from '../../assets';
 import './forgotPassword.css';
 class ForgotPassword extends Component{
     

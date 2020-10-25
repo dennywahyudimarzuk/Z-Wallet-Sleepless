@@ -111,16 +111,16 @@ class Register extends Component {
     render() { 
         return ( 
             <>
-              <div class="row">
-                    <div class="col-md-6 information p-2 p-sm-5">
-                        <div class="container">
-                            <div class="logo">
-                                <h1 class="ml-4">Zwallet</h1>
+              <div className="row">
+                    <div className="col-md-6 information p-2 p-sm-5">
+                        <div className="container">
+                            <div className="logo">
+                                <h1 className="ml-4">Zwallet</h1>
                             </div>
-                            <div class="image">
-                                <img alt="" src={imDoublePhone} class="img-fluid" />
+                            <div className="image">
+                                <img alt="" src={imDoublePhone} className="img-fluid" />
                             </div>
-                            <div class="description ml-4">
+                            <div className="description ml-4">
                                 <h2>App that Covering Banking Needs.</h2>
                                 <p>Zwallet is an application that focussing in banking needs for all users
                                     in the world. Always updated and always following world trends.
@@ -130,9 +130,9 @@ class Register extends Component {
                             </div>
                     </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="sign-up-container">
-                            <div class="sign-up">
+                    <div className="col-md-6">
+                        <div className="sign-up-container">
+                            <div className="sign-up">
                                 <h2>Start Accessing Banking Needs
                                     With All Devices and All Platforms
                                     With 30.000+ Users</h2>
@@ -140,34 +140,34 @@ class Register extends Component {
                                     Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!</p>
 
 
-                                    <div class="form-group">
+                                    <div className="form-group">
 
-                                        <div class="form-group username col-lg-8">
-                                            <input type="text" style={this.state.usernameClick} onClick={() => this.uiUsername()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your username" value={this.state.form.userName} name="userName" onChange={this.handleForm} />
-                                            <div class="icon-input">
+                                        <div className="form-group username col-lg-8">
+                                            <input type="text" style={this.state.usernameClick} onClick={() => this.uiUsername()} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your username" value={this.state.form.userName} name="userName" onChange={this.handleForm} />
+                                            <div className="icon-input">
                                                 <img alt="" src={this.state.icUsername} />
                                             </div>
                                         </div>
-                                        <div class="form-group email col-lg-8">
-                                            <input type="email" autocomplete="off" style={this.state.mailClick} onClick={() => this.uiEmail()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your e-mail" value={this.state.form.email} name="email" onChange={this.handleForm} />
-                                            <div class="icon-input">
+                                        <div className="form-group email col-lg-8">
+                                            <input type="email" autocomplete="off" style={this.state.mailClick} onClick={() => this.uiEmail()} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your e-mail" value={this.state.form.email} name="email" onChange={this.handleForm} />
+                                            <div className="icon-input">
                                                 <img alt="" src={this.state.icMail} />
                                             </div>
                                         </div>
-                                        <div class="form-group password col-lg-8">
-                                            <input type={this.state.show ? "text" : "password"} style={this.state.passClick} onClick={() => this.uiPassword()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password"  value={this.state.form.password} name="password" onChange={this.handleForm} />
-                                            <div class="icon-input">
+                                        <div className="form-group password col-lg-8">
+                                            <input type={this.state.show ? "text" : "password"} style={this.state.passClick} onClick={() => this.uiPassword()} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Enter your password"  value={this.state.form.password} name="password" onChange={this.handleForm} />
+                                            <div className="icon-input">
                                                 <img alt="" src={this.state.icPassword} />
                                             </div>
-                                            <div class="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
+                                            <div className="eye-crossed" onClick={() => this.showPassword()} style={{cursor:'pointer'}}>
                                                 <img alt="" src={icEyeCrossed} />
                                             </div>
                                         </div>
 
-                                        <div class="form-button col-lg-8">
-                                            <button class="btn btn-primary" style={this.state.btn} type="submit" onClick={() => this.onRegister()} >Sign Up</button>
+                                        <div className="form-button col-lg-8">
+                                            <button className="btn btn-primary" style={this.state.btn} type="submit" onClick={() => this.onRegister()} >Sign Up</button>
                                         </div>
-                                        <div class="sign-in text-center col-lg-8">
+                                        <div className="sign-in text-center col-lg-8">
                                             <p>Already have an account? Let’s <a href="/auth">Login</a></p>
                                         </div>
                         

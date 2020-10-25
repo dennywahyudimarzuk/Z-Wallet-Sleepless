@@ -20,12 +20,12 @@ const reducer = (state = initialState, action) =>{
             id:action.value.id,
         }
     }
-    if (action.type === 'NAME') {
-        return{
-            ...state,
-            fullName:action.value
-        }
-    }
+    // if (action.type === 'NAME') {
+    //     return{
+    //         ...state,
+    //         fullName:action.value
+    //     }
+    // }
 
     return state;
 }

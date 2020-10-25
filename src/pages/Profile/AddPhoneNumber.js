@@ -84,7 +84,7 @@ class AddPhoneNumber extends Component {
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
-                              <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
+                              <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}>
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-pr text-center text-lg-left">
@@ -115,21 +115,21 @@ class AddPhoneNumber extends Component {
                             </div>
                             <div className="col-12 col-sm-9" id="area">
 
-                            <div class="body-area-add-number"> 
+                            <div className="body-area-add-number"> 
                                 <div className="d-block d-sm-none">
                                     <NavigationMobile page="Add Phone Number" to="/profile"/>
                                 </div>
                             
-                                <div class="row ">
-                                    <div class="col-12">
+                                <div className="row ">
+                                    <div className="col-12">
                                         <h1 className="d-none d-sm-block">Add Phone Number</h1>
                                         <p className="text-center text-sm-left">Add at least one phone number for the transfer ID so you can start transfering your money to another user.</p>
 
-                                        <div align="center" class="change-phone">
+                                        <div align="center" className="change-phone">
 
-                                            <div class="form-group phone col-lg-7">
-                                                <input type="number" class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " style={this.state.number} onClick={() => this.uiNumber()} placeholder="Enter your phone number" name="phone" value={this.state.form.phone} onChange={this.handleForm} />
-                                                <div class="icon-input">
+                                            <div className="form-group phone col-lg-7">
+                                                <input type="number" className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " style={this.state.number} onClick={() => this.uiNumber()} placeholder="Enter your phone number" name="phone" value={this.state.form.phone} onChange={this.handleForm} />
+                                                <div className="icon-input">
                                                     <img alt="" src={this.state.icNumber} /> 
                                                     &nbsp;&nbsp;
                                                     <span>+62</span>
@@ -137,9 +137,9 @@ class AddPhoneNumber extends Component {
 
                                             </div>
 
-                                            <div class="form-button col-lg-7" >
-                                                <button class="btn btn-primary d-none d-sm-block" type="submit" style={this.state.btn} onClick={() => this.addNumber(this.props.userData.id)}>Add Phone Number</button>
-                                                <button class="btn btn-primary d-block d-sm-none" type="submit" style={this.state.btn} onClick={() => this.addNumber(this.props.userData.id)}>Submit</button>
+                                            <div className="form-button col-lg-7" >
+                                                <button className="btn btn-primary d-none d-sm-block" type="submit" style={this.state.btn} onClick={() => this.addNumber(this.props.userData.id)}>Add Phone Number</button>
+                                                <button className="btn btn-primary d-block d-sm-none" type="submit" style={this.state.btn} onClick={() => this.addNumber(this.props.userData.id)}>Submit</button>
                                             </div>
 
 

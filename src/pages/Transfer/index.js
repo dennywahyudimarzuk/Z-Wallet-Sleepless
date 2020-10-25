@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser, imProfile1} from '../../assets';
+import { Navbar,Footer, CardPerson, NavigationMobile} from '../../component/molecules';
 import './transfer.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -55,11 +55,14 @@ class Transfer extends Component {
     render() { 
         return ( 
             <>
-                <Navbar/>
+                <div className="d-none d-sm-block">
+                 <Navbar/>
+                </div>
+
                     <div className="container content">
                         <div className="row">
-                            <div className="col-3 bg-white shadow-lg">
-                               <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
+                            <div className="col-3 bg-white shadow-lg d-none d-sm-block">
+                               <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}> 
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-tr text-center text-lg-left">
@@ -89,15 +92,39 @@ class Transfer extends Component {
                                 </div>
                             </div>
                             <div className="col-12 col-sm-9" id="area">
-                                <div className="body-area-transfer h-100">
-                                    <h1>Search Receiver</h1>
+                                <div className="body-area-transfer h-100" >
+                                    <div className="d-sm-none">
+                                         <NavigationMobile page="Find Receiver" to="/dashboard"/>
+                                    </div>
+                                    <h1 className="d-none d-sm-block">Search Receiver</h1>
                                     <div className="form-group search">
                                         <input type="text" className="form-control " placeholder="Search receiver here" onChange={(e) => this.onHandleInput(e)} />
                                         <div className="icon-search">
                                             <img alt="" src={icSearch} />
                                         </div>
                                     </div>
-                                    <div className="row">
+                                    <h1 className="d-sm-none">Quick Access</h1>
+                                    <div className="d-sm-none" style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-between'}}>
+                                        <div className="quick-access">
+                                            <img src={imProfile1} width="56" height="56" alt=" "/>
+                                            <h4>Michi</h4>
+                                            <span className=" d-block text-center">-9994</span>
+                                        </div>
+                                        <div className="quick-access">
+                                            <img src={imProfile1} width="56" height="56" alt=" "/>
+                                            <h4>Michi</h4>
+                                            <span className=" d-block text-center">-9994</span>
+                                        </div>
+                                        <div className="quick-access">
+                                            <img src={imProfile1} width="56" height="56" alt=" "/>
+                                            <h4>Michi</h4>
+                                            <span className=" d-block text-center">-9994</span>
+                                        </div>
+                                    </div>
+
+                                    <h1 className="d-sm-none mt-4">All Contacts</h1>
+                                    <span className="mt-0 d-sm-none mb-5" style={{color:'#8F8F8F'}}>17 Contact Founds</span>
+                                    <div className="row mt-4">
 
                                        
 
@@ -111,10 +138,10 @@ class Transfer extends Component {
                                                  
                                                  <div className="col-12">
                                                      <Link to={url}>
-                                                    <div className="card-profile " onclick="window.location.href='input-transfer.html'">
+                                                    <div className="card-profile d-none d-sm-block" >
                                                         <div className="row justify-content-lg-around">
                                                             <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                                <img alt="" src={process.env.REACT_APP_URL+profile.photo} width="70" />
+                                                                <img alt="" src={process.env.REACT_APP_URL+profile.photo} width="70" height="70"  />
                                                             </div>
                                                             <div className="col-8 col-sm-9 col-lg-10 receiver">
                                                                 <h4 className="mt-1 mt-sm-0">{profile.fullName}</h4>
@@ -122,6 +149,9 @@ class Transfer extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <CardPerson photo={process.env.REACT_APP_URL+profile.photo} name={profile.fullName} phone={profile.phone}/>
+                                                    
                                                     </Link>
                                                  </div>
                                                 )

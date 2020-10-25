@@ -31,44 +31,44 @@ class Detail extends Component {
     render() { 
         return ( 
             <>
-                    <div class="container content">
-                        <div class="row">
-                            <div class="col-3 bg-white shadow-lg sidebar_menu ">
-                              <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
+                    <div className="container content">
+                        <div className="row">
+                            <div className="col-3 bg-white shadow-lg sidebar_menu ">
+                              <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}>
                                     <Link to="/dashboard">
-                                    <a href="/" class="ml-md-4 d-block dashboard text-center text-lg-left">
-                                        <div class="active-link"></div>
-                                        <img alt="" src={icGridActive} /> &nbsp; <span class="d-none d-md-inline">Dashboard</span>
+                                    <a href="/" className="ml-md-4 d-block dashboard text-center text-lg-left">
+                                        <div className="active-link"></div>
+                                        <img alt="" src={icGridActive} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                     </Link>
                                     <Link to="/transfer">
-                                    <a href="/transfer" class="ml-md-4 d-block transfer-ds text-center text-lg-left">
-                                        <img alt="" src={icArrowUp} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Transfer</span>
+                                    <a href="/transfer" className="ml-md-4 d-block transfer-ds text-center text-lg-left">
+                                        <img alt="" src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                     </Link>
                                     <Link to="/top-up">
-                                    <a href="top-up.html" class="ml-md-4 d-block top-up-ds text-center text-lg-left">
-                                        <img alt="" src={icPlus} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Top Up</span>
+                                    <a href="top-up.html" className="ml-md-4 d-block top-up-ds text-center text-lg-left">
+                                        <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                     </Link>
                                     <Link to="/profile">
-                                    <a href="/" class="ml-md-4 d-block profile-ds text-center text-lg-left">
-                                        <img alt="" src={icUser} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Profile</span>
+                                    <a href="/" className="ml-md-4 d-block profile-ds text-center text-lg-left">
+                                        <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
                                     </Link>
                                 </div>
-                                    <a href="/auth/logout" class="ml-md-4 d-block logout-ds text-center text-lg-left">
-                                        <img alt="" src={icLogOut} /> &nbsp; <br class="d-none d-md-block d-lg-none" /><span class="d-none d-md-inline">Logout</span>
+                                    <a href="/auth/logout" className="ml-md-4 d-block logout-ds text-center text-lg-left">
+                                        <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-9" id="area">
+                            <div className="col-12 col-sm-9" id="area">
                         
                             <NavigationMobile to="dashboard" page="Transaction" />
 
-                                <div class="body-area ">
-                                    <div class="row justify-content-between">
+                                <div className="body-area ">
+                                    <div className="row justify-content-between">
                                             
                                              
 
@@ -91,24 +91,24 @@ class Detail extends Component {
                                 </div>
                                 
 
-                                <div class="row mt-3 justify-content-around wrapper" >
-                                    <div class="col-md-7  mb-5 information-this-week">
+                                <div className="row mt-3 justify-content-around wrapper" >
+                                    <div className="col-md-7  mb-5 information-this-week">
                                         <h2>In This Week</h2>
-                                                     <div class="p-lg-4 statistic-wrapper">
-                                                        <div class="earning" ><span>+Rp65.000</span></div>
-                                                        <div class="notif d-none d-sm-block"></div>
+                                                     <div className="p-lg-4 statistic-wrapper">
+                                                        <div className="earning" ><span>+Rp65.000</span></div>
+                                                        <div className="notif d-none d-sm-block"></div>
                                                         
-                                                        <canvas height="268px" id="canvas" class="w-100"></canvas>
+                                                        <canvas height="268px" id="canvas" className="w-100"></canvas>
                                                     
                                                     </div>
                                     </div>
 
                                         <div className="history-mobile d-sm-none " style={{display:'flex',flexDirection:'row',alignContent:'space-between',justifyContent:'space-between',width:'100%',paddingRight:5,paddingLeft:5,marginBottom:25}}>
                                             <div style={{flex:1}}  >
-                                            <h2 class="">Transaction History</h2>
+                                            <h2 className="">Transaction History</h2>
                                             </div>
                                             <div >
-                                            <Link to="/history"><a href="transactionHistory.html" class="see-all"><span class="text-right">See all</span></a></Link>
+                                            <Link to="/history"><a href="transactionHistory.html" className="see-all"><span className="text-right">See all</span></a></Link>
                                             </div>
                                         </div>
 

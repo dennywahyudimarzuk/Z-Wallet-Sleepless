@@ -112,7 +112,7 @@ class ChangePassword extends Component {
                         </div>
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
-                              <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
+                              <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}>
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-pr text-center text-lg-left">
@@ -143,47 +143,47 @@ class ChangePassword extends Component {
                             </div>
                             <div className="col-12 col-sm-9" id="area">
                             
-                            <div class="body-area-change-password"> 
-                                    <div class="row ">
-                                        <div class="col-12">
+                            <div className="body-area-change-password"> 
+                                    <div className="row ">
+                                        <div className="col-12">
                                             <div className="d-none d-sm-block">
                                                <h1>Change Password</h1>
                                             </div>
                                             <p>You must enter your current password and then type your new password twice.</p>
 
-                                            <div align="center" class="change-password">
+                                            <div align="center" className="change-password">
 
-                                                <div class="form-group password col-lg-7">
-                                                    <input type="password"  style={this.state.passClick1} onClick={() => this.uiPassword1()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Current password" name="currentPassword" value={this.state.form.currentPassword} onChange={this.handleForm}  />
-                                                    <div class="icon-input">
+                                                <div className="form-group password col-lg-7">
+                                                    <input type="password"  style={this.state.passClick1} onClick={() => this.uiPassword1()} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Current password" name="currentPassword" value={this.state.form.currentPassword} onChange={this.handleForm}  />
+                                                    <div className="icon-input">
                                                         <img alt="" src={this.state.icPassword1} />
                                                     </div>
-                                                    <div class="eye-crossed">
+                                                    <div className="eye-crossed">
                                                         <img alt="" src={icEyeCrossed} />
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group password col-lg-7">
-                                                    <input type="password" style={this.state.passClick2} onClick={() => this.uiPassword2()} class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="New password" name="newPassword" value={this.state.form.newPassword} onChange={this.handleForm} />
-                                                    <div class="icon-input">
+                                                <div className="form-group password col-lg-7">
+                                                    <input type="password" style={this.state.passClick2} onClick={() => this.uiPassword2()} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="New password" name="newPassword" value={this.state.form.newPassword} onChange={this.handleForm} />
+                                                    <div className="icon-input">
                                                         <img alt="" src={this.state.icPassword2} />
                                                     </div>
-                                                    <div class="eye-crossed">
+                                                    <div className="eye-crossed">
                                                         <img alt="" src={icEyeCrossed} />
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group password col-lg-7">
-                                                    <input type="password" style={this.state.passClick3} onClick={() => this.uiPassword3()}  class="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Repeat new password" name="repeatNewPassword" value={this.state.form.repeatNewPassword} onChange={this.handleForm} />
-                                                    <div class="icon-input">
+                                                <div className="form-group password col-lg-7">
+                                                    <input type="password" style={this.state.passClick3} onClick={() => this.uiPassword3()}  className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " placeholder="Repeat new password" name="repeatNewPassword" value={this.state.form.repeatNewPassword} onChange={this.handleForm} />
+                                                    <div className="icon-input">
                                                         <img alt="" src={this.state.icPassword3} />
                                                     </div>
-                                                    <div class="eye-crossed">
+                                                    <div className="eye-crossed">
                                                         <img alt="" src={icEyeCrossed} />
                                                     </div>
                                                 </div>
-                                                <div class="form-button col-lg-7">
-                                                    <button class="btn btn-primary" style={this.state.btn} type="submit" onClick={() => this.changePassword()} >Change Password</button>
+                                                <div className="form-button col-lg-7">
+                                                    <button className="btn btn-primary" style={this.state.btn} type="submit" onClick={() => this.changePassword()} >Change Password</button>
                                                 </div>
 
 

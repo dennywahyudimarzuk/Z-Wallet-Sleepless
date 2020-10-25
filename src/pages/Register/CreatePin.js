@@ -29,16 +29,16 @@ class CreatePin extends Component {
     render() { 
         return ( 
             <>
-              <div class="row">
-                    <div class="col-md-6 information p-2 p-sm-5">
-                        <div class="container">
-                            <div class="logo">
-                                <h1 class="ml-4">Zwallet</h1>
+              <div className="row">
+                    <div className="col-md-6 information p-2 p-sm-5">
+                        <div className="container">
+                            <div className="logo">
+                                <h1 className="ml-4">Zwallet</h1>
                             </div>
-                            <div class="image">
-                                <img alt="" src={imDoublePhone} class="img-fluid" />
+                            <div className="image">
+                                <img alt="" src={imDoublePhone} className="img-fluid" />
                             </div>
-                            <div class="description ml-4">
+                            <div className="description ml-4">
                                 <h2>App that Covering Banking Needs.</h2>
                                 <p>Zwallet is an application that focussing in banking needs for all users
                                     in the world. Always updated and always following world trends.
@@ -48,9 +48,9 @@ class CreatePin extends Component {
                             </div>
                     </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="login-container">
-                            <div class="login">
+                    <div className="col-md-6">
+                        <div className="login-container">
+                            <div className="login">
                                 <h2>Secure Your Account, Your Wallet,
                                     and Your Data With 6 Digits PIN
                                     That You Created Yourself.
@@ -60,41 +60,41 @@ class CreatePin extends Component {
                                 </p>
 
 
-                                    <div class="form-group">
-                                        <div class="pin col-xl-8">
-                                            <div class="container">
-                                                <div class="row justify-content-between">
-                                                    <div class="form-input-pin">
-                                                        <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img alt="" src={icLine} class="input-line" />
+                                    <div className="form-group">
+                                        <div className="pin col-xl-8">
+                                            <div className="container">
+                                                <div className="row justify-content-between">
+                                                    <div className="form-input-pin">
+                                                        <input type="text" className="form-control pin-verify d-inline" />
+                                                        <img alt="" src={icLine} className="input-line" />
                                                     </div>
-                                                    <div class="form-input-pin">
-                                                        <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img alt="" src={icLine} class="input-line" />
+                                                    <div className="form-input-pin">
+                                                        <input type="text" className="form-control pin-verify d-inline" />
+                                                        <img alt="" src={icLine} className="input-line" />
                                                     </div>
-                                                    <div class="form-input-pin">
-                                                        <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img alt="" src={icLine} class="input-line" />
+                                                    <div className="form-input-pin">
+                                                        <input type="text" className="form-control pin-verify d-inline" />
+                                                        <img alt="" src={icLine} className="input-line" />
                                                     </div>
-                                                    <div class="form-input-pin">
-                                                        <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img alt="" src={icLine} class="input-line" />
+                                                    <div className="form-input-pin">
+                                                        <input type="text" className="form-control pin-verify d-inline" />
+                                                        <img alt="" src={icLine} className="input-line" />
                                                     </div>
-                                                    <div class="form-input-pin">
-                                                        <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img alt="" src={icLine} class="input-line" />
+                                                    <div className="form-input-pin">
+                                                        <input type="text" className="form-control pin-verify d-inline" />
+                                                        <img alt="" src={icLine} className="input-line" />
                                                     </div>
-                                                    <div class="form-input-pin">
-                                                        <input type="text" class="form-control pin-verify d-inline" />
-                                                        <img alt="" src={icLine} class="input-line" />
+                                                    <div className="form-input-pin">
+                                                        <input type="text" className="form-control pin-verify d-inline" />
+                                                        <img alt="" src={icLine} className="input-line" />
                                                     </div>
 
                                                 </div>
                                         </div>    
 
                                         </div>
-                                        <div class="form-button col-xl-8">
-                                            <button class="btn" type="submit" onClick={() => this.onConfirm()}>Confirm</button>
+                                        <div className="form-button col-xl-8">
+                                            <button className="btn" type="submit" onClick={() => this.onConfirm()}>Confirm</button>
                                         </div>
                                         
                         

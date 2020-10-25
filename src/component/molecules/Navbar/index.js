@@ -1,27 +1,18 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect} from 'react'
 import {icBell } from '../../../assets';
 import './navbar.css';
 import axios from 'axios';
 import qs from 'qs';
-import {Link, Redirect } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 
  const Navbar = ({hidden}) => {
 
-    const [login,setLogin] = useState(false);
-    const [dataUser,setDataUser] = useState({});
     const dispacth = useDispatch();
     const stateGlobal = useSelector(state => state)
     console.log('dari stae: ',stateGlobal)
     useEffect(() => {
-            var login = localStorage.getItem("login");
             var dataToken = JSON.parse(localStorage.getItem("token"));
-
-            if(!login)
-            {
-                setLogin(true)
-            }
-
             dataApi(dataToken);
     },[])
     
@@ -31,8 +22,6 @@ import {useDispatch,useSelector} from 'react-redux';
         let data = qs.stringify({token:token.accessToken});
         axios.post(`${process.env.REACT_APP_API}/profile/token`,data,headers)
         .then(res =>{
-            // console.log('hasil dari axios',res.data)
-            setDataUser(res.data.data[0])
             dispacth({type:'SET_DATA',value:res.data.data[0]});
 
         }).catch(err => {
@@ -47,10 +36,6 @@ import {useDispatch,useSelector} from 'react-redux';
   }
   return (
     <>
-                {/* {
-                  login && <Redirect to='/auth'/>
-                }
-             */}
 
                 <nav className="navbar navbar-dashboard "  >
                      <div className="container">

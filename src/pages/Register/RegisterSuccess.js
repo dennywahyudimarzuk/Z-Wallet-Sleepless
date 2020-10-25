@@ -7,16 +7,16 @@ class RegisterSuccess extends Component {
     render() { 
         return ( 
             <>
-                 <div class="row">
-                    <div class="col-md-6 information p-2 p-sm-5">
-                        <div class="container">
-                            <div class="logo">
-                                <h1 class="ml-4">Zwallet</h1>
+                 <div className="row">
+                    <div className="col-md-6 information p-2 p-sm-5">
+                        <div className="container">
+                            <div className="logo">
+                                <h1 className="ml-4">Zwallet</h1>
                             </div>
-                            <div class="image">
-                                <img alt="" src={imDoublePhone} class="img-fluid" />
+                            <div className="image">
+                                <img alt="" src={imDoublePhone} className="img-fluid" />
                             </div>
-                            <div class="description ml-4">
+                            <div className="description ml-4">
                                 <h2>App that Covering Banking Needs.</h2>
                                 <p>Zwallet is an application that focussing in banking needs for all users
                                     in the world. Always updated and always following world trends.
@@ -26,8 +26,8 @@ class RegisterSuccess extends Component {
                             </div>
                     </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="success-information">
+                    <div className="col-md-6">
+                        <div className="success-information">
                             <div>
                             <img alt="" src={icSuccess} />
 
@@ -37,10 +37,10 @@ class RegisterSuccess extends Component {
                                 </p>
 
 
-                                    <div class="form-group">
-                                        <div class="form-button col-xl-8">
+                                    <div className="form-group">
+                                        <div className="form-button col-xl-8">
                                             <Link to="/auth">
-                                            <button class="btn btn-primary" type="submit" >Login Now</button>
+                                            <button className="btn btn-primary" type="submit" >Login Now</button>
                                             </Link>
                                         </div>
                                         

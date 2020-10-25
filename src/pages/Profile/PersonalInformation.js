@@ -18,7 +18,7 @@ class PersonalInformation extends Component {
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
-                              <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
+                              <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}>
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-pr text-center text-lg-left">
@@ -48,9 +48,9 @@ class PersonalInformation extends Component {
                                 </div>
                             </div>
                             <div className="col-12 col-sm-9" id="area">
-                            <div class="body-area-profile-personal"> 
-                                    <div class="row ">
-                                        <div class="col-12">
+                            <div className="body-area-profile-personal"> 
+                                    <div className="row ">
+                                        <div className="col-12">
                                             <h1 className="d-none d-sm-block">Personal Information</h1>
                                             <div className="d-block d-sm-none">
                                                 <NavigationMobile page="Personal Information" to="/profile"/>
@@ -59,7 +59,7 @@ class PersonalInformation extends Component {
                                             <p>We got your personal information from the sign up proccess. If you want to make changes on your information, contact our support.</p>
 
 
-                                            <div class="card-personal-information">
+                                            <div className="card-personal-information">
                                                 <span>First Name</span>
                                                 <h2>
                                                 {
@@ -67,7 +67,7 @@ class PersonalInformation extends Component {
                                                 }
                                                 </h2>
                                             </div>
-                                            <div class="card-personal-information">
+                                            <div className="card-personal-information">
                                                 <span>Last Name</span>
                                                 <h2>
                                                 {
@@ -75,15 +75,15 @@ class PersonalInformation extends Component {
                                                 }
                                                 </h2>
                                             </div>
-                                            <div class="card-personal-information">
+                                            <div className="card-personal-information">
                                                 <span>Verified E-mail</span>
                                                 <h2>{this.props.userData.email}</h2>
                                             </div>
-                                            <div class="card-personal-information">
+                                            <div className="card-personal-information">
                                                 <span>Phone Number</span>
                                                 <h2>{this.props.userData.phone}</h2>
                                                 <Link to="/profile/manage-phone-number">
-                                                    <span class="manage">
+                                                    <span className="manage">
                                                         Manage
                                                     </span>
                                                 </Link>

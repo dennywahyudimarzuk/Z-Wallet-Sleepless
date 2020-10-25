@@ -132,6 +132,38 @@ a{
         color: #3A3D42;
     
     }
+
+    .card-profile img{
+        width: 56px;
+        height: 56px;
+    }
+
+    .body-area-transfer{
+        background-color:rgb(250, 252, 255) !important;
+        box-shadow: none !important;
+    }
+
+    .quick-access{
+        display: flex;
+        flex-direction: column;
+        padding: 20px 20px 15px 20px;
+        background-color: #fff;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        width: 96px;
+        margin-right: 10px;
+    }
+    .quick-access img{
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    .quick-access h4{
+        margin:0;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+        color: #4D4B57;
+    }
 }
 
 

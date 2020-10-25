@@ -55,7 +55,7 @@ a{
 }
 
 .body-area-transfer{
-    background: #fff !important;
+    background: #fff ;
     border-radius: 25px;
     padding: 30px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);

@@ -50,59 +50,59 @@ class Success extends Component {
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-9" id="area">
-                                <div class="body-area-success">
-                                    <div class="status text-center">
+                            <div className="col-12 col-sm-9" id="area">
+                                <div className="body-area-success">
+                                    <div className="status text-center">
                                         <img alt="" src={icSuccess} />
                                         <h2>Transfer Success</h2>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card-details ">
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className="card-details ">
                                                 <p>Amount</p>
                                                 <h4>Rp{this.state.dataTransfer.amount}</h4>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="card-details ">
+                                        <div className="col-12">
+                                            <div className="card-details ">
                                                 <p>Balance Left</p>
                                                 <h4>Rp{this.state.dataTransfer.available}</h4>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="card-details ">
+                                        <div className="col-12">
+                                            <div className="card-details ">
                                                 <p>Date & Time</p>
                                                 <h4>{this.state.dataTransfer.date}</h4>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="card-details ">
+                                        <div className="col-12">
+                                            <div className="card-details ">
                                                 <p>Notes</p>
                                                 <h4>{this.state.dataTransfer.notes}</h4>
                                             </div>
                                         </div>
                                     </div>
-                                    <h1 class="mt-3">Transfer To</h1>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card-profile ">
-                                                <div class="row justify-content-lg-around">
-                                                    <div class="col-4 col-sm-3 col-lg-2 m-0 ">
+                                    <h1 className="mt-3">Transfer To</h1>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className="card-profile ">
+                                                <div className="row justify-content-lg-around">
+                                                    <div className="col-4 col-sm-3 col-lg-2 m-0 ">
                                                         <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
                                                     </div>
-                                                    <div class="col-9 col-sm-9 col-lg-10 receiver">
-                                                        <h4 class="mt-1 mt-sm-0">{this.state.dataTransfer.name}</h4>
+                                                    <div className="col-9 col-sm-9 col-lg-10 receiver">
+                                                        <h4 className="mt-1 mt-sm-0">{this.state.dataTransfer.name}</h4>
                                                         <p>{this.state.dataTransfer.phone}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="text-center text-sm-right mt-md-5">
-                                        <button class="btn btn-share"><img alt="" src={icShare} /></button> &nbsp;&nbsp;
-                                        <button class="btn btn-download"><img alt="" src={icDownload} />&nbsp; <span>Download PDF</span></button> &nbsp;&nbsp;
+                                    <div className="text-center text-sm-right mt-md-5">
+                                        <button className="btn btn-share"><img alt="" src={icShare} /></button> &nbsp;&nbsp;
+                                        <button className="btn btn-download"><img alt="" src={icDownload} />&nbsp; <span>Download PDF</span></button> &nbsp;&nbsp;
                                         <Link to="/dashboard">
-                                             <button class="btn back">Back to Home</button>
+                                             <button className="btn back">Back to Home</button>
                                         </Link>
                                     </div>
 

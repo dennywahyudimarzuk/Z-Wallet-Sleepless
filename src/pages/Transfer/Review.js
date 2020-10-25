@@ -208,17 +208,17 @@ class Review extends Component {
                 <Footer/>
 
                
-<div class="modal fade  " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+<div className="modal fade  " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal-dialog">
+      <div className="modal-content">
           
-        <div class="modal-header border-0 p-0 ">
+        <div className="modal-header border-0 p-0 ">
           <h5 >Enter PIN to Transfer</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true"><img alt="" src={icX} /></span>
           </button>
         </div>
-        <div class="modal-body p-0">
+        <div className="modal-body p-0">
             <p>
                 Enter your 6 digits PIN for confirmation to continue transferring money. 
             </p>
@@ -253,8 +253,8 @@ class Review extends Component {
             </div>
 
         </div>
-        <div class="modal-footer border-0 p-0">
-          <button type="button" class="btn btn-primary" onClick={() => this.onContinue()}   data-dismiss="modal" aria-label="Close">Continue</button>
+        <div className="modal-footer border-0 p-0">
+          <button type="button" className="btn btn-primary" onClick={() => this.onContinue()}   data-dismiss="modal" aria-label="Close">Continue</button>
         </div>
       </div>
     </div>

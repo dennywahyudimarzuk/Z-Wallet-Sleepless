@@ -143,6 +143,37 @@
         color: #3A3D42;
     
     }
+    .body-area-card{
+        background-color:rgb(250, 252, 255) !important;
+        box-shadow: none !important;
+    }
+
+
+    .top-up-logo{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        padding: 20px 0 20px 16px;
+        box-sizing: border-box;
+        /* align-items: center; */
+    }
+
+    .top-up-logo span{
+        font-size: 14px;
+        line-height: 19px;
+        color: #7A7886;
+    }
+    .top-up-logo h4{
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 22px;
+        color: #4D4B57;
+    }
+
+
 }
 
 

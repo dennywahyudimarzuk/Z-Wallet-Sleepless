@@ -146,9 +146,11 @@ class Profile extends Component {
                             </div>
                             <div className="col-12 col-sm-9" id="area">
                             <div className="body-area-profile"> 
+
                                <div className="d-block d-sm-none mt-4">
                                    <NavigationMobile  to="/dashboard"/>
                                 </div>
+
                                     <div className="row ">
                                         <div className="col-12 text-center ">
                                         

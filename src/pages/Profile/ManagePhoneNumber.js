@@ -56,7 +56,7 @@ class ManagePhoneNumber extends Component {
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
-                              <div class="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
+                              <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                                  <div style={{flex: 1}}>
                                    <Link to="/dashboard">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-pr text-center text-lg-left">
@@ -87,16 +87,16 @@ class ManagePhoneNumber extends Component {
                             </div>
                             <div className="col-12 col-sm-9" id="area">
 
-                                <div class="body-area-manage-number"> 
+                                <div className="body-area-manage-number"> 
                                 <div className="d-block d-sm-none">
                                       <NavigationMobile page="Manage Phone Number" to="/profile"/>
                                 </div>
-                                    <div class="row ">
-                                        <div class="col-12">
+                                    <div className="row ">
+                                        <div className="col-12">
                                             <h1 className="d-none d-sm-block">Manage Phone Number</h1>
                                             <p className="text-center text-sm-left">You can only delete the phone number and then you must add another phone number.</p>
 
-                                            <div class="primary-number">
+                                            <div className="primary-number">
                                                 <span>Primary</span>
                                                 <h2>{this.props.userData.phone}</h2>
                                                 <div className="delete-number" onClick={() => this.deleteNumber(this.props.userData.id)}>

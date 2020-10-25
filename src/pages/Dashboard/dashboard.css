@@ -7,6 +7,7 @@
     border-radius: 25px;
 }
 
+
 .content .sidebar .dashboard{
     text-decoration: none;
     font-weight: bold;
@@ -291,7 +292,7 @@ border-radius: 10px;
         height: 57px;
         background: #E5E8ED;
         border-radius: 10px;
-        padding: 16px;
+        padding: 16px 30px 16px 30px;
         font-weight: bold;
         color: #514F5B;
         margin-bottom: 16px;
@@ -307,7 +308,7 @@ border-radius: 10px;
         height: 57px;
         background: #E5E8ED;
         border-radius: 10px;
-        padding: 16px;
+        padding: 16px 30px 16px 30px;
         font-weight: bold;
         color: #514F5B;
     }
@@ -332,62 +333,7 @@ border-radius: 10px;
         font-size: 14px;
     }
 
-
-    .card-person{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding-right: 5px;
-        padding-left: 5px;
-        height: 96px;
-        background: #fff;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
-    .card-person .wrapper-card-person{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-    .card-person .wrapper-card-person img{
-        width: 56px;
-        height: 56px;
-        border-radius: 10px;
-    }
-    .card-person .wrapper-card-person div{
-        display: flex;
-        flex-direction: column;
-        margin-left: 15px;
-        justify-content: center;
-    }
-    .card-person .wrapper-card-person div{
-        display: flex;
-        flex-direction: column;
-        margin-left: 15px;
-        justify-content: center;
-    }
-    .card-person .wrapper-card-person div h2{
-        font-weight: bold;
-        font-size: 16px;
-        color: #4D4B57;
-    }
-    .card-person .wrapper-card-person span{
-        font-weight: normal;
-        font-size: 14px;
-        color: #7A7886;
-        
-    }
-    .card-person p{
-        font-weight: bold;
-        font-size: 18px;
-        color: #FF5B37;
-        margin-right: 16px;
-    }
-
+ 
     .content{
         margin-top: 20px !important;
     }

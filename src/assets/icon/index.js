@@ -37,6 +37,7 @@ import icX from './x.svg';
 import icTrash from './trash.svg';
 import icPhoneActive from './icPhoneActive.svg';
 import icArrowRight from './ArrowRight.svg';
+import icTopUpMobile from './top-up.svg';
 
 
 export {
@@ -78,7 +79,8 @@ export {
     icTrash,
     icPersonActive,
     icPhoneActive,
-    icArrowRight
+    icArrowRight,
+    icTopUpMobile
 }
 
 
