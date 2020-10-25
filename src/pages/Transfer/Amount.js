@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icGrid, icLogOut, icPencil, icPlus,icUser} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { icArrowUpActive ,icGrid, icLogOut, icPlus,icUser} from '../../assets';
+import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import './amount.css'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
@@ -95,7 +95,10 @@ class Amount extends Component {
     render() { 
         return ( 
             <>
-                <Navbar/>
+                <div className="d-none d-sm-block">
+                    <Navbar/>
+                </div>
+                
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg">
@@ -126,47 +129,63 @@ class Amount extends Component {
                                     </a>
                                 </div>
                             </div>
-                            <div className="col-12 col-sm-9" id="area">
-                                    <div className="body-area-amount">
-                    
-                                        <h1 className="mt-3">Transfer To</h1>
-                                        <div className="row">
-                                            <div className="col-12">
-                                                <div className="card-profile ">
-                                                    <div className="row justify-content-lg-around">
-                                                        <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                            <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
+                            <div class="col-12 col-sm-9">
+                                <div class="amount-bank-box border-20">
+                                    <div class="container">
+                                        <div className="d-block d-sm-none">
+                                            <NavigationMobile page="Transfer" to='/transfer'/>
+                                        </div>
+                                        <div class="d-flex align-items-start flex-column bd-highlight mb-3" >
+                                            <div class="container">
+                                                <p  class="mt-4 " id="transaction-history-big">Transfer To</p>
+                                                
+                                                <div class="amount-bank-panel-list">
+                                                    <div class="d-flex flex-column bd-highlight mb-2 pt-3 pt-sm-3">
+                                                        <div class="pl-4 bd-highlight ">
+                                                            <div class="d-flex justify-content-start">
+                                                                <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
+                                                                <div class="ml-3 mt-2">
+                                                                <div class="amount-bank-receiver-name  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2">{this.state.dataTransfer.fullName}</div>
+                                                                <div class="amount-bank-receiver-number"> {this.state.dataTransfer.phone} </div>
+                                                        
+                                                                </div>
+                                                                
+                                                            </div>
                                                         </div>
-                                                        <div className="col-9 col-sm-9 col-lg-10 receiver">
-                                                            <h4 className="mt-1 mt-sm-0">{this.state.dataTransfer.fullName}</h4>
-                                                            <p>{this.state.dataTransfer.phone}</p>
-                                                        </div>
+                                                    </div>   
+                                                </div>
+
+                                                <div className='ml-3 d-none d-sm-block'>
+                                                    <p  class="amount-bank-paragraph mt-5">Type the amount you want to transfer and then </p>
+                                                    <p  class="amount-bank-paragraph">press continue to the next steps. </p>
+                                                </div>
+
+                                                <div class="d-flex justify-content-center align-items-center ">
+                                                    <div class="d-flex flex-column bd-highlight mt-5  mb-5">
+                                                    <div class="amount-bank-money-value p-2 mx-auto bd-highlight d-xl-none d-lg-none d-md-none d-sm-none">Rp.{this.state.available ? this.state.available  :  this.props.userData.balance} Available</div>
+                                                        <input  class="amount-bank-money-input ml-3" type="text"  placeholder="0.00"  name="amount" onKeyUp={(e) => this.countAvailable(e)} value={this.state.form.amount} onChange={this.handleForm}/>
+                                                        <div class="amount-bank-money-value p-2 mx-auto bd-highlight d-none d-sm-block">Rp.{this.state.available ? this.state.available  :  this.props.userData.balance} Available</div>
+                                                        <input class="amount-bank-note-transfer mt-5 ml-5" type="text" placeholder="Add Some Notes" name="notes" value={this.state.form.notes} onChange={this.handleForm}/>
                                                     </div>
                                                 </div>
-                                            </div>
+
                                         </div>
-
-                                        <p className="notice">Type the amount you want to transfer and then
-                                            press continue to the next steps.</p>
-                                        
-                                            <div className="row justify-content-center input-credit">
-                                                <div className="col-md-8  text-center">
-                                                    <input type="text" className="amount" placeholder="0.00" name="amount" onKeyUp={(e) => this.countAvailable(e)} value={this.state.form.amount} onChange={this.handleForm}/>
-                                                    <h4>Rp {this.state.available ? this.state.available  :  this.props.userData.balance} Available</h4>
-                                                    <div className="input-notes position-relative">
-                                                        <input type="text" className="notes" placeholder="Add some notes" name="notes" value={this.state.form.notes} onChange={this.handleForm} />
-                                                        <img alt="" src={icPencil} className="icon-pencil" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        <div className="text-center text-sm-right mt-md-5 mb-3">
-                                            <button className="btn continue-amount" onClick={() => this.onContinue()}>Continue</button>
-                                        </div>
-
                                     </div>
 
+                                    <div class="d-flex justify-content-end">
+                                        <div class="d-flex flex-row bd-highlight pr-3 mb-3">
+                                            <a href="confirmation.html">
+                                            <button type="button" class="amount-bank-confirm-button">
+                                                Continue
+                                            </button>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
+                        </div>
+
                         </div>
 
 

@@ -107,7 +107,7 @@ class Review extends Component {
                                         <div class="container">
                                             <p  class="mt-4 " id="confirmation-title">Transfer To</p>
                                             
-                                            <div class="confirm-panel-list">
+                                            <div class="confirm-panel-list mb-4">
                                                 <div class="d-flex flex-column bd-highlight mb-2 pt-3 pt-sm-3">
                                                     <div class="pl-4 bd-highlight ">
                                                         <div class="d-flex justify-content-start">
@@ -123,9 +123,9 @@ class Review extends Component {
                                                 </div>   
                                             </div>
 
-                                            <p  class="mt-4 " id="confirmation-title">Details</p>
+                                            <p  class="mt-4 mb-xl-4" id="confirmation-title">Details</p>
 
-                                            <div class="confirm-panel-list mb-2">
+                                            <div class="confirm-panel-list mb-4">
                                                 <div class="d-flex flex-column bd-highlight mb-2 p-3 pt-sm-3">
                                                     <div class="pl-2 bd-highlight ">
                                                         <div class="d-flex justify-content-start">
@@ -139,7 +139,7 @@ class Review extends Component {
                                                 </div>
                                             </div>
 
-                                            <div class="confirm-panel-list mb-2">
+                                            <div class="confirm-panel-list mb-4">
                                                 <div class="d-flex flex-column bd-highlight mb-2 p-3 pt-sm-3">
                                                     <div class="pl-2 bd-highlight ">
                                                         <div class="d-flex justify-content-start">
@@ -153,7 +153,7 @@ class Review extends Component {
                                                 </div>
                                             </div>
 
-                                            <div class="confirm-panel-list mb-2">
+                                            <div class="confirm-panel-list mb-4">
                                                 <div class="d-flex flex-column bd-highlight mb-2 p-3 pt-sm-3">
                                                     <div class="pl-2 bd-highlight ">
                                                         <div class="d-flex justify-content-start">
@@ -167,8 +167,10 @@ class Review extends Component {
                                                 </div>
                                             </div>
 
-                                            <div class="panel-list-confirm">
-                                                <div class="d-flex flex-column bd-highlight pt-2 mb-2">
+
+
+                                            <div class="confirm-panel-list mb-4">
+                                                <div class="d-flex flex-column bd-highlight mb-2 p-3 pt-sm-3">
                                                     <div class="pl-2 bd-highlight ">
                                                         <div class="d-flex justify-content-start">
                                                             
@@ -179,7 +181,8 @@ class Review extends Component {
                                                         </div>
                                                     </div>   
                                                 </div>
-                                            </div> 
+                                            </div>
+                                            
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
