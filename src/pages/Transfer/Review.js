@@ -223,6 +223,7 @@ class Review extends Component {
                 Enter your 6 digits PIN for confirmation to continue transferring money. 
             </p>
 
+<<<<<<< HEAD
             <div class="pin">
                 <div class="row justify-content-md-around">
                     <div class="col-2">
@@ -248,6 +249,33 @@ class Review extends Component {
                     <div class="col-2">
                        <input type="text" class="form-control d-inline" maxLength='1'/>
                        <img alt="" src={icLine} class="input-line" />
+=======
+            <div className="pin">
+                <div className="row justify-content-md-around">
+                    <div className="col-2">
+                       <input type="text" className="form-control d-inline" />
+                       <img alt="" src={icLine} className="input-line" />
+                    </div>
+                    <div className="col-2">
+                       <input type="text" className="form-control d-inline" />
+                       <img alt="" src={icLine} className="input-line" />
+                    </div>
+                    <div className="col-2">
+                       <input type="text" className="form-control d-inline" />
+                       <img alt="" src={icLine} className="input-line" />
+                    </div>
+                    <div className="col-2">
+                       <input type="text" className="form-control d-inline" />
+                       <img alt="" src={icLine} className="input-line" />
+                    </div>
+                    <div className="col-2">
+                       <input type="text" className="form-control d-inline" />
+                       <img alt="" src={icLine} className="input-line" />
+                    </div>
+                    <div className="col-2">
+                       <input type="text" className="form-control d-inline" />
+                       <img alt="" src={icLine} className="input-line" />
+>>>>>>> c2509d5... update full page profile
                     </div>
                 </div>
             </div>
