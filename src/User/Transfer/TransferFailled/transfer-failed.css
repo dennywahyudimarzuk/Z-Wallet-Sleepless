@@ -408,6 +408,7 @@ footer .contact a{
     .receiver{
         transform: translateX(-40px);
     }
+
     .textdetail{
         display: none;
     }
