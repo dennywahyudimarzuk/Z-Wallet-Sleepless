@@ -174,11 +174,11 @@ class Amount extends Component {
 
                                     <div class="d-flex justify-content-end">
                                         <div class="d-flex flex-row bd-highlight pr-3 mb-3">
-                                            <a href="confirmation.html">
-                                            <button type="button" class="amount-bank-confirm-button">
+                                            
+                                            <button type="button" class="amount-bank-confirm-button" onClick={() => this.onContinue()}>
                                                 Continue
                                             </button>
-                                            </a>
+                                            
                                         </div>
                                     </div>
 
