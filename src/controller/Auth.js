@@ -9,7 +9,7 @@ module.exports = {
         authModel
           .register(email.trim(), password.trim(), name.trim())
           .then((data) => formResponse(data, res, 200, "Succes"))
-          .catch((err) => formResponse([], res, 404, "failed"));
+          .catch(() => formResponse([], res, 404, "failed"));
       } else {
         formResponse([], res, 406, "Fill all fields");
       }
@@ -23,9 +23,31 @@ module.exports = {
       authModel
         .login(email, password)
         .then((data) => formResponse(data, res, 200, "Succes"))
-        .catch((err) => formResponse([], res, 404, "failed"));
+        .catch(() => formResponse([], res, 404, "failed"));
     } else {
       formResponse([], res, 404, "Fill all fields");
+    }
+  },
+  createPin: (req, res) => {
+    const { pin: pin, id: id } = req.body;
+    if (id) {
+      authModel
+        .createPin(pin, id)
+        .then((data) => formResponse(data, res, 200, "Succes"))
+        .catch(() => formResponse([], res, 404, "failed"));
+    } else {
+      formResponse([], res, 404, "data not found");
+    }
+  },
+  resetPassword: (req, res) => {
+    const { password: password, email: email } = req.body;
+    if (email) {
+      authModel
+        .resetPassword(password, email)
+        .then((data) => formResponse(data, res, 200, "Succes"))
+        .catch(() => formResponse([], res, 404, "failed"));
+    } else {
+      formResponse([], res, 404, "data not found");
     }
   },
 };

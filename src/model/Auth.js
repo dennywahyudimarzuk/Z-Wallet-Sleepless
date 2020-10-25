@@ -7,4 +7,10 @@ module.exports = {
   login: (email, password) => {
     db.query("");
   },
+  createPin: (pin, id) => {
+    db.query("");
+  },
+  resetPassword: (password, email) => {
+    db.query("");
+  },
 };
