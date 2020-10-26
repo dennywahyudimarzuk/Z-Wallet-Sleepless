@@ -18,19 +18,20 @@ module.exports = {
     }
   },
   login: (req, res) => {
-    const { email: email, password: password } = req.body;
-    if (email & password) {
-      authModel
-        .login(email, password)
-        .then((data) => formResponse(data, res, 200, "Succes"))
-        .catch(() => formResponse([], res, 404, "failed"));
-    } else {
-      formResponse([], res, 404, "Fill all fields");
-    }
+    const { email, password } = req.body;
+    console.log(email, password);
+    // if (email & password) {
+    authModel
+      .login(email, password)
+      .then((data) => formResponse(data, res, 200, "Succes"))
+      .catch(() => formResponse([], res, 404, "failed"));
+    // } else {
+    //   formResponse([], res, 404, "Fill all fields");
+    // }
   },
   createPin: (req, res) => {
-    const { pin: pin, id: id } = req.body;
-    if (id) {
+    const { pin, email } = req.body;
+    if (email.length > 0) {
       authModel
         .createPin(pin, id)
         .then((data) => formResponse(data, res, 200, "Succes"))

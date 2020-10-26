@@ -8,12 +8,13 @@ module.exports = {
   },
 
   login: (email, password) => {
+    console.log(email, password, "model");
     return new Promise((resolve, reject) => {
       db.query("SELECT * FROM user WHERE email= ?", email, (err, res) => {
         if (!err) {
           let data = [];
-          if (result.length > 0) {
-            data = result;
+          if (res.length > 0) {
+            data = res;
           } else {
             data = [
               {
@@ -47,8 +48,26 @@ module.exports = {
     });
   },
 
-  createPin: (pin, id) => {
-    db.query("");
+  createPin: (pin, email) => {
+    return new Promise((resolve, reject) => {
+      bcrypt.hash(pin, 10, (err, hashedPin) => {
+        if (err) {
+          return reject(err);
+        }
+        console.log(hashedPin);
+        db.query(
+          `UPDATE users SET pin='${hashedPin}' WHERE email=?`,
+          email,
+          (err, result) => {
+            if (!err) {
+              resolve(result);
+            } else {
+              return reject(err);
+            }
+          }
+        );
+      });
+    });
   },
   resetPassword: (password, email) => {
     db.query("");
