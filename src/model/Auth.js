@@ -56,7 +56,7 @@ module.exports = {
         }
         console.log(hashedPin);
         db.query(
-          `UPDATE users SET pin='${hashedPin}' WHERE email=?`,
+          `UPDATE user SET pin='${hashedPin}' WHERE email=?`,
           email,
           (err, result) => {
             if (!err) {
@@ -70,6 +70,26 @@ module.exports = {
     });
   },
   resetPassword: (password, email) => {
-    db.query("");
+    return new Promise((resolve, reject) => {
+      bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) {
+          const errMessage = "password failed";
+          return reject(errMessage);
+        }
+        console.log(hashedPassword, "hash pw model");
+
+        db.query(
+          `UPDATE user SET password='${hashedPassword}' WHERE email=?`,
+          email,
+          (err, result) => {
+            if (!err) {
+              resolve(result);
+            } else {
+              return reject(err);
+            }
+          }
+        );
+      });
+    });
   },
 };
