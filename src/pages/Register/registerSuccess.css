@@ -99,7 +99,9 @@
     .success-information img{
         margin-top: 35px !important;
     }
-
+    .logos{
+        text-align: center;
+    }
     .success-information h2{
         margin-top: 40px;
         font-weight: bold;
