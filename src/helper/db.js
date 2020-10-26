@@ -1,11 +1,16 @@
-var mysql = require("mysql");
+const mysql = require("mysql");
 
-var conn = mysql.createConnection({
-  HOST: "us-cdbr-east-02.cleardb.com",
-  USER: "b90ca7786cf824",
-  PASSWORD: "bc0b8a35",
-  DB: "heroku_fd69cfdb43ac70f",
+const conn = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
-conn.connect();
+conn.connect((err) => {
+  if (!err) {
+    console.log("Success connect to DB");
+  }
+});
+
 module.exports = conn;
