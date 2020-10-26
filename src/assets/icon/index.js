@@ -24,6 +24,7 @@ import icPlusTopUp from './plus-top-up.svg';
 import icSearch from './search.svg';
 import icPencil from './pencil.svg';
 import icSuccess from './success.svg';
+import icFailed from './failed.svg';
 import icShare from './share.svg';
 import icDownload from './download.svg';
 import icPerson from './person.svg';
@@ -67,6 +68,7 @@ export {
     icSearch,
     icPencil,
     icSuccess,
+    icFailed,
     icShare,
     icDownload,
     icPerson,

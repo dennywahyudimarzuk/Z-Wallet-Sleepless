@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import {BrowserRouter,Switch} from 'react-router-dom';
-import {Dashboard,Home, Login, Register, Review, TopUp, Transfer,Amount, Success,Profile, PersonalInformation,ChangePassword,ChangePin, ManagePhoneNumber, Logout, CreatePin, RegisterSuccess, Admin, NotFound, ForgotPassword, NewPassword, History, Detail} from '../pages';
+import {Dashboard,Home, Login, Register, Review, TopUp, Transfer,Amount, Success, Failed,Profile, PersonalInformation,ChangePassword,ChangePin, ManagePhoneNumber, Logout, CreatePin, RegisterSuccess, Admin, NotFound, ForgotPassword, NewPassword, History, Detail} from '../pages';
 import AddPhoneNumber from '../pages/Profile/AddPhoneNumber';
 import { PrivateRoute, PublicRoute } from "./AccessRoute";
 class Routing extends Component{
@@ -17,6 +17,7 @@ class Routing extends Component{
                         <PrivateRoute  path="/transfer/amount/:id" component={Amount} />
                         <PrivateRoute  path="/transfer/review" component={Review} />
                         <PrivateRoute  path="/transfer/success" component={Success} />
+                        <PrivateRoute  path="/transfer/failed" component={Failed} />
                         <PrivateRoute  path="/top-up" component={TopUp}  />
                         <PrivateRoute  exact path="/profile" component={Profile} />
                         <PrivateRoute  path="/profile/personal-information" component={PersonalInformation} />

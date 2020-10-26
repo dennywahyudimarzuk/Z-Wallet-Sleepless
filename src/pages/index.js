@@ -12,6 +12,7 @@ import Detail from './Detail';
 import Review from './Transfer/Review';
 import Amount from './Transfer/Amount';
 import Success from './Transfer/Success';
+import Failed from './Transfer/Failed';
 import Profile from './Profile';
 import PersonalInformation from './Profile/PersonalInformation';
 import ChangePassword from './Profile/ChangePassword';
@@ -33,6 +34,7 @@ export {
     Review,
     Amount,
     Success,
+    Failed,
     Profile,
     PersonalInformation,
     ChangePassword,
