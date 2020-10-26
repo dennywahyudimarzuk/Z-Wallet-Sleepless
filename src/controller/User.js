@@ -19,8 +19,8 @@ module.exports = {
       const [result, history] = 
       await Promise.all([userModel.home(token), 
         userModel.homehistory(token)]);
-      console.log(result.length,"result")
-      console.log(history.length,"result")
+      console.log(result,"result")
+      console.log(history,"result")
       // console.log(history.length,"result")
       if (result.length > 0) {
         // formResponse(token, res, 200, "success get data");
