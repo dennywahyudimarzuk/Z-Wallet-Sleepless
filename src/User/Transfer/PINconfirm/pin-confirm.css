@@ -306,6 +306,22 @@ footer .contact a{
     .sidebar_menu{
         display: none;
     }
+    .modal .modal-header h5{
+        display: none;
+    }
+
+    .modal .modal-header h6{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 25px;
+        color: #3A3D42;
+        margin-bottom: 20px;
+    }
+    .iconX{
+        display: none;
+    }
+
+    
 }
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) { 
@@ -318,12 +334,24 @@ footer .contact a{
     .payment-history .money-minus{
         transform: translateX(0px);
     }
+    .modal .modal-header h6{
+        display: none;
+    }
+    .imgleft{
+        display: none;
+    }
  }
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) { 
     .receiver{
         transform: translateX(-40px);
+    }
+    .modal .modal-header h6{
+        display: none;
+    }
+    .imgleft{
+        display: none;
     }
  }
 
@@ -332,12 +360,25 @@ footer .contact a{
     .receiver{
         transform: translateX(-20px);
     }
+    .modal .modal-header h6{
+        display: none;
+    }
+    .imgleft{
+        display: none;
+    }
+
 
  }
 
  @media (min-width: 1200px) { 
     .receiver{
         transform: translateX(-40px);
+    }
+    .modal .modal-header h6{
+        display: none;
+    }
+    .imgleft{
+        display: none;
     }
     
 }
