@@ -234,9 +234,9 @@ margin-top: 40px;
 }
 
 @media (max-width: 575.98px) { 
-    .navbar-dashboard{
-        display: none !important;
-    }
+    /* .navbar-dashboard{
+        display: none;
+    } */
     .body-area-success .back{
         width: 100% !important;
 

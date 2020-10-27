@@ -19,7 +19,10 @@ class Failed extends Component {
     render() { 
         return ( 
             <>
-                <Navbar/>
+            <div className="d-none d-sm-block">
+            <Navbar/>
+            </div>
+                
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg">
