@@ -106,7 +106,7 @@ class Failed extends Component {
                                         <button className="btn btn-share"><img alt="" src={icShare} /></button> &nbsp;&nbsp;
                                         <button className="btn btn-download"><img alt="" src={icDownload} />&nbsp; <span>Download PDF</span></button> &nbsp;&nbsp;
                                         <Link to="/dashboard">
-                                             <button className="btn back">Back to Home</button>
+                                             <button className="btn back">Try Again</button>
                                         </Link>
                                     </div>
 
