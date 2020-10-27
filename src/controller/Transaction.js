@@ -11,10 +11,9 @@ module.exports = {
         transactionModel.outcome(token),
         transactionModel.transactionDetail(token),
       ]);
-      const io=Object.assign(income, outcome)
-      console.log(income)
-      console.log(outcome)
       const result = {
+        income: income,
+        outcome: outcome,
         data: transactionDetail,
       };
       if (transactionDetail.length > 0) {
@@ -22,10 +21,8 @@ module.exports = {
         res.status(200).send({
           success: true,
           message: "success get data",
-          data: {  
-            result
-            // data: history
-          },
+          data: 
+            result,
         });
       } else {
         formResponse([], res, 400, "There is no transaction log");

@@ -13,7 +13,7 @@ module.exports = {
            where receiver=${decodedId} `,
           (err, res) => {
             if (!err) {
-              resolve(res);
+              resolve(res[0].income);
             } else {
               reject(err);
             }
@@ -33,7 +33,7 @@ module.exports = {
          where sendBy=${decodedId} `,
           (err, res) => {
             if (!err) {
-              resolve(res);
+              resolve(res[0].outcome);
             } else {
               reject(err);
             }
