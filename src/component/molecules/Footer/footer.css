@@ -15,3 +15,10 @@ footer .contact a{
     font-size: 16px;
     color:#EFEFEF;
 }
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px){
+    footer{
+        display: none !important;
+    }
+}
