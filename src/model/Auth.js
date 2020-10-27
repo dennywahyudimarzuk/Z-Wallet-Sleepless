@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   register: (email, password, name) => {
-    email;
+    return new Promise();
   },
 
   login: (email, password) => {
@@ -28,16 +28,17 @@ module.exports = {
             ];
           }
 
-          const { password: hashedPassword, roles, email, id, name } = data[0];
+          const { password: hashedPassword, roleId, email, id, name } = data[0];
           console.log(hashedPassword);
           bcrypt.compare(password, hashedPassword, (error, result) => {
             console.log(result);
             if (result) {
-              const token = jwt.sign(
-                { email, id, name, roles },
+              const tokenJWT = jwt.sign(
+                { email, id, name, roleId },
                 process.env.SECRET_KEY,
                 { expiresIn: "36000s" }
               );
+              const token = `Bearer ${tokenJWT}`;
               resolve(token);
             } else {
               return reject(error);

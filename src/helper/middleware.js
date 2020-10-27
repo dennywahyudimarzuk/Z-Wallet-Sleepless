@@ -3,10 +3,11 @@ const formResponse = require("./formResponse");
 
 module.exports = {
   checkToken: (req, res, next) => {
-    let token = req.headers["x-access-token"] || req.headers["authorization"];
+    const bearerToken = req.header("authorization");
+    const token = bearerToken.split(" ")[1];
     if (token) {
-      console.log(token)
-      jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
+      console.log(token);
+      jwt.verify(token, process.env.SECRET_KEY, (err, token) => {
         if (err) {
           return res.status(404).json({
             success: false,
