@@ -1,5 +1,6 @@
 const transactionModel = require("../model/Transaction");
 const formResponse = require("../helper/formResponse");
+const transactionRoutes = require("../routes/Transaction");
 
 module.exports = {
   transactionDetail: async function (req, res) {
@@ -47,6 +48,26 @@ module.exports = {
         data: transactionDetail,
       };
       if (transactionDetail.length > 0) {
+        // console.log(result);
+        res.status(200).send({
+          success: true,
+          message: "success get data",
+          data: 
+            result,
+        });
+      } else {
+        formResponse([], res, 400, "There is no transaction log");
+      }
+    } catch (error) {
+      formResponse([], res, 500, error.message);
+    }
+  },
+  getAll: async function (req, res) {
+    try {
+      const bearerToken = req.header("authorization");
+      const token = bearerToken.split(" ")[1];
+      const result = await transactionRoutes.getAll()
+      if (result.length > 0) {
         // console.log(result);
         res.status(200).send({
           success: true,

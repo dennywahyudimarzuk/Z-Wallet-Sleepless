@@ -57,4 +57,36 @@ module.exports = {
       formResponse([], res, 500, error.message);
     }
   },
+  getAllUser: async function (req, res) {
+    try {
+      const result = await userModel.getAllUser();
+      if (result.length > 0) {
+        res.status(200).send({
+          message: `Success get all user data`,
+          data: result,
+        });
+      }else{
+        formResponse([], res, 400, 'The data is empty');
+      }
+    } catch (error) {
+      formResponse([], res, 500, error.message);
+    }
+  },
+  getById: async function (req, res) {
+    try {
+      const bearerToken = req.header("authorization");
+      const token = bearerToken.split(" ")[1];
+      const result = await userModel.getById(token);
+      if (result.length > 0) {
+        res.status(200).send({
+          message: `Success get all user data`,
+          data: result,
+        });
+      }else{
+        formResponse([], res, 400, 'The data is empty');
+      }
+    } catch (error) {
+      formResponse([], res, 500, error.message);
+    }
+  },
 };
