@@ -76,7 +76,7 @@ module.exports = {
     try {
       const bearerToken = req.header("authorization");
       const token = bearerToken.split(" ")[1];
-      const result = await userModel.getById(token);
+      const result = await userModel.getUserById(token);
       if (result.length > 0) {
         res.status(200).send({
           message: `Success get all user data`,
