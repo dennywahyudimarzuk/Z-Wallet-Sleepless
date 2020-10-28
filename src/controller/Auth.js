@@ -7,7 +7,7 @@ module.exports = {
     if (password.length > 7) {
       if ((email & password, fullName)) {
         authModel
-          .register(email.trim(), password.trim(), name.trim())
+          .register(email.trim(), password.trim(), fullName.trim())
           .then((data) => formResponse(data, res, 200, "Succes"))
           .catch(() => formResponse([], res, 404, "failed"));
       } else {
@@ -46,7 +46,7 @@ module.exports = {
   },
   resetPassword: (req, res) => {
     const { password, email } = req.body;
-    console.log(password, "controller pw");
+    // console.log(password, "controller pw");
     if (password.length >= 8) {
       if (email) {
         authModel
