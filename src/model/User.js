@@ -10,6 +10,36 @@ module.exports = {
       });
     });
   },
+  changePassword: (id, password, newPassword) => {
+    db.query("SELECT password FROM user WHERE id=?", id, (err, result) => {
+      if (!err) {
+        bcrypt.compare(password, result.password, (err, result) => {
+          if (result) {
+            bcrypt.hash(newPassword, 10, (err, hashNewPassword) => {
+              if (!err) {
+                db.query(
+                  "UPDATE user SET password=? WHERE id=? ",
+                  hashNewPassword,
+                  id,
+                  (err, result) => {
+                    if (!err) {
+                      resolve(result);
+                    } else {
+                      return reject(err);
+                    }
+                  }
+                );
+              } else {
+                return reject(err);
+              }
+            });
+          }
+        });
+      } else {
+        return reject(err);
+      }
+    });
+  },
 
   //hamzah
   home: (token) => {
@@ -21,7 +51,7 @@ module.exports = {
             `select balance, phoneNumber from user where id=${decodedId}`,
             (err, res) => {
               if (!err) {
-                resolve(res)
+                resolve(res);
               } else {
                 reject(err);
               }
@@ -33,8 +63,8 @@ module.exports = {
       });
     });
   },
-  homehistory:(token) =>{
-    return new Promise((resolve,reject)=>{
+  homehistory: (token) => {
+    return new Promise((resolve, reject) => {
       jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         const decodedId = decoded.id;
         if (!err) {
@@ -56,7 +86,7 @@ module.exports = {
         } else {
           reject(new Error(err));
         }
-      })
-    })
-  }
+      });
+    });
+  },
 };

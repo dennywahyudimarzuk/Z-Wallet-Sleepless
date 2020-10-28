@@ -10,32 +10,45 @@ module.exports = {
       .then((data) => formResponse(data, res, 200, "success"))
       .catch((err) => formResponse([], res, 404, "failed"));
   },
+  changePassword: (req, res) => {
+    const { id } = req.token;
+    const { password, newPassoword } = req.body;
+    if (newPassoword > 7) {
+      userModel
+        .changePassword(id, password, newPassoword)
+        .then((data) => formResponse(data, res, 200, "success"))
+        .catch((err) => formResponse([], res, 404, "not found"));
+    } else {
+      formResponse([], res, 406, "newPassowor must be 8 character or more.");
+    }
+  },
 
   //hamzah
   home: async function (req, res) {
     try {
       const bearerToken = req.header("authorization");
       const token = bearerToken.split(" ")[1];
-      const [result, history] = 
-      await Promise.all([userModel.home(token), 
-        userModel.homehistory(token)]);
-      console.log(result,"result")
-      console.log(history,"result")
+      const [result, history] = await Promise.all([
+        userModel.home(token),
+        userModel.homehistory(token),
+      ]);
+      console.log(result, "result");
+      console.log(history, "result");
       // console.log(history.length,"result")
       if (result.length > 0) {
         // formResponse(token, res, 200, "success get data");
-        if(history.length > 0){
+        if (history.length > 0) {
           res.status(200).send({
             success: true,
-            message: 'success get data',
-            data: {result, data: history}
-          })
-        }else{
+            message: "success get data",
+            data: { result, data: history },
+          });
+        } else {
           res.status(200).send({
             success: true,
-            message: 'success get data',
-            data: result
-          })
+            message: "success get data",
+            data: result,
+          });
         }
       } else {
         formResponse([], res, 400, " Data Not Found");
