@@ -12,8 +12,9 @@ module.exports = {
   },
   changePassword: (id, password, newPassword) => {
     db.query("SELECT password FROM user WHERE id=?", id, (err, result) => {
+      // console.log(result[0].password);
       if (!err) {
-        bcrypt.compare(password, result.password, (err, result) => {
+        bcrypt.compare(password, result[0].password, (err, result) => {
           if (result) {
             bcrypt.hash(newPassword, 10, (err, hashNewPassword) => {
               if (!err) {
@@ -111,7 +112,7 @@ module.exports = {
         const decodedId = decoded.id;
         if (!err) {
           db.query(
-            `select fullName, email, password, pin, phoneNumber, balance, img, roleId, createdDate from user where id= ${decodedId}`,
+            `select fullName, email, password, pin, phoneNumber, balance, img, createdDate from user where id= ${decodedId}`,
             (err, res) => {
               if (!err) {
                 // data["data"] = res;

@@ -12,10 +12,10 @@ module.exports = {
   },
   changePassword: (req, res) => {
     const { id } = req.token;
-    const { password, newPassoword } = req.body;
-    if (newPassoword > 7) {
+    const { password, newPassword } = req.body;
+    if (newPassword > 7) {
       userModel
-        .changePassword(id, password, newPassoword)
+        .changePassword(id, password, newPassword)
         .then((data) => formResponse(data, res, 200, "success"))
         .catch((err) => formResponse([], res, 404, "not found"));
     } else {
@@ -26,12 +26,12 @@ module.exports = {
   //hamzah
   home: async function (req, res) {
     try {
-      const search = req.query.search || '';
-      const sortBy = req.query.sortBy || 'dateTransfer';
-      const sortType = req.query.sortType || 'desc';
+      const search = req.query.search || "";
+      const sortBy = req.query.sortBy || "dateTransfer";
+      const sortType = req.query.sortType || "desc";
       const limit = req.query.limit || 3;
       const page = req.query.page || 0;
-      
+
       const bearerToken = req.header("authorization");
       const token = bearerToken.split(" ")[1];
       const [result, history] = await Promise.all([
@@ -71,8 +71,8 @@ module.exports = {
           message: `Success get all user data`,
           data: result,
         });
-      }else{
-        formResponse([], res, 400, 'The data is empty');
+      } else {
+        formResponse([], res, 400, "The data is empty");
       }
     } catch (error) {
       formResponse([], res, 500, error.message);
@@ -88,8 +88,8 @@ module.exports = {
           message: `Success get all user data`,
           data: result,
         });
-      }else{
-        formResponse([], res, 400, 'The data is empty');
+      } else {
+        formResponse([], res, 400, "The data is empty");
       }
     } catch (error) {
       formResponse([], res, 500, error.message);
