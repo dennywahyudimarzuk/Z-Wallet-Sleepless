@@ -63,7 +63,8 @@ module.exports = {
       });
     });
   },
-  homehistory: (token) => {
+  //edit sinta
+  homehistory: (token, search, sortBy, sortType, limit, page) => {
     return new Promise((resolve, reject) => {
       jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         const decodedId = decoded.id;
@@ -72,7 +73,8 @@ module.exports = {
             `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy from transfer 
                     inner join user as u1 on transfer.sendBy=u1.id 
                     inner join user as u2 on transfer.receiver=u2.id
-                    where sendBy=${decodedId} or receiver=${decodedId} order by dateTransfer desc`,
+                    where (sendBy=${decodedId} or receiver=${decodedId}) && (u2.fullname like '%${search}%') 
+                    order by ${sortBy} ${sortType} limit ${limit} OFFSET ${page}`,
             (err, res) => {
               if (!err) {
                 // data["data"] = res;
@@ -113,7 +115,7 @@ module.exports = {
             (err, res) => {
               if (!err) {
                 // data["data"] = res;
-                // console.log(res, "percobaan kesekian");
+                console.log(res, "percobaan kesekian");
                 resolve(res);
               } else {
                 reject(err);
@@ -126,4 +128,4 @@ module.exports = {
       });
     });
   },
-};
+}
