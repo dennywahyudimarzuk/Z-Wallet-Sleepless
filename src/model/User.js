@@ -78,6 +78,43 @@ module.exports = {
             (err, res) => {
               if (!err) {
                 // data["data"] = res;
+                // console.log(res, "percobaan kesekian");
+                resolve(res);
+              } else {
+                reject(err);
+              }
+            }
+          );
+        } else {
+          reject(new Error(err));
+        }
+      });
+    });
+  },
+  getAllUser: () => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `select fullName, email, password, pin, phoneNumber, balance, img, createdDate, isActive from user`,
+        (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  },
+  getUserById: (token) =>{
+    return new Promise((resolve, reject) =>{
+      jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+        const decodedId = decoded.id;
+        if (!err) {
+          db.query(
+            `select fullName, email, password, pin, phoneNumber, balance, img, createdDate from user where id= ${decodedId}`,
+            (err, res) => {
+              if (!err) {
+                // data["data"] = res;
                 console.log(res, "percobaan kesekian");
                 resolve(res);
               } else {
@@ -92,31 +129,3 @@ module.exports = {
     });
   },
 }
-
-//   homehistory: (token) => {
-//     return new Promise((resolve, reject) => {
-//       jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-//         const decodedId = decoded.id;
-//         if (!err) {
-//           db.query(
-//             `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy from transfer 
-//                     inner join user as u1 on transfer.sendBy=u1.id 
-//                     inner join user as u2 on transfer.receiver=u2.id
-//                     where sendBy=${decodedId} or receiver=${decodedId} order by dateTransfer desc;`,
-//             (err, res) => {
-//               if (!err) {
-//                 // data["data"] = res;
-//                 // console.log(res, "percobaan kesekian");
-//                 resolve(res);
-//               } else {
-//                 reject(err);
-//               }
-//             }
-//           );
-//         } else {
-//           reject(new Error(err));
-//         }
-//       });
-//     });
-//   },
-// };

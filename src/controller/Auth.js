@@ -3,9 +3,9 @@ const formResponse = require("../helper/formResponse");
 
 module.exports = {
   register: (req, res) => {
-    const { email: email, password: password, name: name } = req.body;
-    if (password.length > 8) {
-      if ((email & password, name)) {
+    const { email: email, password: password, fullName: fullName } = req.body;
+    if (password.length > 7) {
+      if ((email & password, fullName)) {
         authModel
           .register(email.trim(), password.trim(), name.trim())
           .then((data) => formResponse(data, res, 200, "Succes"))
@@ -31,7 +31,7 @@ module.exports = {
   },
   createPin: (req, res) => {
     const { pin, email } = req.body;
-    if ((pin.length = 6)) {
+    if (pin.length == 6) {
       if (email) {
         authModel
           .createPin(pin, id)
