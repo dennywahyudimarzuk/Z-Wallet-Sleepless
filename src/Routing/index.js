@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import {BrowserRouter,Switch} from 'react-router-dom';
 import {Dashboard,Home, Login, Register, Review, TopUp, Transfer,Amount, Success, Failed,Profile, PersonalInformation,ChangePassword,ChangePin, ManagePhoneNumber, Logout, CreatePin, RegisterSuccess, Admin, NotFound, ForgotPassword, NewPassword, History, Detail} from '../pages';
 import AdminDashboard from '../pages/Admin/adminDashboard';
+import AdminTopup from '../pages/Admin/adminTopup';
 import AddPhoneNumber from '../pages/Profile/AddPhoneNumber';
 import { PrivateRoute, PublicRoute } from "./AccessRoute";
 class Routing extends Component{
@@ -27,7 +28,8 @@ class Routing extends Component{
                         <PrivateRoute  path="/profile/add-phone-number" component={AddPhoneNumber}  />
                         <PrivateRoute  path="/profile/manage-phone-number" component={ManagePhoneNumber}  />
                         <PrivateRoute  path="/profile/manage-phone-number" component={ManagePhoneNumber}  />
-                        <PrivateRoute  path="/admin" component={AdminDashboard} admin="admin" />
+                        <PrivateRoute  path="/admin" component={AdminDashboard} admin="admin" exact />
+                        <PrivateRoute  path="/admin/top-up" component={AdminTopup} />
                         <PublicRoute   component={Login} restricted={true} path='/auth'exact  />
                         <PublicRoute   component={ForgotPassword} restricted={true} path='/auth/forgot-password'  />
                         <PublicRoute   component={NewPassword} restricted={true} path='/auth/new-password'  />
