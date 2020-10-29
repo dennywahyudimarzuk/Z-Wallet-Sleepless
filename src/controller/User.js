@@ -26,11 +26,17 @@ module.exports = {
   //hamzah
   home: async function (req, res) {
     try {
+      const search = req.query.search || '';
+      const sortBy = req.query.sortBy || 'dateTransfer';
+      const sortType = req.query.sortType || 'desc';
+      const limit = req.query.limit || 3;
+      const page = req.query.page || 0;
+      
       const bearerToken = req.header("authorization");
       const token = bearerToken.split(" ")[1];
       const [result, history] = await Promise.all([
         userModel.home(token),
-        userModel.homehistory(token),
+        userModel.homehistory(token, search, sortBy, sortType, limit, page),
       ]);
       console.log(result, "result");
       console.log(history, "result");
