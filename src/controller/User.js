@@ -29,7 +29,7 @@ module.exports = {
       const search = req.query.search || "";
       const sortBy = req.query.sortBy || "dateTransfer";
       const sortType = req.query.sortType || "desc";
-      const limit = req.query.limit || 3;
+      const limit = req.query.limit || 50;
       const page = req.query.page || 0;
 
       const bearerToken = req.header("authorization");
@@ -65,7 +65,12 @@ module.exports = {
   },
   getAllUser: async function (req, res) {
     try {
-      const result = await userModel.getAllUser();
+      const search = req.query.search || "";
+      const sortBy = req.query.sortBy || "createdDate";
+      const sortType = req.query.sortType || "asc";
+      const limit = req.query.limit || 10;
+      const page = req.query.page || 0;
+      const result = await userModel.getAllUser(search, sortBy, sortType, limit, page);
       if (result.length > 0) {
         res.status(200).send({
           message: `Success get all user data`,
