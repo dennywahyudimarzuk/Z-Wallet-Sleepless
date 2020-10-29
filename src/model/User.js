@@ -117,7 +117,7 @@ module.exports = {
             (err, res) => {
               if (!err) {
                 // data["data"] = res;
-                console.log(res, "percobaan kesekian");
+                // console.log(res, "percobaan kesekian");
                 resolve(res);
               } else {
                 reject(err);

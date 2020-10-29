@@ -42,24 +42,41 @@ module.exports = {
       });
     });
   },
-  transactionDetail: (token) => {
+  transactionDetail: (token, dateStart, until) => {
     return new Promise((resolve, reject) => {
       jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         const decodedId = decoded.id;
-        db.query(
-          `select transfer.*,u1.fullName as sender,
-          u2.fullname as receiveBy from transfer 
-         inner join user as u1 on transfer.sendBy=u1.id 
-         inner join user as u2 on transfer.receiver=u2.id
-         where sendBy=${decodedId} or receiver=${decodedId} order by dateTransfer desc`,
-          (err, res) => {
-            if (!err) {
-              resolve(res);
-            } else {
-              reject(err);
+        if (dateStart && until) {
+          db.query(
+            `select transfer.*,u1.fullName as sender,
+            u2.fullname as receiveBy from transfer 
+            inner join user as u1 on transfer.sendBy=u1.id 
+            inner join user as u2 on transfer.receiver=u2.id
+            where sendBy=${decodedId} or receiver=${decodedId} and dateTransfer between ${dateStart} and ${until} order by dateTransfer asc`,
+            (err, res) => {
+              if (!err) {
+                resolve(res);
+              } else {
+                reject(err);
+              }
             }
-          }
-        );
+          );
+        } else {
+          db.query(
+            `select transfer.*,u1.fullName as sender,
+            u2.fullname as receiveBy from transfer 
+            inner join user as u1 on transfer.sendBy=u1.id 
+            inner join user as u2 on transfer.receiver=u2.id
+            where sendBy=${decodedId} or receiver=${decodedId} order by dateTransfer asc`,
+            (err, res) => {
+              if (!err) {
+                resolve(res);
+              } else {
+                reject(err);
+              }
+            }
+          );
+        }
       });
     });
   },
@@ -123,5 +140,15 @@ module.exports = {
       );
     });
   },
-
+  createTransaction: (newData) => {
+    return new Promise((resolve, reject) => {
+      db.query(` insert into transfer set?`, newData, (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(new Error(err));
+        }
+      });
+    });
+  },
 };
