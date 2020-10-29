@@ -80,8 +80,7 @@ module.exports = {
   },
   getById: async function (req, res) {
     try {
-      const bearerToken = req.header("authorization");
-      const token = bearerToken.split(" ")[1];
+      const token = req.token;
       const result = await userModel.getUserById(token);
       if (result.length > 0) {
         res.status(200).send({

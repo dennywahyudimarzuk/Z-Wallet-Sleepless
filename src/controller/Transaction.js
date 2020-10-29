@@ -5,8 +5,7 @@ const transactionRoutes = require("../routes/Transaction");
 module.exports = {
   transactionDetail: async function (req, res) {
     try {
-      const bearerToken = req.header("authorization");
-      const token = bearerToken.split(" ")[1];
+      const token = req.token;
       const [income, outcome, transactionDetail] = await Promise.all([
         transactionModel.income(token),
         transactionModel.outcome(token),
@@ -22,8 +21,7 @@ module.exports = {
         res.status(200).send({
           success: true,
           message: "success get data",
-          data: 
-            result,
+          data: result,
         });
       } else {
         formResponse([], res, 400, "There is no transaction log");
@@ -34,14 +32,13 @@ module.exports = {
   },
   transactionHistory: async function (req, res) {
     try {
-      const bearerToken = req.header("authorization");
-      const token = bearerToken.split(" ")[1];
+      const token = req.token;
       const [income, outcome, transactionDetail] = await Promise.all([
         transactionModel.transactionHistoryIn(token),
         transactionModel.transactionHistoryOut(token),
         transactionModel.transactionDetail(token),
       ]);
-      console.log(income, outcome)
+      console.log(income, outcome);
       const result = {
         income: income,
         outcome: outcome,
@@ -52,8 +49,7 @@ module.exports = {
         res.status(200).send({
           success: true,
           message: "success get data",
-          data: 
-            result,
+          data: result,
         });
       } else {
         formResponse([], res, 400, "There is no transaction log");
@@ -64,16 +60,15 @@ module.exports = {
   },
   getAll: async function (req, res) {
     try {
-      const bearerToken = req.header("authorization");
-      const token = bearerToken.split(" ")[1];
-      const result = await transactionRoutes.getAll()
+      // const token = req.token;
+      
+      const result = await transactionModel.transactionAll();
       if (result.length > 0) {
         // console.log(result);
         res.status(200).send({
           success: true,
           message: "success get data",
-          data: 
-            result,
+          data: result,
         });
       } else {
         formResponse([], res, 400, "There is no transaction log");
