@@ -105,13 +105,13 @@ module.exports = {
       );
     });
   },
-  getUserById: (token) =>{
-    return new Promise((resolve, reject) =>{
+  getUserById: (token) => {
+    return new Promise((resolve, reject) => {
       jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         const decodedId = decoded.id;
         if (!err) {
           db.query(
-            `select fullName, email, password, pin, phoneNumber, balance, img, createdDate from user where id= ${decodedId}`,
+            `select fullName, email, password, pin, phoneNumber, balance, img, roleId, createdDate from user where id= ${decodedId}`,
             (err, res) => {
               if (!err) {
                 // data["data"] = res;
@@ -128,4 +128,4 @@ module.exports = {
       });
     });
   },
-}
+};
