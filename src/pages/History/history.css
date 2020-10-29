@@ -192,3 +192,127 @@ footer .contact a{
     }
     
 }
+.calendar-apply{
+
+    color: white;    
+    width: 85%;
+    height: 3.5em;
+    border: none;
+    background: #6379F4;
+    box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+    border-radius: 12px;
+  }
+
+  .filter-by-date-text{
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    /* identical to box height */
+
+
+    color: #514F5B;
+  }
+  
+  .calendar-month{
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: uppercase;
+    font-feature-settings: 'tnum' on, 'lnum' on;
+
+    /* Zwallet/Dark */
+
+    color: #3A3D42;
+  }
+
+.calendar-arrow-button{
+    outline: none;
+    border: none;
+    background-color: white;
+  }
+
+.calendar-arrow-button:focus{
+    outline: none;
+    border: none;
+    background-color: white;
+}
+
+.date-text{
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    color: #4D4B57;
+}
+
+.load-more-button{
+    outline: none;
+    border: none;
+    background-color: rgb(250, 252, 255);
+}
+
+.load-more-button:focus{
+    outline: none;
+    border: none;
+    
+}
+
+@media screen and (max-width : 768px){
+    .button-sort{
+        width: 4em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        border: none;
+        outline: none;
+    }
+
+    .button-sort:focus{
+        width: 4em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        background: #6379F4;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        border: none;
+        outline: none;
+    }
+
+    .filter-date-button{
+        width: 8em;
+        border: none;
+        outline: none;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        font-family: Nunito Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 25px;
+        /* identical to box height */
+
+        text-align: center;
+
+        /* Zwallet/Primary */
+
+        color: #6379F4;
+    }
+
+    .filter-date-button:focus{
+        border: none;
+        outline: none;
+        color: white;
+        background: #6379F4;
+    }
+}

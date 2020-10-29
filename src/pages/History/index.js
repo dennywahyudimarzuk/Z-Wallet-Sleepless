@@ -1,19 +1,22 @@
 import React,{Component} from 'react';
-import { icArrowUp , icGridActive, icLogOut,icPlus,icUser} from '../../assets';
+import { icArrowUp , icGridActive, icLogOut,icPlus,icUser,icArrowExpense,icArrowIncome} from '../../assets';
 import { Navbar,Footer, CardPerson, NavigationMobile} from '../../component/molecules';
 import './history.css'
 import {Link} from 'react-router-dom';
+
 import axios from 'axios';
+
 class History extends Component {
 
     state = {
-        historyTransfer: []
+        historyTransfer: [],
+        modalShow : false,
+        pagination : false
     }
 
 
     componentDidMount()
     {
-
             const token = JSON.parse(localStorage.getItem("token"));
             const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
             axios.get(`${process.env.REACT_APP_API}/transfer`,headers)
@@ -24,10 +27,13 @@ class History extends Component {
             }).catch(err => {
               console.log('data transfer axios error: ', err.message)
             });
-
-
-
     }
+
+
+
+    
+
+    
 
 
     render() { 
@@ -80,7 +86,7 @@ class History extends Component {
                                     <div className="row">
                                         
                                         {
-                                            this.state.historyTransfer.map(history => {
+                                            this.state.historyTransfer.slice(0,2).map(history => {
                                                 return(
                                                     <>
                                                         <div className="col-6 mb-2 d-none d-sm-block">
@@ -104,13 +110,17 @@ class History extends Component {
                                             })
 
                                         }
+
+                                        
+
                                     </div>
+                                    <div class="d-flex justify-content-center"><button className='load-more-button'>Load more</button></div>
 
                                     <p className="mt-3">This Month</p>
 
                                     <div className="row">
                                     {
-                                            this.state.historyTransfer.map(history => {
+                                            this.state.historyTransfer.slice(0,2).map(history => {
                                                 return(
                                                     <>
 
@@ -137,11 +147,27 @@ class History extends Component {
 
                                         }
                                     </div>
-
+                                    <div class="d-flex justify-content-center"><button className='load-more-button'>Load more</button></div>
                                 </div>
 
                             </div>
                         </div>
+                                <div class="d-flex justify-content-between mb-5 mx-4 d-md-none  d-block ">
+                                <div>
+                                    <button class="button-sort">
+                                        <img src={icArrowExpense} alt=''/>
+                                    </button>
+            
+                                    <button class="button-sort mx-2">
+                                        <img src={icArrowIncome} alt='' />
+                                    </button>
+                                </div>
+
+
+                                <button class="filter-date-button">
+                                    <p class="mt-2">Filter By Date</p>
+                                </button>
+                            </div>
 
 
                     </div>                                             

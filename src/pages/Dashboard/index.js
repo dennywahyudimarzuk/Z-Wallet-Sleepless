@@ -18,7 +18,7 @@ class Dashboard extends Component {
         
             const token = JSON.parse(localStorage.getItem("token"));
             const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
-            axios.get(`${process.env.REACT_APP_API}/transfer`,headers)
+            axios.get(`${process.env.REACT_APP_API}/transfer/history?limit=4&page=1`,headers)
             .then(res =>{
               console.log('data transfer axios: ',res.data.data)
               this.setState({historyTransfer:res.data.data});

@@ -37,11 +37,12 @@ import {useDispatch,useSelector} from 'react-redux';
   return (
     <>
 
-                <nav className="navbar navbar-dashboard "  >
+                <nav className="navbar navbar-dashboard ">
                      <div className="container">
                         <a href="/dashboard" className="navbar-brand d-none d-md-block" >Zwallet</a>
 
                             <section className="profile justify-content-between">
+
                                     <div className="row justify-content-between">
                                         <div className="col-10">
                                             <div className="row">
