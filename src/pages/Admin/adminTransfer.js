@@ -159,7 +159,7 @@ class AdminTransfer extends Component {
                                                 { 
                                                     
                                                     this.state.tableData.map((item,index) => {
-
+                                                    
                                                     let bilangan = item.amount
                                                     var	reverse = bilangan.toString().split('').reverse().join(''),
                                                     rupiah 	= reverse.match(/\d{1,3}/g);

@@ -15,7 +15,10 @@ class AdminUser extends Component {
             perPage : 7,
             currentPage : 0,
             tableData : [],
-            offset : 0
+            offset : 0,
+            form : {
+                isActive : ''
+            }
         }
       this.handlePageClick = this.handlePageClick.bind(this);
     }
@@ -74,6 +77,22 @@ class AdminUser extends Component {
         }).catch(err => {
           console.log('data transfer axios error: ', err.message)
         });
+    }
+
+
+    isActive(id){
+        let data = {
+            isActive : this.state.form.isActive
+        }
+        const token = JSON.parse(localStorage.getItem("token"));
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+        
+        axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
+        .then( res => {
+
+        }).catch( err => {
+            console.log(err)
+        })
 
 
     }
