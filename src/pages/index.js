@@ -9,6 +9,7 @@ import TopUp from './TopUp';
 import AdminDashboard from './Admin/adminDashboard';
 import AdminTransfer from './Admin/adminTransfer';
 import AdminUser from './Admin/adminUser'
+import AdminTopup from './Admin/adminTopup';
 import History from './History';
 import Detail from './Detail';
 import Review from './Transfer/Review';
@@ -48,6 +49,7 @@ export {
     AdminDashboard,
     AdminUser,
     AdminTransfer,
+    AdminTopup,
     NotFound,
     ForgotPassword,
     NewPassword,

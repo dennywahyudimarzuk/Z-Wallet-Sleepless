@@ -110,7 +110,7 @@ class AdminTransfer extends Component {
                                         <img alt="" src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
                                 </Link>
-                                <Link to="/top-up">
+                                <Link to="/admin/top-up">
                                     <a href="/top-up" className="ml-md-4 d-block top-up-adm text-center text-lg-left">
                                         {/* <div className="active-link"></div> */}
                                         <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>

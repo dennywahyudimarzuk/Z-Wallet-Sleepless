@@ -1,9 +1,10 @@
 import React, { Component} from 'react';
 import {BrowserRouter,Switch} from 'react-router-dom';
-import {Dashboard,Home, Login, Register, Review, TopUp, Transfer,Amount, Success, Failed,Profile, PersonalInformation,ChangePassword,ChangePin, ManagePhoneNumber, Logout, CreatePin, RegisterSuccess, NotFound,ForgotPassword, NewPassword, History, Detail} from '../pages';
-import AdminDashboard from '../pages/Admin/adminDashboard'
+import {Dashboard,Home, Login, Register, Review, TopUp, Transfer,Amount, Success, Failed,Profile, PersonalInformation,ChangePassword,ChangePin, ManagePhoneNumber, Logout, CreatePin, RegisterSuccess, Admin, NotFound, ForgotPassword, NewPassword, History, Detail} from '../pages';
 import AdminTransfer from '../pages/Admin/adminTransfer'
 import AdminUser from '../pages/Admin/adminUser'
+import AdminDashboard from '../pages/Admin/adminDashboard';
+import AdminTopup from '../pages/Admin/adminTopup';
 import AddPhoneNumber from '../pages/Profile/AddPhoneNumber';
 import { PrivateRoute, PublicRoute } from "./AccessRoute";
 class Routing extends Component{
@@ -32,6 +33,7 @@ class Routing extends Component{
                         <PrivateRoute  path="/admin" component={AdminDashboard} admin="admin" exact/>
                         <PrivateRoute  path="/admin/transfer" component={AdminTransfer} admin="admin" />
                         <PrivateRoute  path="/admin/user" component={AdminUser} admin="admin" />
+                        <PrivateRoute  path="/admin/top-up" component={AdminTopup} />
                         <PublicRoute   component={Login} restricted={true} path='/auth'exact  />
                         <PublicRoute   component={ForgotPassword} restricted={true} path='/auth/forgot-password'  />
                         <PublicRoute   component={NewPassword} restricted={true} path='/auth/new-password'  />
