@@ -117,7 +117,7 @@ module.exports = {
             `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy from transfer 
                     inner join user as u1 on transfer.sendBy=u1.id 
                     inner join user as u2 on transfer.receiver=u2.id
-                    where (sendBy=${decodedId} or receiver=${decodedId}) && (u2.fullname like '%${search}%') 
+                    where isActive=1 and (sendBy=${decodedId} or receiver=${decodedId}) && (u2.fullname like '%${search}%') 
                     order by ${sortBy} ${sortType} limit ${limit} OFFSET ${page}`,
             (err, res) => {
               if (!err) {
@@ -138,7 +138,7 @@ module.exports = {
   getAllUser: (search, sortBy, sortType, limit, page) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `select fullName, email, password, pin, phoneNumber, balance, img, createdDate, isActive from user where fullName like '%${search}%'
+        `select fullName, email, password, pin, phoneNumber, balance, img, createdDate, isActive from user where isActive=1 and fullName like '%${search}%'
                     order by ${sortBy} ${sortType} limit ${limit} OFFSET ${page}`,
         (err, res) => {
           if (!err) {
@@ -152,25 +152,16 @@ module.exports = {
   },
   getUserById: (token) => {
     return new Promise((resolve, reject) => {
-      jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-        const decodedId = decoded.id;
-        if (!err) {
-          db.query(
-            `select fullName, email, password, pin, phoneNumber, balance, img, createdDate from user where id= ${decodedId}`,
-            (err, res) => {
-              if (!err) {
-                // data["data"] = res;
-                // console.log(res, "percobaan kesekian");
-                resolve(res);
-              } else {
-                reject(err);
-              }
-            }
-          );
-        } else {
-          reject(new Error(err));
+      db.query(
+        `select fullName, email, password, pin, phoneNumber, balance, img, createdDate from user where id= ${token.id} and isActive = 1`,
+        (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
 };
