@@ -151,4 +151,15 @@ module.exports = {
       });
     });
   },
+  checkPin: (id,pin) =>{
+    return new Promise((resolve, reject) =>{
+      db.query(` select pin from user where id=${id} and pin=${pin}`,(err, result)=>{
+        if(!err){
+          resolve(result);
+        }else{
+          reject(new Error(err))
+        }
+      })
+    })
+  }
 };
