@@ -42,7 +42,6 @@ class AdminDashboard extends Component {
             
             let dataTransfer = res.data.data
 
-            let balanceTransfer
             
             let countAmount = dataTransfer.map( (item,index) => {
                 const countBalance = parseInt(item.amount)
@@ -82,12 +81,12 @@ class AdminDashboard extends Component {
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
                             <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                               <div style={{flex: 1}}> 
-                              <Link to="/dashboard">
+                              <Link to="/admin">
                                     <a href="/dashboard" className="ml-md-4 d-block dashboard-tp text-center text-lg-left">
                                         <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
                                 </Link>
-                                <Link to="/transfer">
+                                <Link to="/admin/transfer">
                                     <a href="/transfer" className="ml-md-4 d-block transfer-tp text-center text-lg-left">
                                         <img alt="" src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
@@ -98,7 +97,7 @@ class AdminDashboard extends Component {
                                         <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
                                 </Link>
-                                <Link to="/profile">
+                                <Link to="/admin/user">
                                     <a href="/" className="ml-md-4 d-block profile-tp text-center text-lg-left">
                                         <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
@@ -121,48 +120,45 @@ class AdminDashboard extends Component {
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-4 col-lg-4 col-md-4">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-4">
                                             <div class="admin-dashboard-panel-list">
                                                 <div class="d-flex justify-content-center">
                                                     <div class="d-flex flex-column bd-highlight mb-3">
                                                         <h2 class="mt-1 mx-auto admin-dashboard-angka-jumlah-user">{this.state.userData}</h2>
-                                                        <p class="admin-dashboard-text-jumlah-user">Total User</p>
+
+                                                        <div className='admin-dashboard-subtitle-box'>
+                                                            <p class="admin-dashboard-text-jumlah-user mx-2 my-2">Total User</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-4 col-lg-4 col-md-4">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-3">
                                             <div class="admin-dashboard-panel-list">
                                                 <div class="d-flex justify-content-center">
                                                     <div class="d-flex flex-column bd-highlight mb-3">
                                                         <h2 class="mt-1 mx-auto admin-dashboard-angka-jumlah-user">{this.state.countTrasaction}</h2>
-                                                        <p class="admin-dashboard-text-jumlah-user">Total Transaction</p>
+
+                                                        <div className='admin-dashboard-subtitle-box'>
+                                                            <p class="admin-dashboard-text-jumlah-user mx-2 my-2">Total Transaction</p>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-4 col-lg-4 col-md-4">
-                                            <div class="admin-dashboard-panel-list">
-                                                <div class="d-flex justify-content-center">
-                                                    <div class="d-flex flex-column bd-highlight mb-3">
-                                                        <h2 class="mt-1 mx-auto admin-dashboard-angka-jumlah-user">75</h2>
-                                                        <p class="admin-dashboard-text-jumlah-user">Total Topup</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <div class="col-12">
 
                                         </div>
 
-                                        <div class="col-12 mt-4">
+                                        <div class="col-12 ">
                                             <div class="admin-dashboard-transfer-total-box mx-auto ">
-                                                <div class="d-flex flex-column bd-highlight mb-3 pl-3">
-                                                    <div class="pt-2 bd-highlight">
-                                                        <h2 class="admin-dashboard-total-trasaction">Total Money Trasaction</h2>
+                                                <div class="d-flex flex-column bd-highlight mt-2 pl-3 pt-3">
+                                                    <div class="bd-highlight admin-dashboard-title-box my-auto">
+                                                        <h2 class="admin-dashboard-total-trasaction mt-1  mx-xl-2 mx-lg-0 mx-md-2 mx-sm-2">Total Money Trasaction :</h2>
                                                     </div>
                                                     <div class="p-2 bd-highlight">
                                                         <p class="admin-dashboard-money-value">Rp. {this.state.countTransactionAmount}</p>

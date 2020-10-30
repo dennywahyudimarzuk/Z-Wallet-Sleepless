@@ -7,6 +7,8 @@ import RegisterSuccess from './Register/RegisterSuccess';
 import Dashboard from './Dashboard';
 import TopUp from './TopUp';
 import AdminDashboard from './Admin/adminDashboard';
+import AdminTransfer from './Admin/adminTransfer';
+import AdminUser from './Admin/adminUser'
 import History from './History';
 import Detail from './Detail';
 import Review from './Transfer/Review';
@@ -44,6 +46,8 @@ export {
     CreatePin,
     RegisterSuccess,
     AdminDashboard,
+    AdminUser,
+    AdminTransfer,
     NotFound,
     ForgotPassword,
     NewPassword,
