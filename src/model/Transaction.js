@@ -151,15 +151,66 @@ module.exports = {
       });
     });
   },
-  checkPin: (id,pin) =>{
-    return new Promise((resolve, reject) =>{
-      db.query(` select pin from user where id=${id} and pin=${pin}`,(err, result)=>{
-        if(!err){
-          resolve(result);
-        }else{
-          reject(new Error(err))
+  checkPin: (id, pin) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        ` select pin from user where id=${id} and pin=${pin}`,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
         }
-      })
-    })
-  }
+      );
+    });
+  },
+  getMaxId: () => {
+    return new Promise((resolve, reject) => {
+      db.query(`select max(id+1) as id from transfer`, (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(new Error(err));
+        }
+      });
+    });
+  },
+  updateBalance: (id, balance) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `update user set balance =${balance} where id=${id} `,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+  addBalance: (id, balance) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `select (balance + ${balance}) as newBalance, fullname from user where id = ${id} `,
+        (err, result) => {
+          if (!err) {
+            db.query(
+              ` update user set balance =${result[0].newBalance} where id= ${id}`,
+              (err, result) => {
+                if (!err) {
+                  resolve(result);
+                } else {
+                  reject(new Error(err));
+                }
+              }
+            );
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
 };

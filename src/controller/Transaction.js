@@ -84,26 +84,26 @@ module.exports = {
   createTransfer: async function (req, res) {
     try {
       const token = req.token;
-      const data = { sendBy: token.id, ...req.body };
-      // console.log(data, "ini bukan token");
-      const pin = parseInt(data.pin, 'tes')
-      // console.log(data.pin, 'ini pin')
-      const checkPin= await transactionModel.checkPin(token.id, pin);
-      if(checkPin.length>0){
+      const id = await transactionModel.getMaxId();
+      const data = { ...id[0], sendBy: token.id, ...req.body };
+      const pin = parseInt(data.pin);
+      const checkPin = await transactionModel.checkPin(token.id, pin);
+      if (checkPin.length > 0) {
         delete data.pin;
-        // console.log(data, 'ini hasil')
+        await transactionModel.addBalance(data.receiver, data.amountTransfer);
+        await transactionModel.updateBalance(token.id, data.balanceLeft);
+        delete data.balanceLeft;
         const result = await transactionModel.createTransaction(data);
-        if(result.affectedRows>0){
+        if (result.affectedRows > 0) {
           res.status(200).send({
-            message: 'Success Create Transaction',
-            data: data
-          })
-        }else{
-          formResponse([], res, 400, 'Fill with the right type of value');
+            message: "Success Create Transaction",
+            data: data,
+          });
+        } else {
+          formResponse([], res, 400, "Fill with the right type of value");
         }
-
-      }else{
-        formResponse([], res, 400, 'Wrong Pin');
+      } else {
+        formResponse([], res, 400, "Wrong Pin");
       }
     } catch (error) {
       formResponse([], res, 500, error.message);
