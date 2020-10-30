@@ -48,16 +48,15 @@ module.exports = {
       formResponse([], res, 400, "Pin not same");
     }
   },
-  addPhoto: (req, res) => {
+  patchUser: (req, res) => {
     // console.log(req);
     const { id } = req.token;
     const uploadImage = multer({ storage: storage }).single("image");
     uploadImage(req, res, (err) => {
-      const { fullName } = req.body;
-      // console.log(fullName);
+      // console.log(req.body);
       if (!req.file) {
         userModel
-          .addPhoto(id, fullName)
+          .patchUser(id, req.body)
           .then((data) => formResponse(data, res, 200, "Name has been change."))
           .catch((err) => formResponse([], res, 404, "data not found."));
       } else {
@@ -69,7 +68,7 @@ module.exports = {
           if (!err) {
             const imageName = `${process.env.BASE_URI}/img/${req.file.filename}`;
             userModel
-              .addPhoto(id, fullName, imageName)
+              .patchUser(id, req.body, imageName)
               .then((data) => {
                 formResponse(data, res, 201, "Success change Photo");
               })

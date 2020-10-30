@@ -52,13 +52,19 @@ module.exports = {
       });
     });
   },
-  addPhoto: (id, name, image) => {
+  patchUser: (id, body, image) => {
+    const data = Object.entries(body).map((item) => {
+      return parseInt(item[1]) > 0
+        ? `${item[0]}=${item[1]}`
+        : `${item[0]}='${item[1]}'`;
+    });
+    console.log(data);
     return new Promise((resolve, reject) => {
       const imageUpload = `${image}`;
-      console.log(image, name, id);
       if (image) {
         db.query(
-          `UPDATE user SET img= ${imageUpload}, fullName=${name} WHERE id = ${id}`,
+          `UPDATE user SET img= ${imageUpload}, ? WHERE id = ${id}`,
+          data,
           (err, res) => {
             if (!err) {
               resolve(res);
@@ -68,16 +74,13 @@ module.exports = {
           }
         );
       } else if (!image && name) {
-        db.query(
-          `UPDATE user SET fullName=${name} WHERE id = ${id}`,
-          (err, res) => {
-            if (!err) {
-              resolve(res);
-            } else {
-              reject(err);
-            }
+        db.query(`UPDATE user SET ? WHERE id = ${id}`, data, (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
           }
-        );
+        });
       } else {
         let data = "err";
         reject(data);
