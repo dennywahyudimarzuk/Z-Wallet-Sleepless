@@ -16,11 +16,13 @@ class AdminUser extends Component {
             currentPage : 0,
             tableData : [],
             offset : 0,
-            form : {
-                isActive : ''
-            }
         }
       this.handlePageClick = this.handlePageClick.bind(this);
+      this.handleRemove = this.handleRemove.bind(this);
+    }
+
+    handleRemove = (data) =>{
+        console.log(data, 'this is data ofclick')
     }
 
     handlePageClick = (e) => {
@@ -80,22 +82,7 @@ class AdminUser extends Component {
     }
 
 
-    isActive(id){
-        let data = {
-            isActive : this.state.form.isActive
-        }
-        const token = JSON.parse(localStorage.getItem("token"));
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
-        
-        axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
-        .then( res => {
 
-        }).catch( err => {
-            console.log(err)
-        })
-
-
-    }
 
 
     render() { 
@@ -108,25 +95,25 @@ class AdminUser extends Component {
                             <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
                               <div style={{flex: 1}}> 
                               <Link to="/admin">
-                                    <a href="/dashboard" className="ml-md-4 d-block dashboard-tp text-center text-lg-left">
+                                    <div className="ml-md-4 d-block dashboard-tp text-center text-lg-left">
                                         <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
-                                    </a>
+                                    </div>
                                 </Link>
                                 <Link to="/admin/transfer">
-                                    <a href="/transfer" className="ml-md-4 d-block transfer-tp text-center text-lg-left">
+                                    <div className="ml-md-4 d-block transfer-tp text-center text-lg-left">
                                         <img alt="" src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
-                                    </a>
+                                    </div>
                                 </Link>
                                 <Link to="/admin/top-up">
-                                    <a href="/top-up" className="ml-md-4 d-block top-up-adm text-center text-lg-left">
+                                    <div className="ml-md-4 d-block top-up-adm text-center text-lg-left">
                                         {/* <div className="active-link"></div> */}
                                         <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
-                                    </a>
+                                    </div>
                                 </Link>
                                 <Link to="/admin/user">
-                                    <a href="/" className="ml-md-4 d-block profile-tp text-center text-lg-left">
+                                    <div className="ml-md-4 d-block profile-tp text-center text-lg-left">
                                         <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
-                                    </a>
+                                    </div>
                                 </Link>
                                 </div>
                                     <a href="/auth/logout" className="ml-md-4 d-block logout-tp text-center text-lg-left">
@@ -136,27 +123,27 @@ class AdminUser extends Component {
                             </div>
                             <div className="col-12 col-sm-9" id="area">
                                 <div className="body-area-card  h-100">
-                                <div class="container-xl container-lg container-md pb-4">
+                                <div className="container-xl container-lg container-md pb-4">
                         
-                                    <div class="row mx-1 pt-4 pb-4">
-                                        <div class="col-12 mb-3">
+                                    <div className="row mx-1 pt-4 pb-4">
+                                        <div className="col-12 mb-3">
                                             <div>
-                                                <h3 class="admin-transfer-title">Data User</h3>    
+                                                <h3 className="admin-transfer-title">Data User</h3>    
                                             </div>
                                         </div>
 
 
-                                        <div class="col-12 table-responsive-sm">
-                                            <table class="table table-bordered table-hover">
+                                        <div className="col-12 table-responsive-sm">
+                                            <table className="table table-bordered table-hover">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col" class="admin-dashboard-col-text" >No</th>
-                                                    <th scope="col" class="admin-dashboard-col-text" >ID</th>
-                                                    <th scope="col" class="admin-dashboard-col-text" >Fullname</th>
-                                                    <th scope="col" class="admin-dashboard-col-text" >Email</th>
-                                                    <th scope="col" class="admin-dashboard-col-text" >Phone Number</th>
-                                                    <th scope="col" class="admin-dashboard-col-text" >Balance</th>
-                                                    <th scope="col" class="admin-dashboard-col-text" >Action</th>
+                                                    <th scope="col" className="admin-dashboard-col-text" >No</th>
+                                                    <th scope="col" className="admin-dashboard-col-text" >ID</th>
+                                                    <th scope="col" className="admin-dashboard-col-text" >Fullname</th>
+                                                    <th scope="col" className="admin-dashboard-col-text" >Email</th>
+                                                    <th scope="col" className="admin-dashboard-col-text" >Phone Number</th>
+                                                    <th scope="col" className="admin-dashboard-col-text" >Balance</th>
+                                                    <th scope="col" className="admin-dashboard-col-text" >Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -176,7 +163,7 @@ class AdminUser extends Component {
                                                         <td>{item.email}</td>
                                                         <td>{item.phone}</td>
                                                         <td>Rp. {rupiah}</td>
-                                                        <td><button class="admin-transfer-button-delete">Delete</button></td>
+                                                        <td><button className="admin-transfer-button-delete" onClick={() => this.handleRemove(item.id)}>Delete</button></td>
                                                         </tr>
                                                     )
                                                 })
@@ -187,8 +174,8 @@ class AdminUser extends Component {
                                         </div>
 
 
-                                        <div class="col-12">
-                                        <div class="d-flex justify-content-center">
+                                        <div className="col-12">
+                                        <div className="d-flex justify-content-center">
 
                                         <ReactPaginate
                                         previousLabel={"prev"}

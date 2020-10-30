@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import {BrowserRouter,Switch} from 'react-router-dom';
-import {Dashboard,Home, Login, Register, Review, TopUp, Transfer,Amount, Success, Failed,Profile, PersonalInformation,ChangePassword,ChangePin, ManagePhoneNumber, Logout, CreatePin, RegisterSuccess, Admin, NotFound, ForgotPassword, NewPassword, History, Detail} from '../pages';
+import {Dashboard,Home, Login, Register, Review, TopUp, Transfer,Amount, Success, Failed,Profile, PersonalInformation,ChangePassword,ChangePin, ManagePhoneNumber, Logout, CreatePin, RegisterSuccess, NotFound, ForgotPassword, NewPassword, History, Detail} from '../pages';
 import AdminTransfer from '../pages/Admin/adminTransfer'
 import AdminUser from '../pages/Admin/adminUser'
 import AdminDashboard from '../pages/Admin/adminDashboard';
