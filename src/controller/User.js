@@ -1,5 +1,19 @@
 const userModel = require("../model/User");
 const formResponse = require("../helper/formResponse");
+const MIMEType = require("../helper/MIME-type");
+const multer = require("multer");
+const path = require("path");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/img");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
 
 module.exports = {
   search: (req, res) => {
@@ -21,6 +35,53 @@ module.exports = {
     } else {
       formResponse([], res, 406, "newPassowor must be 8 character or more.");
     }
+  },
+  changePin: (req, res) => {
+    const { id } = req.token;
+    const { pin, newPin } = req.body;
+    if (pin == newPin) {
+      userModel
+        .changePin(id, newPin)
+        .then((data) => formResponse(data, res, 200, "Success Update"))
+        .catch((err) => formResponse([], res, 404, "not found"));
+    } else {
+      formResponse([], res, 400, "Pin not same");
+    }
+  },
+  addPhoto: (req, res) => {
+    // console.log(req);
+    const { id } = req.token;
+    const uploadImage = multer({ storage: storage }).single("image");
+    uploadImage(req, res, (err) => {
+      const { fullName } = req.body;
+      // console.log(fullName);
+      if (!req.file) {
+        userModel
+          .addPhoto(id, fullName)
+          .then((data) => formResponse(data, res, 200, "Name has been change."))
+          .catch((err) => formResponse([], res, 404, "data not found."));
+      } else {
+        const type = req.file.originalname.split(".")[1];
+        const mime = MIMEType(type);
+        if (mime == false) {
+          formResponse([], res, 400, "File is not Image");
+        } else {
+          if (!err) {
+            const imageName = `${process.env.BASE_URI}/img/${req.file.filename}`;
+            userModel
+              .addPhoto(id, fullName, imageName)
+              .then((data) => {
+                formResponse(data, res, 201, "Success change Photo");
+              })
+              .catch((err) => {
+                formResponse(err, res, 400, "Failed change Photo");
+              });
+          } else {
+            formResponse(err, res, 400, err.message);
+          }
+        }
+      }
+    });
   },
 
   //hamzah
@@ -70,7 +131,13 @@ module.exports = {
       const sortType = req.query.sortType || "asc";
       const limit = req.query.limit || 10;
       const page = req.query.page || 0;
-      const result = await userModel.getAllUser(search, sortBy, sortType, limit, page);
+      const result = await userModel.getAllUser(
+        search,
+        sortBy,
+        sortType,
+        limit,
+        page
+      );
       if (result.length > 0) {
         res.status(200).send({
           message: `Success get all user data`,

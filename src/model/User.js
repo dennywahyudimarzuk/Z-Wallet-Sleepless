@@ -41,6 +41,49 @@ module.exports = {
       }
     });
   },
+  changePin: (id, newPin) => {
+    return new Promise((resolve, reject) => {
+      db.query(`UPDATE user SET pin=${newPin} WHERE id=${id}`, (err, res) => {
+        if (!err) {
+          resolve(res);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
+  addPhoto: (id, name, image) => {
+    return new Promise((resolve, reject) => {
+      const imageUpload = `${image}`;
+      console.log(image, name, id);
+      if (image) {
+        db.query(
+          `UPDATE user SET img= ${imageUpload}, fullName=${name} WHERE id = ${id}`,
+          (err, res) => {
+            if (!err) {
+              resolve(res);
+            } else {
+              reject(err);
+            }
+          }
+        );
+      } else if (!image && name) {
+        db.query(
+          `UPDATE user SET fullName=${name} WHERE id = ${id}`,
+          (err, res) => {
+            if (!err) {
+              resolve(res);
+            } else {
+              reject(err);
+            }
+          }
+        );
+      } else {
+        let data = "err";
+        reject(data);
+      }
+    });
+  },
 
   //hamzah
   home: (token) => {
