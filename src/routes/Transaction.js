@@ -16,4 +16,6 @@ transactionRoutes.get(
 transactionRoutes.get("/all", transactionController.getAll);
 transactionRoutes.patch("", transactionController.editTransfer);
 transactionRoutes.post("/", checkToken, transactionController.createTransfer);
+
+transactionRoutes.delete("", transactionController.deleteTransfer);
 module.exports = transactionRoutes;

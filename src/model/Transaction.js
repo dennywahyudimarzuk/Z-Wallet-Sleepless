@@ -209,4 +209,15 @@ module.exports = {
       });
     });
   },
+  deleteTransaction: (id) => {
+    return new Promise((resolve, reject) => {
+      db.query(`delete from transfer where id=${id}`, (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(new Error(err));
+        }
+      });
+    });
+  },
 };
