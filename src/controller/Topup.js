@@ -27,7 +27,7 @@ module.exports = {
   },
   getAllTopupByStep: async function (req, res) {
     try {
-      const { limit } = req.query || 9;
+      const { limit } = req.query ;
       const result = await modelTopup.getAllTopupByStep(limit);
       const newData = result;
       if (result.length > 0) {

@@ -17,16 +17,29 @@ module.exports = {
   },
   getAllTopupByStep: (limit) => {
     return new Promise((resolve, reject) => {
-      db.query(
-        `select stepNumber, instruction  from topup_instruction where stepNumber between ${1} and ${limit} order by stepNumber asc`,
-        (err, result) => {
-          if (!err) {
-            resolve(result);
-          } else {
-            reject(new Error(err));
+      if(limit){
+        db.query(
+          `select stepNumber, instruction  from topup_instruction where stepNumber between ${1} and ${limit} order by stepNumber asc`,
+          (err, result) => {
+            if (!err) {
+              resolve(result);
+            } else {
+              reject(new Error(err));
+            }
           }
-        }
-      );
+        );
+      }else{
+          db.query(
+            `select stepNumber, instruction  from topup_instruction where stepNumber between ${1} and ${9} order by stepNumber asc`,
+            (err, result) => {
+              if (!err) {
+                resolve(result);
+              } else {
+                reject(new Error(err));
+              }
+            }
+          );
+      }
     });
   },
   editTopup:(id,data)=>{
