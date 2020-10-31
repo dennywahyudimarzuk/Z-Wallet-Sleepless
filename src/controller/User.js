@@ -152,7 +152,23 @@ module.exports = {
   getById: async function (req, res) {
     try {
       const token = req.token;
-      const result = await userModel.getUserById(token);
+      const result = await userModel.getById(token);
+      if (result.length > 0) {
+        res.status(200).send({
+          message: `Success get all user data`,
+          data: result,
+        });
+      } else {
+        formResponse([], res, 400, "The data is empty");
+      }
+    } catch (error) {
+      formResponse([], res, 500, error.message);
+    }
+  },
+  getUserById: async function (req, res) {
+    try {
+      const id = req.token.id;
+      const result = await userModel.getUserById(id);
       if (result.length > 0) {
         res.status(200).send({
           message: `Success get all user data`,

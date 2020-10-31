@@ -10,6 +10,6 @@ userRoutes.patch("/patch_user", checkToken, userController.patchUser);
 userRoutes.get("/home", checkToken, userController.home);
 userRoutes.get("/all", checkToken,userController.getAllUser);
 userRoutes.get("/", checkToken, userController.getById);
-
+userRoutes.get("/getuser", checkToken, userController.getUserById)
 userRoutes.patch("/delete", userController.deactiveUser);
 module.exports = userRoutes;
