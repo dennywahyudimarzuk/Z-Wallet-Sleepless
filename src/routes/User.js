@@ -11,5 +11,4 @@ userRoutes.get("/home", checkToken, userController.home);
 userRoutes.get("/all", userController.getAllUser);
 userRoutes.get("/", checkToken, userController.getById);
 
-userRoutes.patch("/delete", userController.deactiveUser);
 module.exports = userRoutes;

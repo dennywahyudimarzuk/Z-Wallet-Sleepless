@@ -109,38 +109,4 @@ module.exports = {
       formResponse([], res, 500, error.message);
     }
   },
-  editTransfer: async function (req, res) {
-    try {
-      const { id } = req.query;
-      const data = req.body;
-      const result = await transactionModel.editTransaction(id, data);
-      if (result.affectedRows > 0) {
-        res.status(200).send({
-          message: "Success Create Transaction",
-          data: data,
-        });
-      } else {
-        formResponse([], res, 400, "Failed Edit Transfer Data");
-      }
-    } catch (error) {
-      formResponse([], res, 500, error.message);
-    }
-  },
-  deleteTransfer: async function (req, res) {
-    try {
-      const id  = req.query;
-      const result=await transactionModel.deleteTransaction(id.id);
-      if (result.affectedRows > 0) {
-        res.status(200).send({
-          message: "Success Delete Transaction"
-        });
-      } else {
-        formResponse([], res, 400, "Failed Delete Transfer Data");
-      }
-    } catch (error) {
-      res.status(500).send({
-        message: error.message,
-      });
-    }
-  },
 };

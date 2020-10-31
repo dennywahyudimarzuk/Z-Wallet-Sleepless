@@ -27,8 +27,7 @@ module.exports = {
   },
   getAllTopupByStep: async function (req, res) {
     try {
-      const { limit } = req.query || 9;
-      const result = await modelTopup.getAllTopupByStep(limit);
+      const result = await modelTopup.getAllTopup();
       const newData = result;
       if (result.length > 0) {
         res.status(200).send({
@@ -42,73 +41,21 @@ module.exports = {
       formResponse([], res, 500, error.message);
     }
   },
-  editTopup: async function (req, res) {
-    try {
-      const { id } = req.query;
-      let newData = req.body;
-      const result = await modelTopup.editTopup(id, newData);
-      if (result.affectedRows > 0) {
-        res.status(201).send({
-          message: "Success edit topup",
-          rowsAffected: result.affectedRows,
-        });
-      } else {
-        formResponse([], res, 400, "Failed Edit Topup Data");
-      }
-    } catch (error) {
-      formResponse([], res, 500, error.message);
-    }
-  },
-  createTopup: async function (req, res) {
-    try {
-      let newData = req.body;
-      const id = await modelTopup.maxTopup();
-      data = { id: id[0].max, ...newData };
-      const result = await modelTopup.createTopup(data);
-      console.log(data);
-      if (result.affectedRows > 0) {
-        res.status(201).send({
-          message: "Success Create Topup Data",
-          data: result,
-        });
-      } else {
-        formResponse([], res, 400, "Failed Create Topup Data");
-      }
-    } catch (error) {
-      formResponse([], res, 500, error.message);
-    }
-  },
-  deleteTopup: async function (req, res) {
-    try {
-      const { id } = req.query;
-      const result = await modelTopup.deleteTopup(id);
-      if(!result.affectedRows>0){
-        res.status(200).send({
-          message: `Success delete a topup`,
-        });
-      }else{
-        formResponse([], res, 400, "Failed Delete Topup Data");
-      }
-    } catch (error) {
-      formResponse([], res, 500, error.message);
-    }
-  },
-
-  getMidtrans: (req, res) => {
-    const { virtualAcc, amount } = req.body;
+  getMidtrans:(req, res) =>{
+    const {virtualAcc,amount}= req.body
     let parameter = {
-      transaction_details: {
-        order_id: `${virtualAcc}`,
-        gross_amount: parseInt(amount),
-      },
-      credit_card: {
-        secure: true,
-      },
-    };
+      "transaction_details": {
+          "order_id": `${virtualAcc}`,
+          "gross_amount": parseInt(amount)
+      }, "credit_card":{
+          "secure" : true
+      }
+  };
     snap.createTransaction(parameter).then((transaction) => {
       // transaction token
       let transactionToken = transaction.token;
       console.log("transactionToken:", transactionToken);
     });
+
   },
 };
