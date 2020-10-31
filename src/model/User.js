@@ -110,7 +110,7 @@ module.exports = {
         `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy from transfer 
                     inner join user as u1 on transfer.sendBy=u1.id 
                     inner join user as u2 on transfer.receiver=u2.id
-                    where (sendBy=${decodedId} or receiver=${token.id}) && (u2.fullname like '%${search}%') 
+                    where (sendBy=${token.id} or receiver=${token.id}) && (u2.fullname like '%${search}%') 
                     order by ${sortBy} ${sortType} limit ${limit} OFFSET ${page}`,
         (err, res) => {
           if (!err) {
