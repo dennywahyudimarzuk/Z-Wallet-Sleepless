@@ -62,7 +62,8 @@ module.exports = {
     console.log(`${data}`, imageUpload);
     return new Promise((resolve, reject) => {
       // const imageUpload = `${image}`;
-      if (imageUpload.length > 0) {
+      if (imageUpload != "undefined") {
+        console.log("ini fhoto");
         db.query(
           `UPDATE user SET img='${imageUpload}', ${data} WHERE id = ${id}`,
           (err, res) => {
@@ -75,7 +76,8 @@ module.exports = {
             }
           }
         );
-      } else if (imageUpload.length < 1 && name) {
+      } else if (data) {
+        console.log("ini data");
         db.query(`UPDATE user SET ${data}  WHERE id = ${id}`, (err, res) => {
           if (!err) {
             resolve(res);
