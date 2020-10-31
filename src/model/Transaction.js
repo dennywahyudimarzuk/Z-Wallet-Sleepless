@@ -41,7 +41,7 @@ module.exports = {
       if (dateStart && until) {
         db.query(
           `select transfer.*,u1.fullName as sender,
-            u2.fullname as receiveBy from transfer 
+            u2.fullname as receiveBy, u2.img from transfer 
             inner join user as u1 on transfer.sendBy=u1.id 
             inner join user as u2 on transfer.receiver=u2.id
             where sendBy=${token.id} or receiver=${token.id} and dateTransfer between ${dateStart} and ${until} order by dateTransfer asc`,
@@ -56,7 +56,7 @@ module.exports = {
       } else {
         db.query(
           `select transfer.*,u1.fullName as sender,
-            u2.fullname as receiveBy from transfer 
+            u2.fullname as receiveBy, u2.img from transfer 
             inner join user as u1 on transfer.sendBy=u1.id 
             inner join user as u2 on transfer.receiver=u2.id
             where sendBy=${token.id} or receiver=${token.id} order by dateTransfer asc`,
@@ -75,7 +75,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.query(
         `select transfer.*,u1.fullName as sender,
-          u2.fullname as receiveBy from transfer 
+          u2.fullname as receiveBy, u2.img from transfer 
          inner join user as u1 on transfer.sendBy=u1.id 
          inner join user as u2 on transfer.receiver=u2.id
          where receiver=${token.id} order by dateTransfer desc`,
@@ -93,7 +93,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.query(
         `select transfer.*,u1.fullName as sender,
-          u2.fullname as receiveBy from transfer 
+          u2.fullname as receiveBy, u2.img from transfer 
          inner join user as u1 on transfer.sendBy=u1.id 
          inner join user as u2 on transfer.receiver=u2.id
          where sendBy=${token.id} order by dateTransfer desc`,
@@ -111,7 +111,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.query(
         `select transfer.*,u1.fullName as sender,
-        u2.fullname as receiveBy from transfer 
+        u2.fullname as receiveBy, u2.img from transfer 
        inner join user as u1 on transfer.sendBy=u1.id 
        inner join user as u2 on transfer.receiver=u2.id
        order by dateTransfer asc`,
