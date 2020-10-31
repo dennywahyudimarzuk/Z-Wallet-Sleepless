@@ -50,7 +50,11 @@ module.exports = {
                 { expiresIn: "36000s" }
               );
               const token = `Bearer ${tokenJWT}`;
-              resolve(token);
+              const data = {
+                token: token,
+                role: roleId,
+              };
+              resolve(data);
             } else {
               return reject(error);
             }
