@@ -59,14 +59,15 @@ module.exports = {
         : `${item[0]}='${item[1]}'`;
     });
     const imageUpload = `${image}`;
-    console.log(data, imageUpload);
+    console.log(`${data}`, imageUpload);
     return new Promise((resolve, reject) => {
       // const imageUpload = `${image}`;
       if (imageUpload.length > 0) {
         db.query(
-          `UPDATE user SET img= ${imageUpload}, ? WHERE id = ${id}`,
-          data,
+          `UPDATE user SET img='${imageUpload}', ${data} WHERE id = ${id}`,
           (err, res) => {
+            console.log(err);
+            console.log(res);
             if (!err) {
               resolve(res);
             } else {
@@ -75,7 +76,7 @@ module.exports = {
           }
         );
       } else if (!image && name) {
-        db.query(`UPDATE user SET ? WHERE id = ${id}`, data, (err, res) => {
+        db.query(`UPDATE user SET ${data}  WHERE id = ${id}`, (err, res) => {
           if (!err) {
             resolve(res);
           } else {

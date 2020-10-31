@@ -15,7 +15,7 @@ app.use(cors()); // WAJIB DI ISI
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use("/images", express.static("images"));
 
 app.get("/", (req, res) => res.send("<h2> Success </h2>"));
 

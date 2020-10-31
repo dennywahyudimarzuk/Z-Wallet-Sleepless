@@ -5,7 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/img");
+    cb(null, "./images");
   },
   filename: function (req, file, cb) {
     cb(
@@ -51,9 +51,10 @@ module.exports = {
   patchUser: (req, res) => {
     // console.log(req.token);
     const { id } = req.token;
-    const uploadImage = multer({ storage: storage }).single("image");
+    const uploadImage = multer({ storage: storage }).single("images");
     uploadImage(req, res, (err) => {
-      // console.log(req.body);
+      console.log(req.file, "controller");
+      console.log(req.body, "controller");
       if (!req.file) {
         userModel
           .patchUser(id, req.body)
@@ -66,7 +67,7 @@ module.exports = {
           formResponse([], res, 400, "File is not Image");
         } else {
           if (!err) {
-            const imageName = `${process.env.BASE_URI}/img/${req.file.filename}`;
+            const imageName = `${process.env.BASE_URI}/images/${req.file.filename}`;
             userModel
               .patchUser(id, req.body, imageName)
               .then((data) => {
