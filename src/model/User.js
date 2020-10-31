@@ -75,7 +75,7 @@ module.exports = {
             }
           }
         );
-      } else if (!image && name) {
+      } else if (imageUpload.length < 1 && name) {
         db.query(`UPDATE user SET ${data}  WHERE id = ${id}`, (err, res) => {
           if (!err) {
             resolve(res);
