@@ -58,10 +58,11 @@ module.exports = {
         ? `${item[0]}=${item[1]}`
         : `${item[0]}='${item[1]}'`;
     });
-    console.log(data);
+    const imageUpload = `${image}`;
+    console.log(data, imageUpload);
     return new Promise((resolve, reject) => {
-      const imageUpload = `${image}`;
-      if (image) {
+      // const imageUpload = `${image}`;
+      if (imageUpload.length > 0) {
         db.query(
           `UPDATE user SET img= ${imageUpload}, ? WHERE id = ${id}`,
           data,
@@ -107,7 +108,7 @@ module.exports = {
   homehistory: (token, search, sortBy, sortType, limit, page) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy, u2.img from transfer 
+        `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy, u1.img from transfer 
                     inner join user as u1 on transfer.sendBy=u1.id 
                     inner join user as u2 on transfer.receiver=u2.id
                     where (sendBy=${token.id} or receiver=${token.id}) && (u2.fullname like '%${search}%') 

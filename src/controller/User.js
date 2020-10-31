@@ -49,7 +49,7 @@ module.exports = {
     }
   },
   patchUser: (req, res) => {
-    console.log(req.token);
+    // console.log(req.token);
     const { id } = req.token;
     const uploadImage = multer({ storage: storage }).single("image");
     uploadImage(req, res, (err) => {
@@ -92,7 +92,7 @@ module.exports = {
       const limit = req.query.limit || 50;
       const page = req.query.page || 0;
       const token = req.token;
-      console.log(token);
+      // console.log(token);
       const [result, history] = await Promise.all([
         userModel.home(token),
         userModel.homehistory(token, search, sortBy, sortType, limit, page),
@@ -167,14 +167,14 @@ module.exports = {
   deactiveUser: async function (req, res) {
     try {
       const { id } = req.query;
-      const  active  = req.body.isActive;
+      const active = req.body.isActive;
       const result = await userModel.deactivateUser(id, active);
       if (result.affectedRows > 0) {
         res.status(200).send({
           message: `Success get all user data`,
           data: result,
         });
-      }else{
+      } else {
         formResponse([], res, 400, "Failed Deactive User");
       }
     } catch (error) {
