@@ -8,7 +8,7 @@ userRoutes.patch("/change_password", checkToken, userController.changePassword);
 userRoutes.patch("/change_pin", checkToken, userController.changePin);
 userRoutes.patch("/patch_user", checkToken, userController.patchUser);
 userRoutes.get("/home", checkToken, userController.home);
-userRoutes.get("/all", userController.getAllUser);
+userRoutes.get("/all", checkToken,userController.getAllUser);
 userRoutes.get("/", checkToken, userController.getById);
 
 userRoutes.patch("/delete", userController.deactiveUser);

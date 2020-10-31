@@ -128,7 +128,7 @@ module.exports = {
   getAllUser: (search, sortBy, sortType, limit, page) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `select fullName, email, password, pin, phoneNumber, balance, img, createdDate, isActive from user where isActive=1 and fullName like '%${search}%'
+        `select fullName, email, password, pin, phoneNumber, balance, img, createdDate, isActive from user where isActive=1 and roleId=100 and fullName like '%${search}%'
                     order by ${sortBy} ${sortType} limit ${limit} OFFSET ${page}`,
         (err, res) => {
           if (!err) {
