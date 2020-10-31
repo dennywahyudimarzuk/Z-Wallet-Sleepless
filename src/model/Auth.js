@@ -6,14 +6,18 @@ module.exports = {
   register: (email, password, fullName) => {
     return new Promise((resolve, reject) => {
       bcrypt.hash(password, 10, (err, newPassword) => {
-        const body = { email, newPassword, fullName, roleId: 100 };
-        db.query("INSERT INTO user VALUE ?", body, (err, res) => {
-          if (!err) {
-            resolve(res);
-          } else {
-            reject(err);
+        db.query(
+          `INSERT INTO user (email, password, fullName, roleId, isActive) VALUES ('${email}', '${newPassword}', '${fullName}', 100, 1)`,
+          (err, res) => {
+            console.log(res, "ini adalah ress");
+            console.log(err, "ini adalah err");
+            if (!err) {
+              resolve(res);
+            } else {
+              reject(err);
+            }
           }
-        });
+        );
       });
     });
   },
@@ -46,8 +50,7 @@ module.exports = {
             if (result) {
               const tokenJWT = jwt.sign(
                 { email, id, name, roleId },
-                process.env.SECRET_KEY,
-                { expiresIn: "36000s" }
+                process.env.SECRET_KEY
               );
               const token = `Bearer ${tokenJWT}`;
               const data = {
@@ -66,23 +69,17 @@ module.exports = {
 
   createPin: (pin, email) => {
     return new Promise((resolve, reject) => {
-      bcrypt.hash(pin, 10, (err, hashedPin) => {
-        if (err) {
-          return reject(err);
-        }
-        console.log(hashedPin);
-        db.query(
-          `UPDATE user SET pin='${hashedPin}' WHERE email=?`,
-          email,
-          (err, result) => {
-            if (!err) {
-              resolve(result);
-            } else {
-              return reject(err);
-            }
+      db.query(
+        `UPDATE user SET pin='${pin}' WHERE email=?`,
+        email,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            return reject(err);
           }
-        );
-      });
+        }
+      );
     });
   },
   resetPassword: (password, email) => {
