@@ -4,11 +4,45 @@ import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import './adminTopup.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+// import swal from 'sweetalert';
+
+// const editProccess = () =>{
+
+// }
+
+const onDelete = ( id) =>{
+            
+    swal({
+        title: "Are you sure ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+        // deleteTopup(id);
+            console.log(" delete topup dengan id =" + id);
+            const token = JSON.parse(localStorage.getItem("token"));
+            const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+            axios.delete(`${process.env.REACT_APP_API}/topup/` + id, headers)
+            .then(res =>{
+                console.log(res.data.data)
+              })
+          swal("Delete Success!", {
+            icon: "success",
+          });
+        } else {
+          swal("Delete Failed!");
+        }
+      });
+}
 class AdminTopup extends Component {
 
     state = {
         data : []
     }
+
+    
 
 
     componentDidMount()
@@ -90,14 +124,14 @@ class AdminTopup extends Component {
                                                     return(
                                                         // <div className="" key={item.id} >
                                                         
-                                                            <div className="row" key={item.id} >
+                                                            <div className="row" key={item.id}  >
                                                                 <div className="col-9 col-sm-9 col-lg-10 top-up">
                                                                 <table className="table table-striped " id="mytable" >
                                                                     
                                                                         <tr>    
                                                                             <th><p className="font-weight-normal"><span className="number">{item.orders}</span>{item.procedures}</p>
-                                                                            <a href="#" type="submit" className="btn btn-sm btn-info text-center edit">Edit</a>
-                                                                            <a href="#" type="reset"  className="btn btn-sm btn-danger delete ml-1">Delete</a></th>
+                                                                            <button type="submit" className="btn btn-sm btn-info text-center edit" onClick={() => editProccess()}>Edit</button>
+                                                                            <button className="btn btn-sm btn-danger delete ml-1" onClick={() => onDelete(item.id)}>Delete</button></th>
                                                                             
                                                                         </tr>
                                                                     
