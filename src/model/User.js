@@ -171,6 +171,34 @@ module.exports = {
       );
     });
   },
+  deletePhone:(id)=>{
+    return new Promise((resolve, reject) => {
+      db.query(
+        `update user set phoneNumber= ${62} where id=${id}`,
+        (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  },
+  updatePhone:(id,phone)=>{
+    return new Promise((resolve, reject) => {
+      db.query(
+        `update user set phoneNumber= ${phone} where id=${id}`,
+        (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  },
   deactivateUser: (id, active) => {
     return new Promise((resolve, reject) => {
       db.query(

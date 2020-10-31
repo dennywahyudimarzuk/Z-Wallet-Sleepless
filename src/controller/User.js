@@ -181,6 +181,39 @@ module.exports = {
       formResponse([], res, 500, error.message);
     }
   },
+  deletePhone: async function (req, res) {
+    try {
+      const id = req.token;
+      const result = await userModel.deletePhone(id.id);
+      if (result.affectedRows > 0) {
+        res.status(200).send({
+          message: `Success delete phone`,
+          data: result,
+        });
+      } else {
+        formResponse([], res, 400, "The data is empty");
+      }
+    } catch (error) {
+      formResponse([], res, 500, error.message);
+    }
+  },
+  updatePhone: async function (req, res) {
+    try {
+      const id = req.token;
+      const phoneNumber= req.body.phoneNumber
+      const result = await userModel.updatePhone(id.id,phoneNumber);
+      if (result.affectedRows > 0) {
+        res.status(200).send({
+          message: `Success update phone`,
+          data: result,
+        });
+      } else {
+        formResponse([], res, 400, "The data is empty");
+      }
+    } catch (error) {
+      formResponse([], res, 500, error.message);
+    }
+  },
   deactiveUser: async function (req, res) {
     try {
       const { id } = req.query;
