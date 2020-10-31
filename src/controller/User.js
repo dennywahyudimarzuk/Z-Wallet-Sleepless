@@ -167,7 +167,7 @@ module.exports = {
   },
   getUserById: async function (req, res) {
     try {
-      const id = req.token.id;
+      const {id} = req.query;
       const result = await userModel.getUserById(id);
       if (result.length > 0) {
         res.status(200).send({
