@@ -27,10 +27,13 @@ const onDelete = ( id) =>{
             axios.delete(`${process.env.REACT_APP_API}/topup/` + id, headers)
             .then(res =>{
                 console.log(res.data.data)
-              })
+              }).catch(err => {
+                console.log(err)
+              });
           swal("Delete Success!", {
             icon: "success",
           });
+          window.location.reload();
         } else {
           swal("Delete Failed!");
         }
