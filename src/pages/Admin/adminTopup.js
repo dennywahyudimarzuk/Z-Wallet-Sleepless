@@ -4,11 +4,11 @@ import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import './adminTopup.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 
-// const editProccess = () =>{
+const editProccess = () =>{
 
-// }
+}
 
 const onDelete = ( id) =>{
             

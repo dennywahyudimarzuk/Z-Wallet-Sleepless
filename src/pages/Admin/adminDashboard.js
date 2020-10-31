@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUp ,icGrid, icLogOut,icPlus,icUser} from '../../assets';
+import { icArrowUp ,icGridActive, icLogOut,icPlus,icUser} from '../../assets';
 import { Navbar,Footer} from '../../component/molecules';
 import './adminDashboard.css'
 import {Link} from 'react-router-dom';
@@ -80,30 +80,30 @@ class AdminDashboard extends Component {
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu">
                             <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
-                              <div style={{flex: 1}}> 
-                              <Link to="/admin">
-                                    <a href="/dashboard" className="ml-md-4 d-block dashboard-tp text-center text-lg-left">
-                                        <img alt="" src={icGrid} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
+                                 <div style={{flex: 1}}>
+                                    <Link to="/admin">
+                                    <a href="/" className="ml-md-4 d-block dashboard text-center text-lg-left">
+                                        <div className="active-link"></div>
+                                        <img alt="" src={icGridActive} /> &nbsp; <span className="d-none d-md-inline">Dashboard</span>
                                     </a>
-                                </Link>
-                                <Link to="/admin/transfer">
-                                    <a href="/transfer" className="ml-md-4 d-block transfer-tp text-center text-lg-left">
+                                    </Link>
+                                    <Link to="/admin/transfer">
+                                    <a href="/transfer" className="ml-md-4 d-block transfer-ds text-center text-lg-left">
                                         <img alt="" src={icArrowUp} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Transfer</span>
                                     </a>
-                                </Link>
-                                <Link to="/admin/top-up">
-                                    <a href="/admin/top-up" className="ml-md-4 d-block top-up-adm text-center text-lg-left">
-                                        {/* <div className="active-link"></div> */}
+                                    </Link>
+                                    <Link to="/admin/top-up">
+                                    <a href="top-up.html" className="ml-md-4 d-block top-up-ds text-center text-lg-left">
                                         <img alt="" src={icPlus} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Top Up</span>
                                     </a>
-                                </Link>
-                                <Link to="/admin/user">
-                                    <a href="/" className="ml-md-4 d-block profile-tp text-center text-lg-left">
+                                    </Link>
+                                    <Link to="/admin/user">
+                                    <a href="/" className="ml-md-4 d-block profile-ds text-center text-lg-left">
                                         <img alt="" src={icUser} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Profile</span>
                                     </a>
-                                </Link>
+                                    </Link>
                                 </div>
-                                    <a href="/auth/logout" className="ml-md-4 d-block logout-tp text-center text-lg-left">
+                                    <a href="/auth/logout" className="ml-md-4 d-block logout-ds text-center text-lg-left">
                                         <img alt="" src={icLogOut} /> &nbsp; <br className="d-none d-md-block d-lg-none" /><span className="d-none d-md-inline">Logout</span>
                                     </a>
                                 </div>
