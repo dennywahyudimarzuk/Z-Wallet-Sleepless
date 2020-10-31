@@ -91,51 +91,37 @@ module.exports = {
   //hamzah
   home: (token) => {
     return new Promise((resolve, reject) => {
-      jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-        const decodedId = decoded.id;
-        if (!err) {
-          db.query(
-            `select balance, phoneNumber from user where id=${decodedId}`,
-            (err, res) => {
-              if (!err) {
-                resolve(res);
-              } else {
-                reject(err);
-              }
-            }
-          );
-        } else {
-          reject(new Error(err));
+      db.query(
+        `select balance, phoneNumber from user where id=${token.id}`,
+        (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
   //edit sinta
   homehistory: (token, search, sortBy, sortType, limit, page) => {
     return new Promise((resolve, reject) => {
-      jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-        const decodedId = decoded.id;
-        if (!err) {
-          db.query(
-            `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy from transfer 
+      db.query(
+        `select transfer.*, u1.fullName as sender,u2.fullname as receiveBy from transfer 
                     inner join user as u1 on transfer.sendBy=u1.id 
                     inner join user as u2 on transfer.receiver=u2.id
-                    where (sendBy=${decodedId} or receiver=${decodedId}) && (u2.fullname like '%${search}%') 
+                    where (sendBy=${decodedId} or receiver=${token.id}) && (u2.fullname like '%${search}%') 
                     order by ${sortBy} ${sortType} limit ${limit} OFFSET ${page}`,
-            (err, res) => {
-              if (!err) {
-                // data["data"] = res;
-                // console.log(res, "percobaan kesekian");
-                resolve(res);
-              } else {
-                reject(err);
-              }
-            }
-          );
-        } else {
-          reject(new Error(err));
+        (err, res) => {
+          if (!err) {
+            // data["data"] = res;
+            // console.log(res, "percobaan kesekian");
+            resolve(res);
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
   getAllUser: (search, sortBy, sortType, limit, page) => {
@@ -160,6 +146,20 @@ module.exports = {
         (err, res) => {
           if (!err) {
             resolve(res);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  },
+  deactivateUser: (id, active) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `update user set isActive=${active} where id= ${id}`,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
           } else {
             reject(err);
           }

@@ -15,10 +15,10 @@ module.exports = {
       );
     });
   },
-  getAllTopupByStep: () => {
+  getAllTopupByStep: (limit) => {
     return new Promise((resolve, reject) => {
       db.query(
-        `select stepNumber, instruction  from topup_instruction where stepNumber<10 order by stepNumber asc`,
+        `select stepNumber, instruction  from topup_instruction where stepNumber between ${1} and ${limit} order by stepNumber asc`,
         (err, result) => {
           if (!err) {
             resolve(result);
@@ -29,4 +29,60 @@ module.exports = {
       );
     });
   },
+  editTopup:(id,data)=>{
+    return new Promise((resolve, reject) => {
+      db.query(
+        ` update topup_instruction set ? where id=${id}`,
+        [data, id],
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+  maxTopup:()=>{
+    return new Promise((resolve, reject) => {
+      db.query(
+        ` select max(id+1) as max from topup_instruction`,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+  createTopup:(data)=>{
+    return new Promise((resolve, reject) => {
+      db.query(
+        ` insert into topup_instruction set ?`,
+        data,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+  deleteTopup: function (id) {
+    return new Promise((resolve, reject) => {
+      db.query(`delete from topup_instruction where id=${id}`, (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(new Error(err));
+        }
+      });
+    });
+  },
+
 };

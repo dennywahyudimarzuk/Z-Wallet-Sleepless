@@ -109,4 +109,21 @@ module.exports = {
       formResponse([], res, 500, error.message);
     }
   },
+  editTransfer: async function (req, res) {
+    try {
+      const { id } = req.query;
+      const data = req.body;
+      const result = await transactionModel.editTransaction(id, data);
+      if (result.affectedRows > 0) {
+        res.status(200).send({
+          message: "Success Create Transaction",
+          data: data,
+        });
+      } else {
+        formResponse([], res, 400, "Failed Edit Transfer Data");
+      }
+    } catch (error) {
+      formResponse([], res, 500, error.message);
+    }
+  },
 };
