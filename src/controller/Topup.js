@@ -65,7 +65,6 @@ module.exports = {
       const id = await modelTopup.maxTopup();
       data = { id: id[0].max, ...newData };
       const result = await modelTopup.createTopup(data);
-      console.log(data);
       if (result.affectedRows > 0) {
         res.status(201).send({
           message: "Success Create Topup Data",
