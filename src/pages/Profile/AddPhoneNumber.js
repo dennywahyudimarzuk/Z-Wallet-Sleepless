@@ -6,6 +6,7 @@ import axios from 'axios';
 import qs from 'qs';
 import './addPhoneNumber.css';
 import{connect} from 'react-redux';
+import { toast } from 'react-toastify';
 
 class AddPhoneNumber extends Component {
 
@@ -20,9 +21,11 @@ class AddPhoneNumber extends Component {
 
     componentDidMount()
     {
-        if (this.props.userData.phone !== '-') {
-            this.props.history.push('/profile/manage-phone-number')
-        }
+        // console.log('data number:',this.props.userData.phone)
+
+        // if (this.props.userData.phone !== 0) {
+        //     this.props.history.push('/profile/manage-phone-number')
+        // }
     }
 
     handleForm = (event) => {
@@ -52,30 +55,32 @@ class AddPhoneNumber extends Component {
     addNumber(id)
     {
 
-        let value = '+62';
+        if (!this.state.form.phone) {
+            toast.error("Phone number is required!",{position:toast.POSITION.TOP_CENTER})
+            return false
+        }
+
+        let value = '62';
         let data = {
-            phone : value + this.state.form.phone
+            phoneNumber : value + this.state.form.phone
         }
         const token = localStorage.getItem("jwt");
-        const headers = { headers: {'Authorization': `Bearer ${token}`}}  
+        const headers = { headers: {'Authorization': `${token}`}}  
         data = qs.stringify(data);
-        axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
+        axios.patch(`${process.env.REACT_APP_API}/user/patch_user`,data,headers)
         .then(res => {
-        //   console.log(res.data)
-          if (res.data.success === true) {
-                 this.props.history.push('/profile/manage-phone-number')
-          }
+             toast.success("Success add number!",{position:toast.POSITION.TOP_CENTER})
+             this.props.history.push('/profile/manage-phone-number')
         })
         .catch(err => {
+          toast.error("Failed add number!",{position:toast.POSITION.TOP_CENTER})
           console.error(err)
         });
     }
 
 
     render() { 
-        if (this.props.userData.phone !== '-') {
-            this.props.history.push('/profile/manage-phone-number')
-        }
+        
         return ( 
             <>
                 <div className="d-none d-sm-block">

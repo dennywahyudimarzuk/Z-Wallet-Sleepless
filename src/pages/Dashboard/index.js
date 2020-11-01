@@ -21,7 +21,10 @@ class Dashboard extends Component {
             axios.get(`${process.env.REACT_APP_API}/user/home`,headers)
             .then(res =>{
               console.log('data transfer axios dashboard: ',res.data.data.data)
-              this.setState({historyTransfer:res.data.data.data});
+              if (res.data.data.data) {
+                this.setState({historyTransfer:res.data.data.data}); 
+              }
+              
             }).catch(err => {
               console.log('data transfer axios error: ', err.message)
             });

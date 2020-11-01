@@ -74,7 +74,7 @@ class ChangePin extends Component {
 
                 let save = {
                     pin :localStorage.getItem('changePin'),
-                    newPin:data
+                    newPin:data.pin
                 }
                 let pin = qs.stringify(save);
                 console.log('data parse',pin)

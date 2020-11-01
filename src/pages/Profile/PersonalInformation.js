@@ -81,7 +81,7 @@ class PersonalInformation extends Component {
                                             </div>
                                             <div className="card-personal-information">
                                                 <span>Phone Number</span>
-                                                <h2>{this.props.userData.phone}</h2>
+                                                <h2>{this.props.userData.phone && '+'+this.props.userData.phone}</h2>
                                                 <Link to="/profile/manage-phone-number">
                                                     <span className="manage">
                                                         Manage

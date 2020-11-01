@@ -22,7 +22,10 @@ import NavigationMobile from '../NavigationMobile';
             axios.get(`${process.env.REACT_APP_API}/user/home`,headers)
             .then(res =>{
                 console.log('data notification: ',res.data.data.data)
-                setHistory(res.data.data.data)
+                if (res.data.data.data) {
+                  setHistory(res.data.data.data)
+                }
+                
             
             }).catch(err => {
               console.log('data transfer axios error: ', err.message)

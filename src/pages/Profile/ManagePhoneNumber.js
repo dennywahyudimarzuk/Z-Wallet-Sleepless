@@ -6,6 +6,7 @@ import axios from 'axios';
 import './managePhoneNumber.css';
 import qs from 'qs';
 import{connect} from 'react-redux';
+import { toast } from 'react-toastify';
 
 
 class ManagePhoneNumber extends Component {
@@ -18,33 +19,34 @@ class ManagePhoneNumber extends Component {
     componentDidMount()
     {
   
-              if (this.props.userData.phone === '-') {
-                 this.props.history.push('/profile/add-phone-number')
-              } 
+            //   if (this.props.userData.phone === '-') {
+            //      this.props.history.push('/profile/add-phone-number')
+            //   } 
     }
     deleteNumber(id)
     {
         let data = {
-            phone : '-'
+            phoneNumber : 0
         }
         data = qs.stringify(data);
         const token = localStorage.getItem("jwt");
-        const headers = { headers: {'Authorization': `Bearer ${token}`}}  
-        axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.patch(`${process.env.REACT_APP_API}/user/patch_user`,data,headers)
         .then(res => {
-          console.log(res.data)
-          if (res.data.success === true) {
+
                  this.props.history.push('/profile/add-phone-number')
-          }
         })
         .catch(err => {
+          toast.error("failed change number!",{position:toast.POSITION.TOP_CENTER})
           console.error(err)
         });
     }
 
 
     render() { 
-        if (this.props.userData.phone === '-') {
+
+        // console.log('data number:',this.props.userData.phone)
+        if (this.props.userData.phone == '0') {
             this.props.history.push('/profile/add-phone-number')
          } 
         return ( 
@@ -98,7 +100,7 @@ class ManagePhoneNumber extends Component {
 
                                             <div className="primary-number">
                                                 <span>Primary</span>
-                                                <h2>{this.props.userData.phone}</h2>
+                                                <h2>{this.props.userData.phone && '+'+this.props.userData.phone}</h2>
                                                 <div className="delete-number" onClick={() => this.deleteNumber(this.props.userData.id)}>
                                                     <img alt="" src={icTrash}/>
                                                 </div>

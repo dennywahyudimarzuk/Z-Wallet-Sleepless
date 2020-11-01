@@ -8,29 +8,12 @@ import axios from 'axios';
 class Transfer extends Component {
 
     state = {
+        limit:6,
+        max:0,
         profiles : [],
         quickAccess:[]
     }
 
-
-    onHandleInput(event)
-    {
-
-        const query = event.currentTarget.value;
-        const email = localStorage.getItem("login");
-        const token = localStorage.getItem("jwt");
-        const headers = { headers: {'Authorization': `${token}`}}  
-        axios.get(`${process.env.REACT_APP_API}/user/all?search=${query}&sortBy=fullName&sortType=ASC&limit=6&page=0`,headers)
-        .then(res =>{
-            const result = res.data.data.filter(man => {
-                return man.email !== email
-           })
-             this.setState({profiles:result});
-        
-        }).catch(err => {
-          console.log(err)
-        });
-    }
 
 
     componentDidMount()
@@ -38,7 +21,7 @@ class Transfer extends Component {
         const email = localStorage.getItem("login");
         const token = localStorage.getItem("jwt");
         const headers = { headers: {'Authorization': `${token}`}}  
-        axios.get(`${process.env.REACT_APP_API}/user/all?sortBy=fullName&sortType=ASC&limit=6&page=0`,headers)
+        axios.get(`${process.env.REACT_APP_API}/user/all?sortBy=fullName&sortType=ASC&limit=${this.state.limit}&page=0`,headers)
         .then(res =>{
           console.log('transfer/',res.data.data)
         const result = res.data.data.filter(man => {
@@ -48,7 +31,7 @@ class Transfer extends Component {
         
         }).catch(err => {
           console.log(err)
-        });
+        });                                                                                                 
 
         axios.get(`${process.env.REACT_APP_API}/user/all?sortBy=fullName&sortType=DESC&limit=3&page=0`,headers)
         .then(res =>{
@@ -62,12 +45,76 @@ class Transfer extends Component {
           console.log(err)
         });
 
+        axios.get(`${process.env.REACT_APP_API}/user/all?sortBy=fullName&sortType=DESC&limit=999&page=0`,headers)
+        .then(res =>{
+          console.log('transfer quick access',res.data.data)
+        const max = res.data.data.filter(man => {
+             return man.email !== email
+        })
+
+        //  console.log('hasil dari max: ',max.length)
+          this.setState({max:max.length});
+        
+        }).catch(err => {
+          console.log(err)
+        });
 
 
     }
 
 
+
+
+    onHandleInput(event)
+    {
+
+        const query = event.currentTarget.value;
+        const email = localStorage.getItem("login");
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.get(`${process.env.REACT_APP_API}/user/all?search=${query}&sortBy=fullName&sortType=ASC&limit=${this.state.limit}&page=0`,headers)
+        .then(res =>{
+            const result = res.data.data.filter(man => {
+                return man.email !== email
+           })
+             this.setState({profiles:result});
+        
+        }).catch(err => {
+          console.log(err)
+        });
+
+
+        
+    }
+
+
+     fetchMoreData = () => {
+
+        const email = localStorage.getItem("login");
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.get(`${process.env.REACT_APP_API}/user/all?sortBy=fullName&sortType=ASC&limit=${this.state.limit + 4}&page=0`,headers)
+        .then(res =>{
+          console.log('transfer/',res.data.data)
+        const result = res.data.data.filter(man => {
+             return man.email !== email
+        })
+          this.setState({profiles:result,limit:this.state.limit + 4});
+        
+        }).catch(err => {
+          console.log(err)
+        });
+
+    }
+
+
+
+
     render() { 
+
+        console.log('jumlah limit :',this.state.limit)
+        console.log('jumlah max :',this.state.max)
+
         return ( 
             <>
                 <div className="d-none d-sm-block">
@@ -178,16 +225,18 @@ class Transfer extends Component {
 
                                         }
                                         {
+                                            this.state.limit != this.state.max &&
                                             this.state.profiles.length !== 0 && 
-                                            <div style={{textAlign:'center',width:'100%'}}>
-                                                <span className="py-2 px-3 mt-5" style={{backgroundColor:'#6379F4',borderRadius:10,color:'white',cursor:'pointer'}}>Load More</span>
+                                            <div style={{textAlign:'center',width:'100%'}} onClick={this.fetchMoreData}>
+                                                <span className="py-2 px-3 mt-5" style={{backgroundColor:'#6379F4',borderRadius:10,color:'white',cursor:'pointer'}}   >Load More</span>
                                             </div>
                                         }
 
-                                        {
+                                        {  
+                                            
                                             this.state.profiles.length == 0 && 
                                             <div style={{textAlign:'center',width:'100%'}}>
-                                                <span className="py-2 px-3 mt-5" style={{backgroundColor:'#6379F4',borderRadius:10,color:'white',cursor:'pointer'}}>Data Not Found</span>
+                                                <span className="py-2 px-3 mt-5" style={{backgroundColor:'#fff',borderRadius:10,color:'#333',cursor:'pointer'}}> <h1>Data Not Found</h1> </span>
                                             </div>
                                         }
 
