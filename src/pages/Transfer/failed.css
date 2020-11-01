@@ -234,27 +234,28 @@ margin-top: 40px;
 }
 
 @media (max-width: 575.98px) { 
-    /* .navbar-dashboard{
-        display: none;
-    } */
     .body-area-success .back{
         width: 100% !important;
 
     }
-    
-    .btn-download{
-        display: none !important;
-    }
-    .btn-share{
-        display: none !important;
-    }
-    .body-area-success{
-        background: #fafcff !important;
-        border-radius: 0px !important;
-        padding: 0px !important;
-        box-shadow: 0px 0px 0px !important;
-    }
+    .body-area-success .btn-download{
+        width: 100% !important;
 
+    }
+    .body-area-success .btn-share{
+        width: 100% !important;
+
+    }
+    .detail-failed{
+        font-weight: bold;
+        font-size: 18px;
+        color: #514F5B;
+        margin-bottom: 21px;
+    }
+}
+
+
+@media (max-width: 575.98px) { 
     .content .sidebar .logout-sc{
         margin-top: 64px !important;
         text-decoration: none;

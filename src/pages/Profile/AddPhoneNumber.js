@@ -56,8 +56,8 @@ class AddPhoneNumber extends Component {
         let data = {
             phone : value + this.state.form.phone
         }
-        const token = JSON.parse(localStorage.getItem("token"));
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `Bearer ${token}`}}  
         data = qs.stringify(data);
         axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
         .then(res => {

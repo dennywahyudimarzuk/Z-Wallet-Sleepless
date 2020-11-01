@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { icLock, icMail, imDoublePhone, icMailActive } from '../../assets';
+import { icLock, icMail, imDoublePhone, icMailActive, icMailWrong } from '../../assets';
 import './forgotPassword.css';
+import { toast } from 'react-toastify';
 class ForgotPassword extends Component {
 
   state = {
@@ -11,13 +12,22 @@ class ForgotPassword extends Component {
     passClick: {},
     btn: {},
     form: {
-      email: '',
-      password: ''
+      email: ''
     },
     show: false
   }
 
   forgot = () => {
+    if (!this.state.form.email) {
+      toast.error("Email is required!",{position:toast.POSITION.TOP_CENTER})
+      this.setState({
+        icMail:icMailWrong,
+        mailClick: { border: '1.6px solid #FF5B37' }
+      })
+      return false
+    }
+
+    localStorage.setItem('resetPasswordEmail',this.state.form.email)
     this.props.history.push('/auth/new-password')
   }
 
@@ -50,7 +60,7 @@ class ForgotPassword extends Component {
     return (
       <>
         <div className="row">
-          <div className="col-md-6 information p-2 p-sm-5">
+          <div className="col-md-6 information p-2 p-sm-5 d-none d-sm-block">
             <div className="container">
               <div className="logo">
                 <h1 className="ml-4">Zwallet</h1>
@@ -68,18 +78,18 @@ class ForgotPassword extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 col-forgot">
             <div className="login-container">
               <div className="forgot-password">
-                <h3 className="title-mobile">ZWALLET</h3>
+                <h3 className="title-mobile d-sm-none">ZWALLET</h3>
                 <h2>Did You Forgot Your Password? Don’t Worry, You Can Reset Your Password In a Minutes.</h2>
                 <p className="desc">To reset your password, you must type your e-mail and we will send a link to your email and you will be directed to the reset password screens.</p>
 
 
                 <div className="form-group">
                   <div className="title-mobile">
-                    <h4>Reset Password</h4>
-                    <div className="helper-text">
+                    <h4 className="d-sm-none">Reset Password</h4>
+                    <div className="helper-text d-sm-none">
                       Enter your Zwallet e-mail so we can send
                       you a password reset link.
                     </div>
@@ -92,8 +102,8 @@ class ForgotPassword extends Component {
                   </div>
 
                   <div className="form-button col-lg-8">
-                    {this.state.error && <span className="text-center d-block" style={{ color: '#FF5B37', fontSize: 18, fontWeight: 600, marginBottom: -20 }}>Email or Password Invalid</span>}
-                    <button className="btn btn-primary" style={this.state.btn} type="submit" onClick={this.forgot} >Confirm</button>
+                    {this.state.error && <span className="text-center d-block " style={{ color: '#FF5B37', fontSize: 18, fontWeight: 600, marginBottom: -20 }}>Email or Password Invalid</span>}
+                    <button className="btn btn-primary " style={this.state.btn} type="submit" onClick={this.forgot} >Confirm</button>
                   </div>
 
 

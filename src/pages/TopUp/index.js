@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUp ,icGrid, icLogOut,icPlusActive,icUser,icTopUpMobile} from '../../assets';
+import { icArrowUp ,icGrid, icLogOut,icPlusActive,icUser,icTopUpMobile, icX} from '../../assets';
 import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import './topUp.css'
 import {Link} from 'react-router-dom';
@@ -13,8 +13,8 @@ class TopUp extends Component {
 
     componentDidMount()
     {
-        const token = JSON.parse(localStorage.getItem("token"));
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `Bearer ${token}`}} 
         axios.get(`${process.env.REACT_APP_API}/topup/`,headers)
         .then(res =>{
           console.log(res.data.data)
@@ -70,7 +70,7 @@ class TopUp extends Component {
                                     <div className="d-block d-sm-none">
                                         <NavigationMobile page="Top Up" to="/dashboard"/>
 
-                                        <div className="top-up-logo mb-4">
+                                        <div className="top-up-logo mb-4" data-toggle="modal" data-target="#staticBackdrop">
                                             <img src={icTopUpMobile} alt=" " className="mr-3" />
                                             <div >
                                                 <span>Virtual Account Number</span>
@@ -91,7 +91,7 @@ class TopUp extends Component {
                                                         <div className="card-profile " key={item.id} >
                                                             <div className="row">
                                                                 <div className="col-9 col-sm-9 col-lg-10 top-up">
-                                                                     <p><span className="number">{item.orders}</span>{item.procedures}</p>
+                                                                     <p><span className="number">{item.stepNumber}</span>{item.instruction}</p>
                                                                 </div>
                                                             </div>
                                                        </div>
@@ -111,6 +111,45 @@ class TopUp extends Component {
 
                     </div>                                             
                 <Footer/>
+
+                <div className="modal fade edit-image" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                        <div className="modal-header border-0 p-0 ">
+                            <h5 >Top Up</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><img alt="" src={icX} /></span>
+                            </button>
+                        </div>
+                        <div className="modal-body p-0">
+
+                            <div className="form-upload">
+                            <div className="row justify-content-center">
+                                <div className="col-10 text-center">
+                                <div className="mt-4 text-center position-relative">
+                                    <div className="hover-image" style={this.state.avatarOver ? { display: 'inline' } : { display: 'none' }}></div>
+                                    <input type="file" className="image-upload" onChange={this.fileChangedHandler} onMouseOver={() => this.overImage()} onMouseLeave={() => this.moveImage()} />
+                                    {/* <img className="avatar" src={process.env.REACT_APP_URL + this.props.userData.photo} alt="" /> */}
+
+                                </div>
+                                <input type="text" name="fullName" value={this.state.fullName} onChange={(e) => this.changeName(e)} className="form-control d-inline mt-4" placeholder="Amount" />
+                                </div>
+
+                            </div>
+                            </div>
+
+                        </div>
+                        <div className="modal-footer border-0 p-0 ">
+                            <button type="button" className="btn btn-primary" onClick={this.uploadHandler} >Continue</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+
+
+
+
             </>
          );
     }

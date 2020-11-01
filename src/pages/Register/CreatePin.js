@@ -1,9 +1,21 @@
 import React, { Component } from 'react'
 import { icLine, imDoublePhone } from '../../assets';
+import qs from 'qs'
+import axios from 'axios'
 import './createPin.css'
+import { toast } from 'react-toastify';
 class CreatePin extends Component {
   state = {
-    show: false
+    show: false,
+    email:localStorage.getItem('register_email'),
+    form : {
+      pin1 : '',
+      pin2 : '',
+      pin3 : '',
+      pin4 : '',
+      pin5 : '',
+      pin6 : '',
+  }
   }
 
   showPassword() {
@@ -19,8 +31,48 @@ class CreatePin extends Component {
 
   }
 
+
+  handleForm = (event) => {
+    let  newForm  = this.state.form;
+    newForm[event.target.name] = event.target.value;
+    this.setState({
+        newForm: newForm
+    },
+    ()=> {
+      console.log(newForm);
+    }
+    )  
+  }
+
+
+
   onConfirm() {
-    this.props.history.push('/auth/success')
+
+
+
+    if (!this.state.form.pin1 || !this.state.form.pin2 || !this.state.form.pin3 || !this.state.form.pin4 || !this.state.form.pin5 || !this.state.form.pin6) {
+        toast.error("Pin is required!",{position:toast.POSITION.TOP_CENTER})
+        return false
+    }
+
+
+    let data = {
+      email:`${this.state.email}`,
+      pin: parseInt(this.state.form.pin1 + this.state.form.pin2 + this.state.form.pin3 + this.state.form.pin4 + this.state.form.pin5 + this.state.form.pin6),
+    }
+
+    data = qs.stringify(data);
+    axios.patch(`${process.env.REACT_APP_API}/auth/create_pin`,data)
+      .then(res => {
+        console.log(res.data)
+        if (res.data.success == true) {
+          localStorage.clear();
+          this.props.history.push('/auth/success');
+        }
+      }).catch(err => {
+        console.error(err)
+      });
+
   }
 
 
@@ -28,7 +80,7 @@ class CreatePin extends Component {
     return (
       <>
         <div className="row">
-          <div className="col-md-6 information p-2 p-sm-5">
+          <div className="col-md-6 information p-2 p-sm-5 d-none d-sm-block">
             <div className="container">
               <div className="logo">
                 <h1 className="ml-4">Zwallet</h1>
@@ -46,10 +98,10 @@ class CreatePin extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 col-pin">
             <div className="login-container">
               <div className="login">
-                <h3 className="title-mobile">ZWALLET</h3>
+                <h3 className="title-mobile d-sm-none">ZWALLET</h3>
                 <h2>Secure Your Account, Your Wallet,
                 and Your Data With 6 Digits PIN
                 That You Created Yourself.
@@ -61,8 +113,8 @@ class CreatePin extends Component {
 
                 <div className="form-group">
                   <div className="title-mobile">
-                    <h4>Create Security PIN</h4>
-                    <div className="helper-text">
+                    <h4 className="d-sm-none">Create Security PIN</h4>
+                    <div className="helper-text d-sm-none">
                       Create a PIN that’s contain 6 digits number for security purpose in Zwallet.
                     </div>
                   </div>
@@ -70,27 +122,27 @@ class CreatePin extends Component {
                     <div className="container">
                       <div className="row justify-content-between">
                         <div className="form-input-pin">
-                          <input type="text" className="form-control pin-verify d-inline" />
+                          <input type="text" className="form-control pin-verify d-inline" name="pin1" onChange={this.handleForm}/>
                           <img alt="" src={icLine} className="input-line" />
                         </div>
                         <div className="form-input-pin">
-                          <input type="text" className="form-control pin-verify d-inline" />
+                          <input type="text" className="form-control pin-verify d-inline" name="pin2" onChange={this.handleForm}/>
                           <img alt="" src={icLine} className="input-line" />
                         </div>
                         <div className="form-input-pin">
-                          <input type="text" className="form-control pin-verify d-inline" />
+                          <input type="text" className="form-control pin-verify d-inline" name="pin3" onChange={this.handleForm}/>
                           <img alt="" src={icLine} className="input-line" />
                         </div>
                         <div className="form-input-pin">
-                          <input type="text" className="form-control pin-verify d-inline" />
+                          <input type="text" className="form-control pin-verify d-inline" name="pin4" onChange={this.handleForm}/>
                           <img alt="" src={icLine} className="input-line" />
                         </div>
                         <div className="form-input-pin">
-                          <input type="text" className="form-control pin-verify d-inline" />
+                          <input type="text" className="form-control pin-verify d-inline" name="pin5" onChange={this.handleForm}/>
                           <img alt="" src={icLine} className="input-line" />
                         </div>
                         <div className="form-input-pin">
-                          <input type="text" className="form-control pin-verify d-inline" />
+                          <input type="text" className="form-control pin-verify d-inline" name="pin6" onChange={this.handleForm}/>
                           <img alt="" src={icLine} className="input-line" />
                         </div>
 

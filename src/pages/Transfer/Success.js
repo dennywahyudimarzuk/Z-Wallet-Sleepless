@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { icArrowUpActive ,icDownload,icGrid, icLogOut, icPlus,icShare,icSuccess,icUser} from '../../assets';
-import { Navbar,Footer} from '../../component/molecules';
+import { Navbar,Footer, CardPerson} from '../../component/molecules';
 import './success.css'
 import {Link} from 'react-router-dom';
 class Success extends Component {
@@ -19,10 +19,9 @@ class Success extends Component {
     render() { 
         return ( 
             <>
-            <div className="d-none d-sm-block">
-            <Navbar/>
-            </div>
-                
+                <div className="d-none d-sm-block">
+                    <Navbar/>
+                </div>
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg">
@@ -88,10 +87,13 @@ class Success extends Component {
                                     <h1 className="mt-3">Transfer To</h1>
                                     <div className="row">
                                         <div className="col-12">
-                                            <div className="card-profile ">
+                                            <div className="d-sm-none">
+                                              <CardPerson name="dawda" photo={this.state.dataTransfer.photo} phone={this.state.dataTransfer.phone}/>
+                                            </div>
+                                            <div className="card-profile d-none d-sm-block ">
                                                 <div className="row justify-content-lg-around">
                                                     <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                        <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
+                                                        <img alt="" src={this.state.dataTransfer.photo} width="70" />
                                                     </div>
                                                     <div className="col-9 col-sm-9 col-lg-10 receiver">
                                                         <h4 className="mt-1 mt-sm-0">{this.state.dataTransfer.name}</h4>
@@ -102,8 +104,8 @@ class Success extends Component {
                                         </div>
                                     </div>
                                     <div className="text-center text-sm-right mt-md-5">
-                                        <button className="btn btn-share"><img alt="" src={icShare} /></button> &nbsp;&nbsp;
-                                        <button className="btn btn-download"><img alt="" src={icDownload} />&nbsp; <span>Download PDF</span></button> &nbsp;&nbsp;
+                                        <button className="btn btn-share d-none d-sm-block"><img alt="" src={icShare} /></button> &nbsp;&nbsp;
+                                        <button className="btn btn-download d-none d-sm-block"><img alt="" src={icDownload} />&nbsp; <span>Download PDF</span></button> &nbsp;&nbsp;
                                         <Link to="/dashboard">
                                              <button className="btn back">Back to Home</button>
                                         </Link>

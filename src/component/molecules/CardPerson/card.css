@@ -1,5 +1,5 @@
 .card-person{
-    display: flex !important;
+    display: none ;
     flex-direction: row !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -51,4 +51,12 @@
     font-size: 18px !important;
     color: #FF5B37 !important;
     margin-right: 16px !important;
+}
+
+
+@media (max-width: 575.98px) { 
+
+    .card-person{
+        display: flex !important;
+    }
 }

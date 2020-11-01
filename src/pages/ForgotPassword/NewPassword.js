@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { icLock, icMail, imDoublePhone, icEyeCrossed, icMailActive, icLockActive } from '../../assets';
-
+import { icLock, icMail, imDoublePhone, icEyeCrossed, icMailActive, icLockActive, icLockWrong } from '../../assets';
+import qs from 'qs';
+import axios from 'axios'
+import { toast } from 'react-toastify';
 import './newPassword.css';
 class NewPassword extends Component {
 
@@ -12,8 +14,8 @@ class NewPassword extends Component {
     passClick: {},
     btn: {},
     form: {
-      email: '',
-      password: ''
+      newPassword: '',
+      confirmPassword: ''
     },
     show: false
   }
@@ -33,7 +35,50 @@ class NewPassword extends Component {
   }
 
 
+  resetPassword()
+  {
+    if (!this.state.form.newPassword) {
+      toast.error("Field new password is required!",{position:toast.POSITION.TOP_CENTER})
+      return false
+    }
+    if (!this.state.form.confirmPassword) {
+      toast.error("Field confirm password is required!",{position:toast.POSITION.TOP_CENTER})
+      return false
+    }
+    if (this.state.form.newPassword !== this.state.form.confirmPassword ) {
+        toast.error("The password must be same!",{position:toast.POSITION.TOP_CENTER});
+        this.setState({
+          icPassword:icLockWrong,
+          passClick: { border: '1.6px solid #FF5B37' }
+        });
+    }else{
+      if (this.state.form.newPassword.length > 7 ) {
 
+        let data = {
+          email: localStorage.getItem('resetPasswordEmail'),
+          password: this.state.form.confirmPassword,
+        }
+        data = qs.stringify(data);
+        axios.patch(`${process.env.REACT_APP_API}/auth/reset_password`,data)
+        .then(res => {
+          console.log(res.data)
+          if (res.data.success == true) {
+             this.setState({
+                form : {
+                    newPassword :'',
+                    confirmPassword: ''
+                }
+              })
+            //  localStorage.clear();
+          }
+        }).catch(err => {
+          console.error(err)
+        });
+      }else{
+        console.log('password kurang kurang bro nambah lagi')
+      }
+    }
+  }
 
   showPassword() {
     if (this.state.show === false) {
@@ -68,7 +113,7 @@ class NewPassword extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-6 information p-2 p-sm-5">
+          <div className="col-md-6 information p-2 p-sm-5 d-none d-sm-block">
             <div className="container">
               <div className="logo">
                 <h1 className="ml-4">Zwallet</h1>
@@ -86,10 +131,10 @@ class NewPassword extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 col-forgot">
             <div className="login-container">
               <div className="login">
-                <h3 className="title-mobile">ZWALLET</h3>
+                <h3 className="title-mobile d-sm-none">ZWALLET</h3>
                 <h2>Start Accessing Banking Needs
                 With All Devices and All Platforms
                                     With 30.000+ Users</h2>
@@ -98,14 +143,14 @@ class NewPassword extends Component {
 
                 <div className="form-group">
                   <div className="title-mobile">
-                    <h4>Reset Password</h4>
-                    <div className="helper-text">
+                    <h4 className="d-sm-none">Reset Password</h4>
+                    <div className="helper-text d-sm-none">
                       Create and confirm your new password so
                       you can login to Zwallet.
                     </div>
                   </div>
                   <div className="form-group password col-lg-8" style={{ marginBottom: 74 }}>
-                    <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Create new password" value={this.state.form.password} name="password" onChange={this.handleForm} />
+                    <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Create new password" value={this.state.form.newPassword} name="newPassword" onChange={this.handleForm} />
                     <div className="icon-input">
                       <img alt="" src={this.state.icPassword} />
                     </div>
@@ -116,7 +161,7 @@ class NewPassword extends Component {
                   </div>
 
                   <div className="form-group password col-lg-8">
-                    <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Create new password" value={this.state.form.password} name="password" onChange={this.handleForm} />
+                    <input type={this.state.show ? "text" : "password"} style={this.state.passClick} className="form-control border-top-0 border-left-0 border-right-0 rounded-0 " onClick={() => this.uiPassword()} placeholder="Confirm new password" value={this.state.form.confirmPassword} name="confirmPassword" onChange={this.handleForm} />
                     <div className="icon-input">
                       <img alt="" src={this.state.icPassword} />
                     </div>
@@ -127,9 +172,9 @@ class NewPassword extends Component {
                   </div>
 
                   <div className="form-button col-lg-8">
-                    {this.state.error && <span className="text-center d-block" style={{ color: '#FF5B37', fontSize: 18, fontWeight: 600, marginBottom: -20 }}>Email or Password Invalid</span>}
+                    {this.state.error && <span className="text-center d-block " style={{ color: '#FF5B37', fontSize: 18, fontWeight: 600, marginBottom: -20 }}>Email or Password Invalid</span>}
 
-                    <button className="btn btn-primary" style={this.state.btn} type="submit"  >Reset Password</button>
+                    <button className="btn btn-primary" style={this.state.btn} type="submit" onClick={() => this.resetPassword()} >Reset Password</button>
                   </div>
 
 

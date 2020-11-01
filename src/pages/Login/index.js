@@ -38,43 +38,29 @@ class Login extends Component {
   login = () => {
 
     let data = qs.stringify(this.state.form);
-    axios.post(`${process.env.REACT_APP_API}/auth`, data)
+    axios.post(`${process.env.REACT_APP_API}/auth/login`, data)
       .then(res => {
-        if (res.data.status !== 'error') {
+          console.log('ini data dari login: ',res.data)
+          // localStorage.setItem("token", JSON.stringify(res.data.data));
+
           localStorage.setItem("login", this.state.form.email);
-          localStorage.setItem("token", JSON.stringify(res.data.data));
-          login(res.data.data.accessToken);
+          login(res.data.token.token);
 
-          const headers = { headers: { 'Authorization': `Bearer ${res.data.data.accessToken}` } }
-          let data = qs.stringify({ token: res.data.data.accessToken });
-          axios.post(`${process.env.REACT_APP_API}/profile/token`, data, headers)
-            .then(res => {
-              if (res.data.data[0].role_id === 2) {
-                this.props.history.push('/dashboard')
-              } else {
-                this.props.history.push('/admin')
-              }
-            }).catch(err => {
-              console.error(err)
-            });
-
-
-        }
-        if (res.data.login === 'invalid') {
-
-          if (res.data.status === "error") {
-            this.setState({
-              icMail: icMailWrong,
-              mailClick: { border: '1.6px solid #FF5B37' },
-              icPassword: icLockWrong,
-              passClick: { border: '1.6px solid #FF5B37' },
-              error: true
-            })
+          if (res.data.token.role == '100') {
+            this.props.history.push('/dashboard')
+          }else{
+            this.props.history.push('/admin')
           }
-        }
+
 
       }).catch(err => {
-
+        this.setState({
+          icMail: icMailWrong,
+          mailClick: { border: '1.6px solid #FF5B37' },
+          icPassword: icLockWrong,
+          passClick: { border: '1.6px solid #FF5B37' },
+          error: true
+        })
       });
 
   }
@@ -113,7 +99,7 @@ class Login extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-6 information p-2 p-sm-5">
+          <div className="col-md-6 information p-2 p-sm-5 d-none d-sm-block">
             <div className="container">
               <div className="logo">
                 <h1 className="ml-4">Zwallet</h1>
@@ -131,10 +117,10 @@ class Login extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 login-col">
             <div className="login-container">
               <div className="login">
-                <h3 className="title-mobile">ZWALLET</h3>
+                <h3 className="title-mobile d-sm-none">ZWALLET</h3>
 
                 <h2>Start Accessing Banking Needs
                 With All Devices and All Platforms
@@ -145,8 +131,8 @@ class Login extends Component {
 
                 <div className="form-group">
                   <div className="title-mobile">
-                    <h4>Login</h4>
-                    <div className="helper-text">Login to your existing account to access
+                    <h4 className="d-sm-none">Login</h4>
+                    <div className="helper-text d-sm-none">Login to your existing account to access
                                         all the features in Zwallet.</div>
                   </div>
 
@@ -170,7 +156,7 @@ class Login extends Component {
                   </div>
 
                   <div className="form-button col-lg-8">
-                    {this.state.error && <span className="text-center d-block" style={{ color: '#FF5B37', fontSize: 18, fontWeight: 600, marginBottom: -20 }}>Email or Password Invalid</span>}
+                    {this.state.error && <span className="text-center d-block error-logic" style={{ color: '#FF5B37', fontSize: 18, fontWeight: 600, marginBottom: -20 }}>Email or Password Invalid</span>}
 
                     <button className="btn btn-primary" style={this.state.btn} type="submit" onClick={this.login} >Login</button>
                   </div>

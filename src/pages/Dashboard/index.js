@@ -16,13 +16,12 @@ class Dashboard extends Component {
     componentDidMount()
     {
         
-            const token = JSON.parse(localStorage.getItem("token"));
-            const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
-            axios.get(`${process.env.REACT_APP_API}/transfer/history?limit=4&page=1`,headers)
+            const token = localStorage.getItem("jwt");
+            const headers = { headers: {'Authorization': `${token}`}}  
+            axios.get(`${process.env.REACT_APP_API}/user/home`,headers)
             .then(res =>{
-              console.log('data transfer axios: ',res.data.data)
-              this.setState({historyTransfer:res.data.data});
-            
+              console.log('data transfer axios dashboard: ',res.data.data.data)
+              this.setState({historyTransfer:res.data.data.data});
             }).catch(err => {
               console.log('data transfer axios error: ', err.message)
             });
@@ -32,12 +31,12 @@ class Dashboard extends Component {
     }
 
     render() { 
-        console.log(this.props)
+        // console.log(this.props)
         return ( 
             <>
                 <Navbar />
 
-                    <div className="container content">
+                    <div className="container content mt-5">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu ">
                               <div className="sidebar h-100 d-flex pb-5" style={{flexDirection: 'column'}}>
@@ -76,7 +75,7 @@ class Dashboard extends Component {
                                         <div className="col-md-8">
                                             <p className="balance">Balance</p>
                                             <h4 className="credit">Rp{this.props.userData.balance}</h4>
-                                            <p className="number">{this.props.userData.phone}</p>
+                                            <p className="number">{this.props.userData.phone && '+'+this.props.userData.phone}</p>
                                         </div>
                                         </Link>
                                         <div className="col-md-4 align-self-center d-none d-sm-block">
@@ -158,26 +157,11 @@ class Dashboard extends Component {
                                         </div>
 
 
-                                        {/* <div className="card-person shadow-sm d-sm-none" >
-                                            <div style={{flex:1}}>
-                                                  <div className="wrapper-card-person" >
-                                                    <img alt="" src="http://localhost:8000/images/1603076204829-monyetGanteng.jpg"  className="img-fluid" />
-                                                    <div>
-                                                        <h2 className="mt-0">Samuel Suhi</h2>
-                                                        <span className="mt-0">Transfer</span>
-                                                    </div>
-                                                  </div>
-                                            </div>
-                                            <div >
-                                                  <p>+Rp50.000</p>
-                                            </div>
-                                        </div> */}
-
                                         
                                         {
                                             this.state.historyTransfer.map(history => {
                                                 return(
-                                                    <CardPerson name={history.fullName} amount={history.amount} photo={process.env.REACT_APP_URL+history.photo} />
+                                                    <CardPerson name={history.receiveBy} amount={history.amountTransfer} photo={history.img} status={history.status} />
 
                                                 )
                                             })
@@ -204,16 +188,16 @@ class Dashboard extends Component {
                                                     <div className=" col-sm-9 col-md-7">
                                                         <div className="row">
                                                             <div className="col-4">
-                                                                <img alt="" src={process.env.REACT_APP_URL+history.photo} className="img-fluid" />
+                                                                <img alt="" src={history.img} className="img-fluid" />
                                                             </div>
                                                             <div className="col-8">
-                                                                <h4 >{history.fullName}</h4>
+                                                                <h4 >{history.receiveBy}</h4>
                                                                 <span>Transfer</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className=" col-sm-3 col-md-5 pt-3 money-minus">
-                                                     <p >-Rp{history.amount}</p>
+                                                     <p >-Rp{history.amountTransfer}</p>
                                                     </div>
                                                 </div>
                                                 )

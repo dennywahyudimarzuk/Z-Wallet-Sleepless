@@ -24,9 +24,9 @@ class Amount extends Component {
     componentDidMount()
     {
         let id = this.props.match.params.id;
-        const token = JSON.parse(localStorage.getItem("token"));
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
-        axios.get(`${process.env.REACT_APP_API}/profile/spesifik/${id}`,headers)
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.get(`${process.env.REACT_APP_API}/user/getuser?id=${id}`,headers)
         .then(res =>{
           console.log(res.data.data[0])
           this.setState({dataTransfer:res.data.data[0]}) 
@@ -65,12 +65,12 @@ class Amount extends Component {
         this.setState({
             form:{
                 name :this.state.dataTransfer.fullName,
-                phone:this.state.dataTransfer.phone,
+                phone:this.state.dataTransfer.phoneNumber,
                 notes: this.state.form.notes,
                 available:this.state.available,
                 amount:this.state.form.amount,
                 idReceiver:this.props.match.params.id,
-                photo:this.state.dataTransfer.photo,
+                photo:this.state.dataTransfer.img,
                 date:time
             }   
         },() => {
@@ -142,11 +142,11 @@ class Amount extends Component {
                                                 <div class="amount-bank-panel-list">
                                                     <div class="d-flex flex-column bd-highlight mb-2 pt-3 pt-sm-3">
                                                         <div class="pl-4 bd-highlight ">
-                                                            <div class="d-flex justify-content-start">
-                                                                <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70" />
+                                                            <div class="d-flex justify-content-start" >
+                                                                <img alt="" src={this.state.dataTransfer.img} width="70" className="amount-image" />
                                                                 <div class="ml-3 mt-2">
                                                                 <div class="amount-bank-receiver-name  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2">{this.state.dataTransfer.fullName}</div>
-                                                                <div class="amount-bank-receiver-number"> {this.state.dataTransfer.phone} </div>
+                                                                <div class="amount-bank-receiver-number"> {this.state.dataTransfer.phoneNumber && '+'+this.state.dataTransfer.phoneNumber} </div>
                                                         
                                                                 </div>
                                                                 
@@ -163,7 +163,7 @@ class Amount extends Component {
                                                 <div class="d-flex justify-content-center align-items-center ">
                                                     <div class="d-flex flex-column bd-highlight mt-5  mb-5">
                                                     <div class="amount-bank-money-value p-2 mx-auto bd-highlight d-xl-none d-lg-none d-md-none d-sm-none">Rp.{this.state.available ? this.state.available  :  this.props.userData.balance} Available</div>
-                                                        <input  class="amount-bank-money-input ml-3" type="text"  placeholder="0.00"  name="amount" onKeyUp={(e) => this.countAvailable(e)} value={this.state.form.amount} onChange={this.handleForm}/>
+                                                        <input  class="amount-bank-money-input ml-3" type="text"  placeholder="0.00"  name="amount" onKeyUp={(e) => this.countAvailable(e)} value={this.state.form.amount} onChange={this.handleForm} style={{backgroundColor:'transparent'}}/>
                                                         <div class="amount-bank-money-value p-2 mx-auto bd-highlight d-none d-sm-block">Rp.{this.state.available ? this.state.available  :  this.props.userData.balance} Available</div>
                                                         <input class="amount-bank-note-transfer mt-5 ml-5" type="text" placeholder="Add Some Notes" name="notes" value={this.state.form.notes} onChange={this.handleForm}/>
                                                     </div>

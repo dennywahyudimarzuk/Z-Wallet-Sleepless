@@ -232,4 +232,9 @@ body{
         color: #3A3D42;
     }
 
+    .col-pin{
+        padding-right: 0 !important;
+    }
+
+
  }

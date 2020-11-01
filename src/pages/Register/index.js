@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { icEyeCrossed, icLock, icMail, icPerson, imDoublePhone, icLockActive, icMailActive, icPersonActive } from '../../assets';
+import { icEyeCrossed, icLock, icMail, icPerson, imDoublePhone, icLockActive, icMailActive, icPersonActive, icLockWrong, icMailWrong } from '../../assets';
 import './register.css';
 import axios from 'axios';
 import qs from 'qs';
+import { toast } from 'react-toastify';
 class Register extends Component {
   state = {
     icUsername: icPerson,
@@ -38,28 +39,50 @@ class Register extends Component {
 
   onRegister() {
 
-    let data = {
+    if (!this.state.form.userName) {
+      toast.error("Username is required!",{position:toast.POSITION.TOP_CENTER})
+      this.setState({
+        usernameClick: { border: '1.6px solid #FF5B37' },
 
+      })
+      return false
+    }
+
+    if (!this.state.form.email) {
+      toast.error("Email is required!",{position:toast.POSITION.TOP_CENTER})
+      this.setState({
+        mailClick: { border: '1.6px solid #FF5B37' },
+        icMail:icMailWrong
+      })
+      return false
+    }
+    if (!this.state.form.password) {
+      toast.error("Password is required!",{position:toast.POSITION.TOP_CENTER})
+      this.setState({
+        passClick: { border: '1.6px solid #FF5B37' },
+        icPassword: icLockWrong,
+      })
+      return false
+    }
+
+
+
+    let data = {
       email: this.state.form.email,
       password: this.state.form.password,
       fullName: this.state.form.userName,
-      userName: this.state.form.userName,
-      address: 'jakarta',
-      birth: 'Jakarta',
-      phone: '-'
-
     }
+    
 
-    //  console.log(data)
     data = qs.stringify(data);
 
-    axios.post(`${process.env.REACT_APP_API}/profile`, data)
+    axios.post(`${process.env.REACT_APP_API}/auth/register`, data)
       .then(res => {
         console.log(res.data)
-        //   if (res.data.status !== 'error') {
-        this.props.history.push('/auth/create-pin')
-        //   }
-
+        localStorage.setItem('register_email',this.state.form.email)
+        if (res.data.success == true) {
+           this.props.history.push('/auth/create-pin')
+        }
       }).catch(err => {
         console.error(err)
       });
@@ -107,7 +130,7 @@ class Register extends Component {
     return (
       <>
         <div className="row">
-          <div className="col-md-6 information p-2 p-sm-5">
+          <div className="col-md-6 information p-2 p-sm-5 d-none d-sm-block">
             <div className="container">
               <div className="logo">
                 <h1 className="ml-4">Zwallet</h1>
@@ -124,10 +147,10 @@ class Register extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 sign-up-col">
             <div className="sign-up-container">
               <div className="sign-up">
-                <h3 className="title-mobile">ZWALLET</h3>
+                <h3 className="title-mobile d-sm-none">ZWALLET</h3>
                 <h2>Start Accessing Banking Needs
                 With All Devices and All Platforms
                                     With 30.000+ Users</h2>
@@ -137,8 +160,8 @@ class Register extends Component {
 
                 <div className="form-group">
                   <div className="title-mobile">
-                    <h4>Sign Up</h4>
-                    <div className="helper-text">
+                    <h4 className="d-sm-none">Sign Up</h4>
+                    <div className="helper-text d-sm-none">
                       Create your account to access Zwallet.
                     </div>
                   </div>

@@ -50,8 +50,8 @@ class ChangePin extends Component {
             }
             data = qs.stringify(data);
             let id = this.state.data.id;
-            const token = JSON.parse(localStorage.getItem("token"));
-            const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+            const token = localStorage.getItem("jwt");
+            const headers = { headers: {'Authorization': `Bearer ${token}`}}  
             axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
             .then(res => {
               console.log(res.data)

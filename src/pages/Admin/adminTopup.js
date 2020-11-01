@@ -13,8 +13,8 @@ class AdminTopup extends Component {
 
     componentDidMount()
     {
-        const token = JSON.parse(localStorage.getItem("token"));
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `Bearer ${token}`}} 
         axios.get(`${process.env.REACT_APP_API}/topup/`,headers)
         .then(res =>{
           console.log(res.data.data)
@@ -70,7 +70,7 @@ class AdminTopup extends Component {
                                     <div className="d-block d-sm-none">
                                         <NavigationMobile page="Top Up" to="/dashboard"/>
 
-                                        <div className="top-up-logo mb-4">
+                                        <div className="top-up-logo mb-4 ">
                                             <img src={icTopUpMobile} alt=" " className="mr-3" />
                                             <div >
                                                 <span>Virtual Account Number</span>

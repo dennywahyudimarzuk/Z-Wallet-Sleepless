@@ -4,13 +4,13 @@ import './card.css'
  const CardPerson = ({name,photo,amount,phone,status}) => {
     return (
         <>
-            <div className="card-person shadow-sm d-sm-none" >
+            <div className="card-person shadow-sm " >
                 <div style={{flex:1}}>
                          <div className="wrapper-card-person" >
                         <img alt=" " src={photo}  className="img-fluid" />
                         <div>
                              <h2 className="mt-0">{name}</h2>
-                            <span className="mt-0">{phone && `${phone}`}{status && `${status}`}</span>
+                            <span className="mt-0">{phone && `+${phone}`}{status && `${status}`}</span>
                         </div>
                         </div>
                 </div>

@@ -8,7 +8,8 @@ import axios from 'axios';
 class Transfer extends Component {
 
     state = {
-        profiles : []
+        profiles : [],
+        quickAccess:[]
     }
 
 
@@ -16,10 +17,10 @@ class Transfer extends Component {
     {
 
         const query = event.currentTarget.value;
-        const token = JSON.parse(localStorage.getItem("token"));
         const email = localStorage.getItem("login");
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
-        axios.get(`${process.env.REACT_APP_API}/profile/detail?search=${query}`,headers)
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.get(`${process.env.REACT_APP_API}/user/all?search=${query}&sortBy=fullName&sortType=ASC&limit=6&page=0`,headers)
         .then(res =>{
             const result = res.data.data.filter(man => {
                 return man.email !== email
@@ -34,12 +35,12 @@ class Transfer extends Component {
 
     componentDidMount()
     {
-        const token = JSON.parse(localStorage.getItem("token"));
         const email = localStorage.getItem("login");
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
-        axios.get(`${process.env.REACT_APP_API}/profile/`,headers)
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.get(`${process.env.REACT_APP_API}/user/all?sortBy=fullName&sortType=ASC&limit=6&page=0`,headers)
         .then(res =>{
-        //   console.log('transfer/',res.data.data)
+          console.log('transfer/',res.data.data)
         const result = res.data.data.filter(man => {
              return man.email !== email
         })
@@ -48,6 +49,20 @@ class Transfer extends Component {
         }).catch(err => {
           console.log(err)
         });
+
+        axios.get(`${process.env.REACT_APP_API}/user/all?sortBy=fullName&sortType=DESC&limit=3&page=0`,headers)
+        .then(res =>{
+          console.log('transfer quick access',res.data.data)
+        const result = res.data.data.filter(man => {
+             return man.email !== email
+        })
+          this.setState({quickAccess:result});
+        
+        }).catch(err => {
+          console.log(err)
+        });
+
+
 
     }
 
@@ -98,32 +113,35 @@ class Transfer extends Component {
                                     </div>
                                     <h1 className="d-none d-sm-block">Search Receiver</h1>
                                     <div className="form-group search">
-                                        <input type="text" className="form-control " placeholder="Search receiver here" onChange={(e) => this.onHandleInput(e)} />
+                                        <input type="text" className="form-control " placeholder="Search receiver here" onChange={(e) => this.onHandleInput(e)} style={{backgroundColor:'rgba(58, 61, 66, 0.1) !important'}}/>
                                         <div className="icon-search">
                                             <img alt="" src={icSearch} />
                                         </div>
                                     </div>
                                     <h1 className="d-sm-none">Quick Access</h1>
                                     <div className="d-sm-none" style={{display:'flex',flexDirection:'row',width:'100%',justifyContent:'space-between'}}>
-                                        <div className="quick-access">
-                                            <img src={imProfile1} width="56" height="56" alt=" "/>
-                                            <h4>Michi</h4>
-                                            <span className=" d-block text-center">-9994</span>
-                                        </div>
-                                        <div className="quick-access">
-                                            <img src={imProfile1} width="56" height="56" alt=" "/>
-                                            <h4>Michi</h4>
-                                            <span className=" d-block text-center">-9994</span>
-                                        </div>
-                                        <div className="quick-access">
-                                            <img src={imProfile1} width="56" height="56" alt=" "/>
-                                            <h4>Michi</h4>
-                                            <span className=" d-block text-center">-9994</span>
-                                        </div>
+
+                                        {
+                                             this.state.quickAccess.map(quick => {
+                                                let url = `/transfer/amount/${quick.id}`;
+
+                                                return(
+                                                    <Link to={url}>
+                                                        <div className="quick-access" style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>
+                                                            <img src={quick.img} width="56" height="56" alt=" "/>
+                                                            <h4 style={{width:'100%',overflow:'hidden'}} >{quick.fullName}</h4>
+                                                            <span className=" d-block text-center" style={{width:'100%',overflow:'hidden',color:'#7A7886'}}>{quick.phoneNumber && "+"+quick.phoneNumber}</span>
+                                                        </div>  
+                                                     </Link>
+                                                )
+
+                                              })
+                                        }
+
                                     </div>
 
                                     <h1 className="d-sm-none mt-4">All Contacts</h1>
-                                    <span className="mt-0 d-sm-none mb-5" style={{color:'#8F8F8F'}}>17 Contact Founds</span>
+                                    <span className="mt-0 d-sm-none mb-5" style={{color:'#8F8F8F'}}>{this.state.profiles.length} Contact Founds</span>
                                     <div className="row mt-4">
 
                                        
@@ -141,16 +159,17 @@ class Transfer extends Component {
                                                     <div className="card-profile d-none d-sm-block" >
                                                         <div className="row justify-content-lg-around">
                                                             <div className="col-4 col-sm-3 col-lg-2 m-0 ">
-                                                                <img alt="" src={process.env.REACT_APP_URL+profile.photo} width="70" height="70"  />
+                                                                <img alt="" src={profile.img} width="70" height="70"  />
                                                             </div>
                                                             <div className="col-8 col-sm-9 col-lg-10 receiver">
                                                                 <h4 className="mt-1 mt-sm-0">{profile.fullName}</h4>
-                                                                <p>{profile.phone}</p>
+                                                                <p>{profile.phoneNumber && '+'+profile.phoneNumber}</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     
-                                                    <CardPerson photo={process.env.REACT_APP_URL+profile.photo} name={profile.fullName} phone={profile.phone}/>
+                                                    <CardPerson photo={profile.img} name={profile.fullName} phone={profile.phoneNumber}/>
+                                                   
                                                     
                                                     </Link>
                                                  </div>
@@ -158,7 +177,19 @@ class Transfer extends Component {
                                             })
 
                                         }
+                                        {
+                                            this.state.profiles.length !== 0 && 
+                                            <div style={{textAlign:'center',width:'100%'}}>
+                                                <span className="py-2 px-3 mt-5" style={{backgroundColor:'#6379F4',borderRadius:10,color:'white',cursor:'pointer'}}>Load More</span>
+                                            </div>
+                                        }
 
+                                        {
+                                            this.state.profiles.length == 0 && 
+                                            <div style={{textAlign:'center',width:'100%'}}>
+                                                <span className="py-2 px-3 mt-5" style={{backgroundColor:'#6379F4',borderRadius:10,color:'white',cursor:'pointer'}}>Data Not Found</span>
+                                            </div>
+                                        }
 
 
 

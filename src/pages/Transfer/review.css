@@ -258,11 +258,11 @@ a{
 
 
 
-    .modal .modal-body .pin input{
+    .review-modal .modal-body .pin input{
         width: 46px !important;
         height: 60px !important;
     }
-    .modal .modal-body .pin .input-line{
+    .review-modal .modal-body .pin .input-line{
         position: absolute;
         top: 90px;
         left: 22px;
@@ -496,8 +496,6 @@ aside{
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
-    
-    /* identical to box height, or 172% */
     color: #6379F4;
 }
 
@@ -518,10 +516,34 @@ aside{
 }
 
 
+@media screen and (max-width : 500px){
+    .modal .modal-content{
+        background-color:rgb(250, 252, 255);
+        height: 100vh;
+        border-radius: 0px !important;
+    }
+
+    .modal .modal-content .btn{
+        background-color:rgb(250, 252, 255);
+        background: #DADADA;
+        box-shadow: 0px 6px 75px rgba(100, 87, 87, 0.05);
+        border-radius: 12px;
+        width: 100%;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+        color: #88888F;
+        outline: none;
+        border: none;
+    }
+    .review-modal .modal-content input{
+        width: 47px !important;
+        height: 58px !important;
+    }
+}
 @media screen and (min-width : 425px){
     .confirmation-box{
-        
-
+        background: #FFFFFF;
         border-radius: 25px;
     }
 }
@@ -612,9 +634,6 @@ aside{
     font-weight: bold;
     font-size: 18px;
     line-height: 25px;
-    /* identical to box height */
-    
-    
     color: #514F5B;
 }
 
@@ -626,9 +645,6 @@ aside{
         font-weight: bold;
         font-size: 18px;
         line-height: 25px;
-        /* identical to box height */
-        
-        
         color: #514F5B;
     }
     
@@ -643,11 +659,6 @@ aside{
         font-weight: bold;
         font-size: 18px;
         line-height: 25px;
-        /* identical to box height */
-        
-        
-        /* Zwallet/Dark */
-        
         color: #3A3D42;
     }
     
@@ -661,11 +672,6 @@ aside{
         font-weight: bold;
         font-size: 18px;
         line-height: 25px;
-        /* identical to box height */
-        
-        
-        /* Zwallet/Dark */
-        
         color: #3A3D42;
     }
     
@@ -707,9 +713,6 @@ aside{
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
-    /* identical to box height */
-    
-    
     color: #7A7886;
 }
 
@@ -741,11 +744,6 @@ aside{
     font-weight: normal;
     font-size: 18px;
     line-height: 25px;
-    /* identical to box height */
-
-
-    /* Zwallet/White */
-
     color: #FFFFFF;
 }
 

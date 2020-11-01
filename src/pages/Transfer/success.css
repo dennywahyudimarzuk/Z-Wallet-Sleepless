@@ -234,6 +234,12 @@ margin-top: 40px;
 }
 
 @media (max-width: 575.98px) { 
+    
+    .body-area-success{
+        background-color:rgb(250, 252, 255) !important;
+        box-shadow: none !important;
+
+    }
     .body-area-success .back{
         width: 100% !important;
 

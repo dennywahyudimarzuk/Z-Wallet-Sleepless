@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { icArrowExpense, icArrowIncome, icArrowUp, icGridActive, icLogOut, icPlus,icUser} from '../../assets';
 import { Footer, CardPerson, NavigationMobile} from '../../component/molecules';
 import './detail.css';
-import {Link } from 'react-router-dom';
+import {Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
 
@@ -15,22 +15,27 @@ class Detail extends Component {
 
     componentDidMount()
     {
-            const token = JSON.parse(localStorage.getItem("token"));
-            const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
-            axios.get(`${process.env.REACT_APP_API}/transfer`,headers)
+            const token = localStorage.getItem("jwt");
+            const headers = { headers: {'Authorization': token}}  
+            axios.get(`${process.env.REACT_APP_API}/user/home`,headers)
             .then(res =>{
-              console.log('data transfer axios: ',res.data.data)
-              this.setState({historyTransfer:res.data.data});
+              console.log('data transfer axios: ',res.data.data.data)
+              this.setState({historyTransfer:res.data.data.data});
             
             }).catch(err => {
               console.log('data transfer axios error: ', err.message)
             });
-
     }
 
     render() { 
+        if (window.innerWidth > 575) {
+            return(
+                <Redirect to="/dashboard"/>
+            )
+        } 
         return ( 
             <>
+
                     <div className="container content">
                         <div className="row">
                             <div className="col-3 bg-white shadow-lg sidebar_menu ">
@@ -116,8 +121,7 @@ class Detail extends Component {
                                         {
                                             this.state.historyTransfer.map(history => {
                                                 return(
-                                                    <CardPerson name={history.fullName} amount={history.amount} photo={process.env.REACT_APP_URL+history.photo} />
-
+                                                    <CardPerson name={history.receiveBy} amount={history.amountTransfer} photo={history.img} status={history.status}/>
                                                 )
                                             })
 

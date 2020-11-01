@@ -10,7 +10,15 @@ class Review extends Component {
 
     state = {
         dataTransfer : [],
-        dataUSer:[]
+        dataUSer:[],
+        form : {
+            pin1 : '',
+            pin2 : '',
+            pin3 : '',
+            pin4 : '',
+            pin5 : '',
+            pin6 : ''
+        }
     }
 
     componentDidMount()
@@ -19,7 +27,7 @@ class Review extends Component {
         // if (login === 'true') {
               let dataTransfer = JSON.parse(localStorage.getItem("dataTransfer"));
               this.setState({dataTransfer:dataTransfer})    
-            console.log('datatrans',dataTransfer)
+              console.log('datatrans',dataTransfer)
             // let dataLogin = JSON.parse(localStorage.getItem("dataLogin")).data[0];
             // this.setState({dataUSer:dataLogin}) 
             // console.log(dataLogin); 
@@ -29,31 +37,42 @@ class Review extends Component {
 
     }
 
+
+    handleForm = (event) => {
+        let  newForm  = this.state.form;
+        newForm[event.target.name] = event.target.value;
+        this.setState({
+            newForm: newForm
+        },
+        ()=> {
+          console.log(newForm);
+        }
+        )  
+    }
+
     onContinue() 
     {
         
        let form = {
-            idUserTransfer:this.props.userData.id,
-            idUserReceive: parseInt(this.state.dataTransfer.idReceiver),
-            amount: this.state.dataTransfer.amount,
-            notes: this.state.dataTransfer.notes,
+            receiver: parseInt(this.state.dataTransfer.idReceiver),
+            status :'Transfer',
+            amountTransfer: this.state.dataTransfer.amount,
+            note: this.state.dataTransfer.notes,
             balanceLeft :this.state.dataTransfer.available,
-            time : this.state.dataTransfer.date
+            pin: parseInt(this.state.form.pin1 + this.state.form.pin2 + this.state.form.pin3 + this.state.form.pin4 + this.state.form.pin5 + this.state.form.pin6),
         }
-        console.log('data dari form: ',form)
+        // console.log('data dari form: ',form)
         let data = qs.stringify(form);
-        console.log('data dari form',form)
-        const token = JSON.parse(localStorage.getItem("token"));
-        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
-        axios.post(`${process.env.REACT_APP_API}/transfer`,data,headers)
+        // console.log('data dari qs',form)
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.post(`${process.env.REACT_APP_API}/transaction/`,data,headers)
              .then(res => {
-                console.log('hasil axios',res)
-                
+                this.props.history.push('/transfer/success')
              })
              .catch(err => {
                 console.log(err)
              })
-             this.props.history.push('/transfer/success')
 
     }
 
@@ -100,10 +119,10 @@ class Review extends Component {
                             <div className="col-12 col-sm-9" id="area">
                             <div class="confirmation-box border-20">
                                 <div class="container-xl container-lg container-md ">
-                                <div className="d-block d-sm-none">
+                                  <div className="d-block d-sm-none pl-3 mb-0">
                                         <NavigationMobile page="Confirmation" to={url}/>
                                     </div>
-                                    <div class="d-flex align-items-start flex-column bd-highlight mb-3" >
+                                    <div class="d-flex align-items-start flex-column bd-highlight mb-3 " >
                                         <div class="container">
                                             <p  class="mt-4 " id="confirmation-title">Transfer To</p>
                                             
@@ -111,7 +130,7 @@ class Review extends Component {
                                                 <div class="d-flex flex-column bd-highlight mb-2 pt-3 pt-sm-3">
                                                     <div class="pl-4 bd-highlight ">
                                                         <div class="d-flex justify-content-start">
-                                                            <img alt="" src={process.env.REACT_APP_URL+this.state.dataTransfer.photo} width="70"/>
+                                                            <img alt="" src={this.state.dataTransfer.photo} width="70"/>
                                                             <div class="ml-3 mt-2">
                                                             <div class="name-history  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2 ">{this.state.dataTransfer.name}</div>
                                                             <div class="status-history">{this.state.dataTransfer.phone}</div>
@@ -146,7 +165,7 @@ class Review extends Component {
                                                             
                                                             <div class="ml-3 mt-2">
                                                             <div class="label-confirmation  mb-xl-0 mb-lg-0 mb-md-0 mb-sm-2">Balance Left</div>
-                                                            <div class="value-confirmation">{this.state.dataTransfer.available}</div>
+                                                            <div class="value-confirmation">Rp{this.state.dataTransfer.available}</div>
                                                             </div>
                                                         </div>
                                                     </div>   
@@ -208,45 +227,55 @@ class Review extends Component {
                 <Footer/>
 
                
-<div className="modal fade  " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div className="modal fade review-modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div className="modal-dialog">
-      <div className="modal-content">
+      <div className="modal-content ">
           
         <div className="modal-header border-0 p-0 ">
-          <h5 >Enter PIN to Transfer</h5>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"><img alt="" src={icX} /></span>
+          <h5  className="d-none d-sm-block ">Enter PIN to Transfer</h5>
+          <button type="button" className="close d-none d-sm-block" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true"  >
+                <img alt="" src={icX} />
+                </span>
+          </button>
+          <button type="button" className="close w-100 p-0 mb-5 d-sm-none" data-dismiss="modal" aria-label="Close" style={{position:'absolute',opacity:1}}>
+            <span aria-hidden="true"  >
+                 <NavigationMobile page="Enter Your PIN" />
+            </span>
           </button>
         </div>
         <div className="modal-body p-0">
-            <p>
+
+            {/* <NavigationMobile page="Enter Your PIN"/> */}
+
+            <p className="mt-5 mt-sm-3">
                 Enter your 6 digits PIN for confirmation to continue transferring money. 
             </p>
 
             <div className="pin">
                 <div className="row justify-content-md-around">
                     <div className="col-2">
-                       <input type="text" className="form-control d-inline" />
+                       <input type="text" className="form-control d-inline" name="pin1" onChange={this.handleForm}/>
                        <img alt="" src={icLine} className="input-line" />
                     </div>
                     <div className="col-2">
-                       <input type="text" className="form-control d-inline" />
+                       <input type="text" className="form-control d-inline" name="pin2" onChange={this.handleForm}/>
                        <img alt="" src={icLine} className="input-line" />
                     </div>
                     <div className="col-2">
-                       <input type="text" className="form-control d-inline" />
+                       <input type="text" className="form-control d-inline" name="pin3" onChange={this.handleForm}/>
                        <img alt="" src={icLine} className="input-line" />
                     </div>
                     <div className="col-2">
-                       <input type="text" className="form-control d-inline" />
+                       <input type="text" className="form-control d-inline" name="pin4" onChange={this.handleForm}/>
                        <img alt="" src={icLine} className="input-line" />
                     </div>
                     <div className="col-2">
-                       <input type="text" className="form-control d-inline" />
+                       <input type="text" className="form-control d-inline" name="pin5" onChange={this.handleForm}/>
                        <img alt="" src={icLine} className="input-line" />
                     </div>
                     <div className="col-2">
-                       <input type="text" className="form-control d-inline" />
+                       <input type="text" className="form-control d-inline" name="pin6" onChange={this.handleForm}/>
                        <img alt="" src={icLine} className="input-line" />
                     </div>
                 </div>
@@ -254,7 +283,8 @@ class Review extends Component {
 
         </div>
         <div className="modal-footer border-0 p-0">
-          <button type="button" className="btn btn-primary" onClick={() => this.onContinue()}   data-dismiss="modal" aria-label="Close">Continue</button>
+          <button type="button" className="btn btn-primary d-none d-sm-block" onClick={() => this.onContinue()}   data-dismiss="modal" aria-label="Close">Continue</button>
+          <button type="button" className="btn btn-primary d-sm-none" onClick={() => this.onContinue()}   data-dismiss="modal" aria-label="Close">Transfer Now</button>
         </div>
       </div>
     </div>

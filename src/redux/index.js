@@ -13,9 +13,9 @@ const reducer = (state = initialState, action) =>{
         return{
             ...state,
             fullName:action.value.fullName,
-            phone:action.value.phone,
+            phone:action.value.phoneNumber,
             email:action.value.email,
-            photo:action.value.photo,
+            photo:action.value.img,
             balance:action.value.balance,
             id:action.value.id,
         }
