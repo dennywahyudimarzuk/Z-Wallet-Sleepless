@@ -37,12 +37,12 @@ module.exports = {
       const token = req.token;
       const dateStart = req.header("start");
       const until = req.header("until");
+      // console.log(dateStart, until);
       const [income, outcome, transactionDetail] = await Promise.all([
         transactionModel.transactionHistoryIn(token),
         transactionModel.transactionHistoryOut(token),
         transactionModel.transactionDetail(token, dateStart, until),
       ]);
-      // console.log(income, outcome);
       const result = {
         income: income,
         outcome: outcome,

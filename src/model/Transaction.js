@@ -41,12 +41,17 @@ module.exports = {
       if (dateStart && until) {
         db.query(
           `select transfer.*,u1.fullName as sender,
-            u2.fullname as receiveBy, u2.img from transfer 
-            inner join user as u1 on transfer.sendBy=u1.id 
-            inner join user as u2 on transfer.receiver=u2.id
-            where sendBy=${token.id} or receiver=${token.id} and dateTransfer between ${dateStart} and ${until} order by dateTransfer asc`,
+          u2.fullname as receiveBy, u2.img from transfer 
+          inner join user as u1 on transfer.sendBy=u1.id 
+          inner join user as u2 on transfer.receiver=u2.id
+          where 
+          transfer.dateTransfer between '${dateStart}' AND '${until}' and transfer.sendBy=${token.id} 
+          or 
+          transfer.dateTransfer between '${dateStart}' AND '${until}' and transfer.receiver=${token.id} 
+          order by transfer.dateTransfer asc`,
           (err, res) => {
             if (!err) {
+              console.log(res);
               resolve(res);
             } else {
               reject(err);
