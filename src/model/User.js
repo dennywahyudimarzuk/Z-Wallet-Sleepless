@@ -17,13 +17,13 @@ module.exports = {
         console.log(result[0].password);
         if (!err) {
           bcrypt.compare(password, result[0].password, (err, result) => {
+            console.log(result);
             if (result) {
               bcrypt.hash(newPassword, 10, (err, hashNewPassword) => {
+                console.log(hashNewPassword);
                 if (!err) {
                   db.query(
-                    "UPDATE user SET password=? WHERE id=? ",
-                    hashNewPassword,
-                    id,
+                    `UPDATE user SET password='${hashNewPassword}' WHERE id=${id}`,
                     (err, result) => {
                       if (!err) {
                         resolve(result);

@@ -27,13 +27,14 @@ module.exports = {
   changePassword: (req, res) => {
     const { id } = req.token;
     const { password, newPassword } = req.body;
+    console.log(newPassword);
     if (newPassword > 7) {
       userModel
         .changePassword(id, password, newPassword)
         .then((data) => formResponse(data, res, 200, "success"))
         .catch((err) => formResponse([], res, 404, "not found"));
     } else {
-      formResponse([], res, 406, "newPassowor must be 8 character or more.");
+      formResponse([], res, 406, "newPassword must be 8 character or more.");
     }
   },
   changePin: (req, res) => {
@@ -167,7 +168,7 @@ module.exports = {
   },
   getUserById: async function (req, res) {
     try {
-      const {id} = req.query;
+      const { id } = req.query;
       const result = await userModel.getUserById(id);
       if (result.length > 0) {
         res.status(200).send({
@@ -200,8 +201,8 @@ module.exports = {
   updatePhone: async function (req, res) {
     try {
       const id = req.token;
-      const phoneNumber= req.body.phoneNumber
-      const result = await userModel.updatePhone(id.id,phoneNumber);
+      const phoneNumber = req.body.phoneNumber;
+      const result = await userModel.updatePhone(id.id, phoneNumber);
       if (result.affectedRows > 0) {
         res.status(200).send({
           message: `Success update phone`,
