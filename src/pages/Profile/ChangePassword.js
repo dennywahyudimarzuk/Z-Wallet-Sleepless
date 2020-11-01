@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
-import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive, icLock, icEyeCrossed,icLockActive} from '../../assets';
+import { icArrowUp ,icGrid, icLogOut, icPlus,icUserActive, icLock, icEyeCrossed,icLockActive, icLockWrong} from '../../assets';
 import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './changePassword.css';
 import qs from 'qs';
 import{connect} from 'react-redux';
+import { toast } from 'react-toastify';
 
 
 class ChangePassword extends Component {
@@ -42,16 +43,41 @@ class ChangePassword extends Component {
 
     changePassword()
     {
+        if (!this.state.form.currentPassword) {
+            toast.error("Current password is required!",{position:toast.POSITION.TOP_CENTER})
+            this.setState({
+                icPassword1:icLockWrong,
+                passClick1:{border:'1.6px solid #FF5B37'}
+            })
+            return false
+        }
+        if (!this.state.form.newPassword) {
+            toast.error("New password is required!",{position:toast.POSITION.TOP_CENTER})
+            this.setState({
+                icPassword2:icLockWrong,
+                passClick2:{border:'1.6px solid #FF5B37'}
+            })
+            return false
+        }
+        if (!this.state.form.repeatNewPassword) {
+            toast.error("Repeat password is required!",{position:toast.POSITION.TOP_CENTER})
+            this.setState({
+                icPassword3:icLockWrong,
+                passClick3:{border:'1.6px solid #FF5B37'}
+            })
+            return false
+        }
+
         if (this.state.form.newPassword === this.state.form.repeatNewPassword) {
             
             let data = {
-                password : this.state.form.newPassword
+                password : this.state.form.currentPassword,
+                newPassword : this.state.form.newPassword
             }
             data = qs.stringify(data);
-            let id = this.props.userData.id;
             const token = localStorage.getItem("jwt");
-            const headers = { headers: {'Authorization': `Bearer ${token}`}}   
-            axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
+            const headers = { headers: {'Authorization': `${token}`}}   
+            axios.patch(`${process.env.REACT_APP_API}/user/change_password`,data,headers)
             .then(res => {
               console.log(res.data)
               this.setState({
@@ -64,7 +90,18 @@ class ChangePassword extends Component {
             })
             .catch(err => {
               console.error(err)
+              toast.error("Failed change password!",{position:toast.POSITION.TOP_CENTER})
             });
+
+        }else{
+            toast.error("New password and Repeat new password must be same!",{position:toast.POSITION.TOP_CENTER})
+            this.setState({
+                icPassword2:icLockWrong,
+                passClick2:{border:'1.6px solid #FF5B37'},
+                icPassword3:icLockWrong,
+                passClick3:{border:'1.6px solid #FF5B37'},
+            })
+            return false
 
         }
 

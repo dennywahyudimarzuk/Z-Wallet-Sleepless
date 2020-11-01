@@ -5,11 +5,13 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import qs from 'qs';
 import './changePin.css';
+import { toast } from 'react-toastify';
 
 class ChangePin extends Component {
 
     state = {
         data:[],
+        title:'Enter your current 6 digits Zwallet PIN below to continue to the next steps.',
         form : {
             pin1 : '',
             pin2 : '',
@@ -44,31 +46,75 @@ class ChangePin extends Component {
 
     changePin()
     {
-            
+            if (!this.state.form.pin1 || !this.state.form.pin2 || !this.state.form.pin3 || !this.state.form.pin4 || !this.state.form.pin5 || !this.state.form.pin6) {
+                toast.error("Pin is required!",{position:toast.POSITION.TOP_CENTER})
+                return false   
+            }
+
             let data = {
                 pin : this.state.form.pin1 + this.state.form.pin2 + this.state.form.pin3 + this.state.form.pin4 + this.state.form.pin5 + this.state.form.pin6
             }
-            data = qs.stringify(data);
-            let id = this.state.data.id;
-            const token = localStorage.getItem("jwt");
-            const headers = { headers: {'Authorization': `Bearer ${token}`}}  
-            axios.patch(`${process.env.REACT_APP_API}/profile/${id}`,data,headers)
-            .then(res => {
-              console.log(res.data)
-              this.setState({
-                form : {
-                    pin1 : '',
-                    pin2 : '',
-                    pin3 : '',
-                    pin4 : '',
-                    pin5 : '',
-                    pin6 : '',
+            
+
+            if (!localStorage.getItem('changePin')) {
+                localStorage.setItem('changePin',data.pin)
+                this.setState({
+                    form : {
+                        pin1 : '',
+                        pin2 : '',
+                        pin3 : '',
+                        pin4 : '',
+                        pin5 : '',
+                        pin6 : '',
+                    }
+                })
+                this.setState({title:'Type your new 6 digits security PIN to use in Zwallet.'})
+            
+            }else{
+
+                let save = {
+                    pin :localStorage.getItem('changePin'),
+                    newPin:data
                 }
-              })
-            })
-            .catch(err => {
-              console.error(err)
-            });
+                let pin = qs.stringify(save);
+                console.log('data parse',pin)
+                const token = localStorage.getItem("jwt");
+                const headers = { headers: {'Authorization': `${token}`}}  
+                axios.patch(`${process.env.REACT_APP_API}/user/change_pin`,pin,headers)
+                .then(res => {
+                console.log(res.data)
+                this.setState({
+                    form : {
+                        pin1 : '',
+                        pin2 : '',
+                        pin3 : '',
+                        pin4 : '',
+                        pin5 : '',
+                        pin6 : '',
+                    }
+                })
+                toast.success("Pin have been changed",{position:toast.POSITION.TOP_CENTER})
+                localStorage.removeItem('changePin')
+                })
+                .catch(err => {
+                    localStorage.removeItem('changePin')
+                    this.setState({
+                        form : {
+                            pin1 : '',
+                            pin2 : '',
+                            pin3 : '',
+                            pin4 : '',
+                            pin5 : '',
+                            pin6 : '',
+                        }
+                    })
+                    toast.error("failed change pin!",{position:toast.POSITION.TOP_CENTER})
+                    console.error(err)
+                });
+            }
+
+
+
 
     }
 
@@ -123,7 +169,7 @@ class ChangePin extends Component {
                                     <div className="row ">
                                         <div className="col-12">
                                             <h1>Change PIN</h1>
-                                            <p>Enter your current 6 digits Zwallet PIN below to continue to the next steps.</p>
+                                             <p>{this.state.title}</p>
                                         
                                         
                                             <div align="center">
@@ -131,27 +177,27 @@ class ChangePin extends Component {
                                                     <div className="container">
                                                         <div className="row justify-content-between">
                                                             <div className="form-input-pin">
-                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin1} name="pin1" onChange={this.handleForm} />
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin1} maxLength="1" name="pin1" onChange={this.handleForm} />
                                                                 <img alt="" src={icLine} className="input-line" />
                                                             </div>
                                                             <div className="form-input-pin">
-                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin2} name="pin2" onChange={this.handleForm} />
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin2} name="pin2" maxLength="1" onChange={this.handleForm} />
                                                                 <img alt="" src={icLine} className="input-line" />
                                                             </div>
                                                             <div className="form-input-pin">
-                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin3} name="pin3" onChange={this.handleForm} />
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin3} name="pin3" maxLength="1" onChange={this.handleForm} />
                                                                 <img alt="" src={icLine} className="input-line" />
                                                             </div>
                                                             <div className="form-input-pin">
-                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin4} name="pin4" onChange={this.handleForm} />
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin4} name="pin4" maxLength="1" onChange={this.handleForm} />
                                                                 <img alt="" src={icLine} className="input-line" />
                                                             </div>
                                                             <div className="form-input-pin">
-                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin5} name="pin5" onChange={this.handleForm} />
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin5} name="pin5" maxLength="1" onChange={this.handleForm} />
                                                                 <img alt="" src={icLine} className="input-line" />
                                                             </div>
                                                             <div className="form-input-pin">
-                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin6} name="pin6" onChange={this.handleForm}/>
+                                                                <input type="text" className="form-control pin-verify d-inline" value={this.state.form.pin6} name="pin6" maxLength="1" onChange={this.handleForm}/>
                                                                 <img alt="" src={icLine} className="input-line" />
                                                             </div>
                                                         </div>
