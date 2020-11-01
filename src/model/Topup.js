@@ -1,4 +1,5 @@
 const db = require("../helper/db");
+const formResponse = require("../helper/formResponse");
 
 module.exports = {
   getAllTopup: () => {
@@ -17,7 +18,7 @@ module.exports = {
   },
   getAllTopupByStep: (limit) => {
     return new Promise((resolve, reject) => {
-      if(limit){
+      if (limit) {
         db.query(
           `select stepNumber, instruction  from topup_instruction where stepNumber between ${1} and ${limit} order by stepNumber asc`,
           (err, result) => {
@@ -28,21 +29,21 @@ module.exports = {
             }
           }
         );
-      }else{
-          db.query(
-            `select stepNumber, instruction  from topup_instruction where stepNumber between ${1} and ${9} order by stepNumber asc`,
-            (err, result) => {
-              if (!err) {
-                resolve(result);
-              } else {
-                reject(new Error(err));
-              }
+      } else {
+        db.query(
+          `select stepNumber, instruction  from topup_instruction where stepNumber between ${1} and ${9} order by stepNumber asc`,
+          (err, result) => {
+            if (!err) {
+              resolve(result);
+            } else {
+              reject(new Error(err));
             }
-          );
+          }
+        );
       }
     });
   },
-  editTopup:(id,data)=>{
+  editTopup: (id, data) => {
     return new Promise((resolve, reject) => {
       db.query(
         ` update topup_instruction set ? where id=${id}`,
@@ -57,7 +58,7 @@ module.exports = {
       );
     });
   },
-  maxTopup:()=>{
+  maxTopup: () => {
     return new Promise((resolve, reject) => {
       db.query(
         ` select max(id+1) as max from topup_instruction`,
@@ -71,11 +72,21 @@ module.exports = {
       );
     });
   },
-  createTopup:(data)=>{
+  createTopup: (data) => {
+    return new Promise((resolve, reject) => {
+      db.query(` insert into topup_instruction set ?`, data, (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(new Error(err));
+        }
+      });
+    });
+  },
+  deleteTopup: function (id) {
     return new Promise((resolve, reject) => {
       db.query(
-        ` insert into topup_instruction set ?`,
-        data,
+        `delete from topup_instruction where id=${id}`,
         (err, result) => {
           if (!err) {
             resolve(result);
@@ -86,16 +97,36 @@ module.exports = {
       );
     });
   },
-  deleteTopup: function (id) {
+  midTrans: (email, amount, token) => {
+    // console.log(email, amount);
     return new Promise((resolve, reject) => {
-      db.query(`delete from topup_instruction where id=${id}`, (err, result) => {
-        if (!err) {
-          resolve(result);
-        } else {
-          reject(new Error(err));
+      db.query(
+        `SELECT balance FROM user WHERE email='${email}'`,
+        (err, result) => {
+          // console.log(result);
+          // console.log(err);
+          if (!err) {
+            const newBalance = parseInt(amount) + parseInt(result[0].balance);
+            db.query(
+              `UPDATE user SET balance=${newBalance} WHERE email='${email}'`,
+              (err, result) => {
+                // console.log(err);
+                if (!err) {
+                  const data = {
+                    data: result,
+                    token: token,
+                  };
+                  resolve(data);
+                } else {
+                  reject(err);
+                }
+              }
+            );
+          } else {
+            reject(err);
+          }
         }
-      });
+      );
     });
   },
-
 };

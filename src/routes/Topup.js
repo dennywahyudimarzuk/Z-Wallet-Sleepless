@@ -8,6 +8,6 @@ topupRoute.get("/all", topupController.getAllTopup);
 topupRoute.patch("", topupController.editTopup);
 topupRoute.post("/", topupController.createTopup);
 topupRoute.delete("", topupController.deleteTopup);
-topupRoute.post("/midtrans", topupController.getMidtrans);
+topupRoute.patch("/midtrans", checkToken, topupController.getMidtrans);
 
 module.exports = topupRoute;

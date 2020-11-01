@@ -94,6 +94,7 @@ module.exports = {
   },
 
   getMidtrans: (req, res) => {
+    const { email } = req.token;
     const { amount } = req.body;
     let parameter = {
       transaction_details: {
@@ -106,9 +107,15 @@ module.exports = {
     };
     snap.createTransaction(parameter).then((transaction) => {
       // transaction token
-      let transactionToken = transaction.token;
-      console.log("transactionToken:", transactionToken);
-      formResponse(transactionToken, res, 200, "success get token");
+      // console.log(transaction);
+      let token = transaction.token;
+      // console.log("transactionToken:", transactionToken);
+      // console.log(email, amount, token, " from model");
+      modelTopup
+        .midTrans(email, amount, token)
+        .then((data) => formResponse(data.token, res, 200, "success changed"))
+        .catch((err) => formResponse(err, res, 404, "failed changed"));
+      // formResponse(transactionToken, res, 200, "success get token");
     });
   },
 };

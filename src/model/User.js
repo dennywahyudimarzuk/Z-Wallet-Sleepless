@@ -104,6 +104,22 @@ module.exports = {
       }
     });
   },
+  patchAllUser: (id, body) => {
+    return new Promise((resolve, reject) => {
+      const data = Object.entries(body).map((item) => {
+        return parseInt(item[1]) > 0
+          ? `${item[0]}=${item[1]}`
+          : `${item[0]}='${item[1]}'`;
+      });
+      db.query(`UPDATE user set ${data} WHERE id = ${id}`, (err, res) => {
+        if (!err) {
+          resolve(res);
+        } else {
+          reject(err);
+        }
+      });
+    });
+  },
 
   //hamzah
   home: (token) => {

@@ -84,6 +84,13 @@ module.exports = {
       }
     });
   },
+  patchAllUser: (req, res) => {
+    const { id } = req.params;
+    userModel
+      .patchAllUser(id, req.body)
+      .then((data) => formResponse(data, res, 200, "success patch data"))
+      .catch((err) => formResponse(err, res, 400, "failed"));
+  },
 
   //hamzah
   home: async function (req, res) {
