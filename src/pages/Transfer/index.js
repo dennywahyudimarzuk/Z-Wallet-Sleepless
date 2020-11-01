@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser, imProfile1} from '../../assets';
+import { icArrowUpActive ,icGrid, icLogOut, icPlus,icSearch,icUser} from '../../assets';
 import { Navbar,Footer, CardPerson, NavigationMobile} from '../../component/molecules';
 import './transfer.css'
 import {Link} from 'react-router-dom';
@@ -117,7 +117,7 @@ class Transfer extends Component {
 
     }
 
-
+ 
 
 
     render() { 

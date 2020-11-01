@@ -4,10 +4,12 @@ import { Navbar,Footer, NavigationMobile} from '../../component/molecules';
 import './topUp.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 class TopUp extends Component {
 
     state = {
-        data : []
+        data : [],
+        amount:''
     }
 
 
@@ -26,6 +28,49 @@ class TopUp extends Component {
 
     }
 
+
+    onHandleAmount(e)
+    {
+        this.setState({amount:e.target.value})
+    }
+
+    onTopUp()
+    {
+
+        if (this.state.amount == 0) {
+            toast.error("Amout is required!",{position:toast.POSITION.TOP_CENTER})
+            return false
+        }
+        
+        let data = {amount :this.state.amount}
+        const token = localStorage.getItem("jwt");
+        const headers = { headers: {'Authorization': `${token}`}}  
+        axios.patch(`${process.env.REACT_APP_API}/topup/midtrans`,data,headers)
+        .then(res =>{
+          
+          this.setState({amount:''})
+          window.snap.pay(res.data.token, {
+              onSuccess: function(result) {
+                console.log("SUCCESS", result);
+                toast.success("Top-Up Successfully!",{position:toast.POSITION.TOP_CENTER})
+                this.setState({amount:''})
+              },
+              onPending: function(result) {
+                console.log("Payment pending", result);
+                toast.success("Top-Up Successfully!",{position:toast.POSITION.TOP_CENTER})
+                this.setState({amount:''})
+              },
+              onError: function() {
+                console.log("Payment error");
+                this.setState({amount:''})
+              }
+          });
+  
+        }).catch(err => {
+            toast.error("Failed Top-Up !",{position:toast.POSITION.TOP_CENTER})
+        })
+
+    }
 
     render() { 
         return ( 
@@ -132,7 +177,7 @@ class TopUp extends Component {
                                     {/* <img className="avatar" src={process.env.REACT_APP_URL + this.props.userData.photo} alt="" /> */}
 
                                 </div>
-                                <input type="text" name="fullName" value={this.state.fullName} onChange={(e) => this.changeName(e)} className="form-control d-inline mt-4" placeholder="Amount" />
+                                <input type="text" name="amount" value={this.state.amount}  onChange={(e) => this.onHandleAmount(e)} className="form-control d-inline mt-4" placeholder="Amount" />
                                 </div>
 
                             </div>
@@ -140,7 +185,7 @@ class TopUp extends Component {
 
                         </div>
                         <div className="modal-footer border-0 p-0 ">
-                            <button type="button" className="btn btn-primary" onClick={this.uploadHandler} >Continue</button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.onTopUp()} >Continue</button>
                         </div>
                         </div>
                     </div>

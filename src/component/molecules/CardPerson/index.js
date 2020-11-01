@@ -1,7 +1,9 @@
 import React from 'react'
 import './card.css'
-
- const CardPerson = ({name,photo,amount,phone,status}) => {
+import {useSelector} from 'react-redux';
+ const CardPerson = ({name,photo,amount,phone,status,id}) => {
+    const stateGlobal = useSelector(state => state)
+    console.log('dari card: ',stateGlobal.id)
     return (
         <>
             <div className="card-person shadow-sm " >
@@ -15,7 +17,7 @@ import './card.css'
                         </div>
                 </div>
                 <div >
-                    <p className="mt-4">{amount && `- Rp ${amount}`}</p>
+                    <p className={stateGlobal.id === id ? 'mt-4 plus' : 'minus'}  >{amount && `${stateGlobal.id === id ? '+' : '-'}Rp${amount}`}</p>
                 </div>
             </div>            
         </>

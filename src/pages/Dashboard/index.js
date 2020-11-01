@@ -33,6 +33,9 @@ class Dashboard extends Component {
 
     }
 
+
+    
+
     render() { 
         // console.log(this.props)
         return ( 
@@ -164,7 +167,7 @@ class Dashboard extends Component {
                                         {
                                             this.state.historyTransfer.map(history => {
                                                 return(
-                                                    <CardPerson name={history.receiveBy} amount={history.amountTransfer} photo={history.img} status={history.status} />
+                                                    <CardPerson name={history.sender} amount={history.amountTransfer} photo={history.img} status={history.status} id={history.sendBy} />
 
                                                 )
                                             })
@@ -194,13 +197,13 @@ class Dashboard extends Component {
                                                                 <img alt="" src={history.img} className="img-fluid" />
                                                             </div>
                                                             <div className="col-8">
-                                                                <h4 >{history.receiveBy}</h4>
+                                                                <h4 >{history.sender}</h4>
                                                                 <span>Transfer</span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className=" col-sm-3 col-md-5 pt-3 money-minus">
-                                                     <p >-Rp{history.amountTransfer}</p>
+                                                    <div className={`col-sm-3 col-md-5 pt-3 ${this.props.userData.id == history.sendBy ? 'money-plus' : 'money-minus'} `}>
+                                                     <p>{this.props.userData.id == history.sendBy ? '+' : '-'}Rp{history.amountTransfer}</p>
                                                     </div>
                                                 </div>
                                                 )
