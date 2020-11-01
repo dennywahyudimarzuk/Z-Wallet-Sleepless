@@ -27,7 +27,7 @@ module.exports = {
   },
   getAllTopupByStep: async function (req, res) {
     try {
-      const { limit } = req.query ;
+      const { limit } = req.query;
       const result = await modelTopup.getAllTopupByStep(limit);
       const newData = result;
       if (result.length > 0) {
@@ -81,11 +81,11 @@ module.exports = {
     try {
       const { id } = req.query;
       const result = await modelTopup.deleteTopup(id);
-      if(!result.affectedRows>0){
+      if (!result.affectedRows > 0) {
         res.status(200).send({
           message: `Success delete a topup`,
         });
-      }else{
+      } else {
         formResponse([], res, 400, "Failed Delete Topup Data");
       }
     } catch (error) {
@@ -94,10 +94,10 @@ module.exports = {
   },
 
   getMidtrans: (req, res) => {
-    const { virtualAcc, amount } = req.body;
+    const { amount } = req.body;
     let parameter = {
       transaction_details: {
-        order_id: `${virtualAcc}`,
+        order_id: "order-id-node-" + Math.round(new Date().getTime() / 1000),
         gross_amount: parseInt(amount),
       },
       credit_card: {
