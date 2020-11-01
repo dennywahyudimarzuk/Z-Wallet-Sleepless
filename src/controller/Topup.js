@@ -108,6 +108,7 @@ module.exports = {
       // transaction token
       let transactionToken = transaction.token;
       console.log("transactionToken:", transactionToken);
+      formResponse(transactionToken, res, 200, "success get token");
     });
   },
 };
