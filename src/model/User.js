@@ -1,5 +1,6 @@
 const db = require("../helper/db");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 module.exports = {
   search: () => {
     return new Promise((resolve, reject) => {
@@ -171,7 +172,7 @@ module.exports = {
       );
     });
   },
-  deletePhone:(id)=>{
+  deletePhone: (id) => {
     return new Promise((resolve, reject) => {
       db.query(
         `update user set phoneNumber= ${62} where id=${id}`,
@@ -185,7 +186,7 @@ module.exports = {
       );
     });
   },
-  updatePhone:(id,phone)=>{
+  updatePhone: (id, phone) => {
     return new Promise((resolve, reject) => {
       db.query(
         `update user set phoneNumber= ${phone} where id=${id}`,
