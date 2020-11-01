@@ -18,6 +18,14 @@ class Transfer extends Component {
 
     componentDidMount()
     {
+
+        this.getData()
+
+    }
+
+
+    getData ()
+    {
         const email = localStorage.getItem("login");
         const token = localStorage.getItem("jwt");
         const headers = { headers: {'Authorization': `${token}`}}  
@@ -58,9 +66,9 @@ class Transfer extends Component {
         }).catch(err => {
           console.log(err)
         });
-
-
     }
+
+
 
 
 
@@ -69,6 +77,10 @@ class Transfer extends Component {
     {
 
         const query = event.currentTarget.value;
+        console.log('hasil dari query : ',query)
+        if (!query) {
+            this.getData();
+        }
         const email = localStorage.getItem("login");
         const token = localStorage.getItem("jwt");
         const headers = { headers: {'Authorization': `${token}`}}  
@@ -77,19 +89,17 @@ class Transfer extends Component {
             const result = res.data.data.filter(man => {
                 return man.email !== email
            })
-             this.setState({profiles:result});
+             this.setState({profiles:result,max:result.length});
         
         }).catch(err => {
           console.log(err)
         });
-
-
-        
     }
 
 
-     fetchMoreData = () => {
 
+
+     fetchMoreData = () => {
         const email = localStorage.getItem("login");
         const token = localStorage.getItem("jwt");
         const headers = { headers: {'Authorization': `${token}`}}  
@@ -188,7 +198,7 @@ class Transfer extends Component {
                                     </div>
 
                                     <h1 className="d-sm-none mt-4">All Contacts</h1>
-                                    <span className="mt-0 d-sm-none mb-5" style={{color:'#8F8F8F'}}>{this.state.profiles.length} Contact Founds</span>
+                                    <span className="mt-0 d-sm-none mb-5" style={{color:'#8F8F8F'}}>{this.state.max} Contact Founds</span>
                                     <div className="row mt-4">
 
                                        
@@ -225,7 +235,7 @@ class Transfer extends Component {
 
                                         }
                                         {
-                                            this.state.limit != this.state.max &&
+                                            this.state.limit < this.state.max &&
                                             this.state.profiles.length !== 0 && 
                                             <div style={{textAlign:'center',width:'100%'}} onClick={this.fetchMoreData}>
                                                 <span className="py-2 px-3 mt-5" style={{backgroundColor:'#6379F4',borderRadius:10,color:'white',cursor:'pointer'}}   >Load More</span>
