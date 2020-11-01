@@ -118,6 +118,9 @@ class AdminUser extends Component {
     }
 
 
+    sortLatest(){
+
+    }
 
 
 
@@ -170,20 +173,9 @@ class AdminUser extends Component {
                                         </div>
 
 
-                                        <div className="col-12">
-                                            <div class="d-flex justify-content-end">
-                                                <div class="form-group w-25">
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option>Latest</option>
-                                                    <option>Sort by Fullame A - Z</option>
-                                                    <option>Sort By Fullname Z - A</option>
-                                                </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div className="col-lg-12">
-                                            { this.state.deleteAlert ? (
+                                            { 
+                                                this.state.deleteAlert ? (
                                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                                 Berhasil Menghapus User {this.state.fullname} dengan ID {this.state.idDelete}
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -1,42 +1,86 @@
-import React,{Component} from 'react';
+import React,{useEffect, useState} from 'react';
 import { icArrowUp , icGridActive, icLogOut,icPlus,icUser,icArrowExpense,icArrowIncome} from '../../assets';
 import { Navbar,Footer, CardPerson, NavigationMobile} from '../../component/molecules';
 import './history.css'
 import {Link} from 'react-router-dom';
+import { format } from 'date-fns'
+import { enGB } from 'date-fns/locale'
+import { DateRangePickerCalendar, START_DATE } from 'react-nice-dates'
+import './historyDate.css'
 
 import axios from 'axios';
 
-class History extends Component {
+function History(){
 
-    state = {
-        historyTransfer: [],
-        modalShow : false,
-        pagination : false
-    }
+    
+        const [historyTransfer,setHistoryTransfer] = useState([])
+        const [modalShow , setModalShow] = useState(false)
+        const [pagination, setPagination] = useState(false)
+        const [paginationLimit, setPaginationLimit] = useState(2)
+        const [startDate, setStartDate] = useState()
+        const [endDate, setEndDate] = useState()
+        const [focus, setFocus] = useState(START_DATE)
+
+        
+        const openCalendar = () => {
+            setModalShow(true)
+        }
+
+        const handleFocusChange = newFocus => {
+            setFocus(newFocus || START_DATE)
+        }
+    
+        
 
 
-    componentDidMount()
-    {
-            const token = JSON.parse(localStorage.getItem("token"));
-            const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
-            axios.get(`${process.env.REACT_APP_API}/transfer`,headers)
-            .then(res =>{
-              console.log('data transfer axios: ',res.data.data)
-              this.setState({historyTransfer:res.data.data});
+        function handlePagination(){
+            let getAlldata = historyTransfer.length
+
+            setPagination(true)
+            setPaginationLimit(4)
+            console.log(paginationLimit)
             
-            }).catch(err => {
-              console.log('data transfer axios error: ', err.message)
-            });
+        }
+
+    function handleShowLessMore(){
+        setPagination(false)
+        setPaginationLimit(2)
     }
 
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem("token"));
+        const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}} 
+        axios.get(`${process.env.REACT_APP_API}/transfer`,headers)
+        .then(res =>{
+        
+        setHistoryTransfer(res.data.data)
+        
+          console.log('ini data did mount: ', historyTransfer)
+        }).catch(err => {
+          console.log('data transfer axios error: ', err.message)
+        });
+    }, [])
+
+    // componentDidMount()
+    // {
+    //         // const token = JSON.parse(localStorage.getItem("token"));
+    //         // const headers = { headers: {'Authorization': `Bearer ${token.accessToken}`}}  
+
+    // }
 
 
+    // componentDidUpdate(){
+    //     this.setState({ 
+    //         startDate : this.props.startDate,
+    //         endDate : this.props.endDate
+    //     })
+    // }
     
 
     
 
 
-    render() { 
+    
         return ( 
             <>
                 <div className="d-none d-sm-block">
@@ -86,7 +130,7 @@ class History extends Component {
                                     <div className="row">
                                         
                                         {
-                                            this.state.historyTransfer.slice(0,2).map(history => {
+                                            historyTransfer.slice(0,paginationLimit).map(history => {
                                                 return(
                                                     <>
                                                         <div className="col-6 mb-2 d-none d-sm-block">
@@ -104,8 +148,7 @@ class History extends Component {
                                                             <span  className="d-block mt-4 plus">+Rp{history.amount}</span>
                                                         </div>
                                                         <CardPerson key={history.id} name={history.fullName} photo={process.env.REACT_APP_URL+history.photo} amount={history.amount}/>
-                                                   </>
-
+                                                    </>
                                                 )
                                             })
 
@@ -114,13 +157,18 @@ class History extends Component {
                                         
 
                                     </div>
-                                    <div class="d-flex justify-content-center"><button className='load-more-button'>Load more</button></div>
+                                    <div class="d-flex justify-content-center">
+                                        { pagination ? (<button className='load-more-button' onClick={() => handleShowLessMore()}>Show less more</button>) : (
+                                            <button className='load-more-button' onClick={() => handlePagination()}>Show Load more</button>
+                                        )}
+                                    </div>
 
                                     <p className="mt-3">This Month</p>
 
                                     <div className="row">
+
                                     {
-                                            this.state.historyTransfer.slice(0,2).map(history => {
+                                            historyTransfer.slice(0, paginationLimit).map(history => {
                                                 return(
                                                     <>
 
@@ -146,8 +194,15 @@ class History extends Component {
                                             })
 
                                         }
+
                                     </div>
-                                    <div class="d-flex justify-content-center"><button className='load-more-button'>Load more</button></div>
+                                    
+                                    <div class="d-flex justify-content-center">
+                                        { pagination ? (<button className='load-more-button' onClick={() => handleShowLessMore()}>Show less more</button>) : (
+                                            <button className='load-more-button' onClick={() => handlePagination()}>Show Load more</button>
+                                        )}
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -164,17 +219,73 @@ class History extends Component {
                                 </div>
 
 
-                                <button class="filter-date-button">
+                                <button class="filter-date-button" onClick={() => openCalendar()}>
                                     <p class="mt-2">Filter By Date</p>
                                 </button>
                             </div>
+                            
+                        
+                        { modalShow ? (
+                            <>
+                            <div class="form-popup d-md-none" id="myCalendar">
+                                <form class="form-container">
+                                    <div class="d-flex justify-content-center pt-4">
+                                        <p class="filter-by-date-text">Filter by Date</p>
+                                    </div>
+                            
+                                    <div>
+                                    <div class="calendar-box mx-5">
+
+                                        <DateRangePickerCalendar
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        focus={focus}
+                                        onStartDateChange={setStartDate}
+                                        onEndDateChange={setEndDate}
+                                        onFocusChange={handleFocusChange}
+                                        locale={enGB}
+                                        />
+                                            
+                                    </div>
+                                    </div>
+
+                                    
+                                    <div>
+
+                            
+                            </div>
+                                    <div class="d-flex justify-content-between mx-5">
+                                        <div class="d-flex flex-column">
+                                            <div>From</div>
+                                            <div class="date-text"> {startDate ? (format(startDate, 'yyyy-MM-dd', { locale: enGB })) : (format(new Date(), 'yyyy-MM-dd', { locale: enGB })) }</div>
+                                        </div>
+                                        
+                                        <div class="d-flex flex-column">
+                                            <div>To</div>
+                                            <div class="date-text"> {endDate ? format(endDate, 'yyyy-MM-dd', { locale: enGB }) : (format(new Date(), 'yyyy-MM-dd', { locale: enGB })) }</div>
+                                        </div>
+                                    </div>
+
+                                <div class="d-flex justify-content-center mb-4 mt-4">
+                                    <button type="button" class="calendar-apply" onclick="closeCalendar()">Apply</button>
+                                </div>
+                                </form>
+                            </div>
+                        </>
+                            ) : (
+                                <p>ini false</p>
+                            )
+                        }
 
 
+
+                                        
+                        
                     </div>                                             
                 <Footer/>
             </>
          );
     }
-}
+
  
 export default History;
