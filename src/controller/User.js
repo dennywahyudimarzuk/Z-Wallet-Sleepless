@@ -40,9 +40,9 @@ module.exports = {
   changePin: (req, res) => {
     const { id } = req.token;
     const { pin, newPin } = req.body;
-    if (pin == newPin) {
+    if (pin) {
       userModel
-        .changePin(id, newPin)
+        .changePin(id, pin, newPin)
         .then((data) => formResponse(data, res, 200, "Success Update"))
         .catch((err) => formResponse([], res, 404, "not found"));
     } else {

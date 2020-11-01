@@ -44,13 +44,23 @@ module.exports = {
       });
     });
   },
-  changePin: (id, newPin) => {
+  changePin: (id, pin, newPin) => {
     return new Promise((resolve, reject) => {
-      db.query(`UPDATE user SET pin=${newPin} WHERE id=${id}`, (err, res) => {
-        if (!err) {
-          resolve(res);
+      db.query(`SELECT pin FROM user WHERE id=${id}`, (err, result) => {
+        console.log(result[0].pin);
+        if (result[0].pin == pin) {
+          db.query(
+            `UPDATE user SET pin=${newPin} WHERE id=${id}`,
+            (err, res) => {
+              if (!err) {
+                resolve(res);
+              } else {
+                reject(err);
+              }
+            }
+          );
         } else {
-          reject(err);
+          return reject(err);
         }
       });
     });
