@@ -38,14 +38,18 @@ module.exports = {
       const dateStart = req.header("start");
       const until = req.header("until");
       // console.log(dateStart, until);
-      const [income, outcome, transactionDetail] = await Promise.all([
-        transactionModel.transactionHistoryIn(token),
-        transactionModel.transactionHistoryOut(token),
+      const [inWeek, inMonth, outWeek, outMonth, transactionDetail] = await Promise.all([
+        transactionModel.transactionHistoryInWeek(token),
+        transactionModel.transactionHistoryInMonth(token),
+        transactionModel.transactionHistoryOutWeek(token),
+        transactionModel.transactionHistoryOutMonth(token),
         transactionModel.transactionDetail(token, dateStart, until),
       ]);
       const result = {
-        income: income,
-        outcome: outcome,
+        inWeek: inWeek,
+        inMonth: inMonth,
+        outWeek: outWeek,
+        outMonth: outMonth,
         data: transactionDetail,
       };
       if (transactionDetail.length > 0) {

@@ -76,14 +76,14 @@ module.exports = {
       }
     });
   },
-  transactionHistoryIn: (token) => {
+  transactionHistoryInMonth: (token) => {
     return new Promise((resolve, reject) => {
       db.query(
         `select transfer.*,u1.fullName as sender,
           u2.fullname as receiveBy, u2.img from transfer 
          inner join user as u1 on transfer.sendBy=u1.id 
          inner join user as u2 on transfer.receiver=u2.id
-         where receiver=${token.id} order by dateTransfer desc`,
+         where receiver=${token.id} and month(curdate())=month(dateTransfer) order by dateTransfer desc`,
         (err, res) => {
           if (!err) {
             resolve(res);
@@ -94,14 +94,50 @@ module.exports = {
       );
     });
   },
-  transactionHistoryOut: (token) => {
+  transactionHistoryInWeek: (token) => {
     return new Promise((resolve, reject) => {
       db.query(
         `select transfer.*,u1.fullName as sender,
           u2.fullname as receiveBy, u2.img from transfer 
          inner join user as u1 on transfer.sendBy=u1.id 
          inner join user as u2 on transfer.receiver=u2.id
-         where sendBy=${token.id} order by dateTransfer desc`,
+         where receiver=${token.id} and datediff(curdate(), dateTransfer)<7 order by dateTransfer desc`,
+        (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  },
+  transactionHistoryOutMonth: (token) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `select transfer.*,u1.fullName as sender,
+          u2.fullname as receiveBy, u2.img from transfer 
+         inner join user as u1 on transfer.sendBy=u1.id 
+         inner join user as u2 on transfer.receiver=u2.id
+         where sendBy=${token.id} and month(curdate())=month(dateTransfer) order by dateTransfer desc`,
+        (err, res) => {
+          if (!err) {
+            resolve(res);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  },
+  transactionHistoryOutWeek: (token) => {
+    return new Promise((resolve, reject) => {
+      db.query(
+        `select transfer.*,u1.fullName as sender,
+          u2.fullname as receiveBy, u2.img from transfer 
+         inner join user as u1 on transfer.sendBy=u1.id 
+         inner join user as u2 on transfer.receiver=u2.id
+         where sendBy=${token.id} and datediff(curdate(), dateTransfer)<7 order by dateTransfer desc`,
         (err, res) => {
           if (!err) {
             resolve(res);
