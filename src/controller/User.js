@@ -28,7 +28,7 @@ module.exports = {
     const { id } = req.token;
     const { password, newPassword } = req.body;
     console.log(newPassword);
-    if (newPassword > 7) {
+    if (newPassword.length > 7) {
       userModel
         .changePassword(id, password, newPassword)
         .then((data) => formResponse(data, res, 200, "success"))
