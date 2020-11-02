@@ -7,23 +7,23 @@ ZWallet also arranges so that you can still use the funds to pay for various nee
 
 ### `Features Available`
 
-  * Transfer
-  + Top Up
+- Transfer
+
+* Top Up
 
 ### `Prerequisites`
 
-  - Before you begin, ensure you have met the following requirements:
-    + NPM or Yarn as package manager
-    * midtrans
+- Before you begin, ensure you have met the following requirements:
+  - NPM or Yarn as package manager
+  * midtrans
 
 ### `Installing Zwallet`
 
 git clone [https://github.com/hnifmaghfur/Z-Wallet-Sleepless/tree/master] start the sever :
-* open file in folder
-* run this command npm start to start the server.
-* Make sure there are no other processes that use port 8000
-* Run app zwallet in terminal yarn start.
+
+- open file in folder
+- run this command npm start to start the server.
+- Make sure there are no other processes that use port 8000
+- Run app zwallet in terminal yarn start.
 
 ### `Display Aplication`
-
-* gambar disini
