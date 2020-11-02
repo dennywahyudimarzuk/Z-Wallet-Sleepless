@@ -27,3 +27,8 @@ git clone [https://github.com/hnifmaghfur/Z-Wallet-Sleepless/tree/master] start 
 - Run app zwallet in terminal yarn start.
 
 ### `Display Aplication`
+
+![alt text](https://github.com/hnifmaghfur/Z-Wallet-Sleepless/blob/master/public/img-ss/1.jpg "Screen shoot 1")
+![alt text](https://github.com/hnifmaghfur/Z-Wallet-Sleepless/blob/master/public/img-ss/2.jpg "Screen shoot 2")
+![alt text](https://github.com/hnifmaghfur/Z-Wallet-Sleepless/blob/master/public/img-ss/3.jpg "Screen shoot 3")
+![alt text](https://github.com/hnifmaghfur/Z-Wallet-Sleepless/blob/master/public/img-ss/4.jpg "Screen shoot 4")
