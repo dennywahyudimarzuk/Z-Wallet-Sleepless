@@ -1,0 +1,31 @@
+version: "3.7"
+services: 
+    mysql_container: 
+        container_name: private_mysql
+        image: mysql:latest
+        environment:
+            MYSQL_USER: api
+            MYSQL_PASSWORD: 123123
+            MYSQL_ROOT_PASSWORD: 123123
+            MYSQL_DATABASE: default_schema
+        networks: 
+            - mysql
+        ports:
+            - 3306:3306
+    phpmyadmin_container:
+        container_name: private_phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - mysql_container
+        environment:
+            PMA_HOST: mysql_container
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        restart: always
+        networks: 
+            - mysql
+        ports: 
+            - 8010:80
+networks: 
+    mysql:
+        driver: bridge
